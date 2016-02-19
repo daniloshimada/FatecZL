@@ -17,6 +17,7 @@ namespace SistemaApoioEstudo.BLL.Controles
             try
             {
                 ValidarNome(usuario);
+                ValidarSenha(usuario);
                 IUsuarioDAO usuarioDAO = new UsuarioDAO();
                 return usuarioDAO.Cadastrar(usuario);
             }
@@ -62,6 +63,20 @@ namespace SistemaApoioEstudo.BLL.Controles
             catch (Exception)
             {
                 
+                throw;
+            }
+        }
+
+        public void ValidarSenha(Usuario usuario)
+        {
+            NegocioUsuario negocioUsuario = new NegocioUsuario();
+            try
+            {
+                negocioUsuario.ValidarSenha(usuario);
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

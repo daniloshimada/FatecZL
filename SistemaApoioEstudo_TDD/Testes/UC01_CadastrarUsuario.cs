@@ -40,7 +40,7 @@ namespace Testes
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "O campo nome deve ser preenchido!")]
+        [ExpectedException(typeof(ArgumentException))]
         public void CT02UC01FA_CadastrarUsuario_comNomeEmBranco_semSucesso()
         {
             Usuario usuario = new Usuario()
@@ -50,6 +50,76 @@ namespace Testes
             };
             ControleUsuario controleUsuario = new ControleUsuario();
             controleUsuario.ValidarNome(usuario);
+            controleUsuario.Cadastrar(usuario);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CT03UC01FA_CadastrarUsuario_comSenhaEmBranco_semSucesso()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nome = "Clayton",
+                Senha = "   "
+            };
+            ControleUsuario controleUsuario = new ControleUsuario();
+            controleUsuario.ValidarSenha(usuario);
+            controleUsuario.Cadastrar(usuario);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void CT04UC01FA_CadastrarUsuario_comNomeAcimaDe15Caracteres_semSucesso()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nome = "Alexandreshigueru",
+                Senha = "athens"
+            };
+            ControleUsuario controleUsuario = new ControleUsuario();
+            controleUsuario.ValidarNome(usuario);
+            controleUsuario.Cadastrar(usuario);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void CT05UC01FA_CadastrarUsuario_comSenhaAcimaDe10Caracteres_semSucesso()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nome = "Danilo",
+                Senha = "delphidanilo"
+            };
+            ControleUsuario controleUsuario = new ControleUsuario();
+            controleUsuario.ValidarSenha(usuario);
+            controleUsuario.Cadastrar(usuario);
+        }
+
+        [Test]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void CT06UC01FA_CadastrarUsuario_comNomeNull_semSucesso()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nome = null,
+                Senha = "creta"
+            };
+            ControleUsuario controleUsuario = new ControleUsuario();
+            controleUsuario.ValidarNome(usuario);
+            controleUsuario.Cadastrar(usuario);
+        }
+
+        [Test]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void CT07UC01FA_CadastrarUsuario_comSenhaNull_semSucesso()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nome = "Clayton",
+                Senha = null
+            };
+            ControleUsuario controleUsuario = new ControleUsuario();
+            controleUsuario.ValidarSenha(usuario);
             controleUsuario.Cadastrar(usuario);
         }
     }

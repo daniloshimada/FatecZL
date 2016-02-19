@@ -13,9 +13,40 @@ namespace SistemaApoioEstudo.BLL.Negocio
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(usuario.Nome))
+                if (usuario.Nome.Trim().Equals(string.Empty))
                 {
                     throw new ArgumentException("O campo nome deve ser preenchido!");
+                }
+                else if (usuario.Nome.Length > 15)
+                {
+                    throw new ArgumentOutOfRangeException(usuario.Nome, "O campo nome não deve conter acima de 15 caracteres!");
+                }else if(usuario.Nome == null)
+                {
+                    throw new NullReferenceException("Não foi possível gravar o nome, contate o suporte técnico!");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void ValidarSenha(Usuario usuario)
+        {
+            try
+            {
+                if (usuario.Senha.Trim().Equals(string.Empty))
+                {
+                    throw new ArgumentException("O campo senha deve ser preenchido!");
+                }
+                else if (usuario.Senha.Length > 10)
+                {
+                    throw new ArgumentOutOfRangeException(usuario.Senha, "O campo senha não deve conter acima de 10 caracteres!");
+                }
+                else if (usuario.Senha == null)
+                {
+                    throw new NullReferenceException("Não foi possível gravar a senha, contate o suporte técnico!");
                 }
             }
             catch (Exception)
