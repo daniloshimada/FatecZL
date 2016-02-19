@@ -43,6 +43,7 @@
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Interfaces\IUsuarioDAO.cs" />
+    <Compile Include="Negocio\NegocioUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

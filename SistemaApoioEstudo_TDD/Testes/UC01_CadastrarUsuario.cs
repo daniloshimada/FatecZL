@@ -38,5 +38,19 @@ namespace Testes
 
             Assert.IsTrue(resultadoCadastrar);
         }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "O campo nome deve ser preenchido!")]
+        public void CT02UC01FA_CadastrarUsuario_comNomeEmBranco_semSucesso()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nome = "   ",
+                Senha = "baralho"
+            };
+            ControleUsuario controleUsuario = new ControleUsuario();
+            controleUsuario.ValidarNome(usuario);
+            controleUsuario.Cadastrar(usuario);
+        }
     }
 }

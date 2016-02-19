@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Interfaces;
 using SistemaApoioEstudo.BLL.DAO;
+using SistemaApoioEstudo.BLL.Negocio;
 
 namespace SistemaApoioEstudo.BLL.Controles
 {
@@ -15,6 +16,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
+                ValidarNome(usuario);
                 IUsuarioDAO usuarioDAO = new UsuarioDAO();
                 return usuarioDAO.Cadastrar(usuario);
             }
@@ -46,6 +48,20 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public void ValidarNome(Usuario usuario)
+        {
+            NegocioUsuario negocioUsuario = new NegocioUsuario();
+            try
+            {
+                negocioUsuario.ValidaNome(usuario);
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }
