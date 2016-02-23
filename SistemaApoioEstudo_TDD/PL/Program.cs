@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Controles;
+using SistemaApoioEstudo.PL.FormUsuario;
 
 namespace PL
 {
@@ -18,7 +19,7 @@ namespace PL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormCadastrarUsuario());
         }
     }
 }

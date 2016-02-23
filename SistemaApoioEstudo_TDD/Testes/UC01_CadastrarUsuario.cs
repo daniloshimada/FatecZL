@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Controles;
+using System.Data.SqlClient;
 
 namespace Testes
 {
@@ -68,7 +69,7 @@ namespace Testes
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void CT04UC01FA_CadastrarUsuario_comNomeAcimaDe15Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
@@ -82,7 +83,7 @@ namespace Testes
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void CT05UC01FA_CadastrarUsuario_comSenhaAcimaDe10Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
@@ -120,6 +121,19 @@ namespace Testes
             };
             ControleUsuario controleUsuario = new ControleUsuario();
             controleUsuario.ValidarSenha(usuario);
+            controleUsuario.Cadastrar(usuario);
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception))]
+        public void CT08UC01FA_CadastrarUsuario_comNomeJaExistente_semSucesso()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
+            ControleUsuario controleUsuario = new ControleUsuario();
             controleUsuario.Cadastrar(usuario);
         }
     }

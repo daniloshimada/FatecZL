@@ -19,7 +19,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
                 }
                 else if (usuario.Nome.Length > 15)
                 {
-                    throw new ArgumentOutOfRangeException(usuario.Nome, "O campo nome não deve conter acima de 15 caracteres!");
+                    throw new ArgumentException("O campo nome não deve conter acima de 15 caracteres!");
                 }else if(usuario.Nome == null)
                 {
                     throw new NullReferenceException("Não foi possível gravar o nome, contate o suporte técnico!");
@@ -27,7 +27,6 @@ namespace SistemaApoioEstudo.BLL.Negocio
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -42,7 +41,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
                 }
                 else if (usuario.Senha.Length > 10)
                 {
-                    throw new ArgumentOutOfRangeException(usuario.Senha, "O campo senha não deve conter acima de 10 caracteres!");
+                    throw new ArgumentException("O campo senha não deve conter acima de 10 caracteres!");
                 }
                 else if (usuario.Senha == null)
                 {
@@ -51,7 +50,6 @@ namespace SistemaApoioEstudo.BLL.Negocio
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

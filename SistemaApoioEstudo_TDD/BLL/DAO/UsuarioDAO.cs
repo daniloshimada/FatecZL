@@ -7,6 +7,7 @@ using SistemaApoioEstudo.BLL.Interfaces;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.DAL.Persistencia;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SistemaApoioEstudo.BLL.DAO
 {
@@ -19,7 +20,15 @@ namespace SistemaApoioEstudo.BLL.DAO
                 ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
-                return conexaoBD.ExecutarManipulacao("uspUsuarioCadastrar"); ;
+                return conexaoBD.ExecutarManipulacao("uspUsuarioCadastrar");
+            }
+            catch (SqlException sqlException)
+            {
+                if (sqlException.Number == 2627)
+                {
+                    throw new Exception("O nome já existe!");
+                }
+                throw;
             }
             catch (Exception)
             {

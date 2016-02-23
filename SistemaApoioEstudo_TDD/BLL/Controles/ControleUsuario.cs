@@ -62,7 +62,6 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
             catch (Exception)
             {
-                
                 throw;
             }
         }
@@ -76,7 +75,6 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
