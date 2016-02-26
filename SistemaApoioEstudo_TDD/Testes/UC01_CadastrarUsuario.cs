@@ -13,6 +13,19 @@ namespace Testes
     [TestFixture]
     public class UC01_CadastrarUsuario
     {
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            ControleUsuario controleUsuario = new ControleUsuario();
+            Usuario usuario = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
+            controleUsuario.Consultar(usuario);
+            controleUsuario.Excluir(usuario.Id);
+        }
+
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
