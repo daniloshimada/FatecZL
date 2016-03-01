@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SistemaApoioEstudo.BLL.Interfaces;
+using SistemaApoioEstudo.BLL.Utilitarios;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.DAL.Persistencia;
 using System.Data;
@@ -46,6 +46,10 @@ namespace SistemaApoioEstudo.BLL.DAO
 
                 DataTable dataTable = new DataTable();
                 dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultar");
+                if (dataTable.Rows.Count == 0)
+                {
+                    usuario = null;
+                }
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
@@ -57,6 +61,37 @@ namespace SistemaApoioEstudo.BLL.DAO
             }
             catch (Exception)
             {  
+                throw;
+            }
+        }
+
+        public bool Atualizar(Usuario usuario)
+        {
+            try
+            {
+                ConexaoBD conexaoBD = new ConexaoBD();
+                conexaoBD.AdicionarParametros("@Id_usuario", usuario.Id);
+                conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
+                conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
+                return conexaoBD.ExecutarManipulacao("uspUsuarioAtualizar");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool AtualizarNome(Usuario usuario)
+        {
+            try
+            {
+                ConexaoBD conexaoBD = new ConexaoBD();
+                conexaoBD.AdicionarParametros("@Id_usuario", usuario.Id);
+                conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
+                return conexaoBD.ExecutarManipulacao("uspUsuarioAtualizarNome");
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }

@@ -63,7 +63,7 @@ namespace Testes
                 Senha = "baralho"
             };
             ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarNome(usuario);
+            controleUsuario.ValidarNome(usuario.Nome);
             controleUsuario.Cadastrar(usuario);
         }
 
@@ -77,7 +77,7 @@ namespace Testes
                 Senha = "   "
             };
             ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarSenha(usuario);
+            controleUsuario.ValidarSenha(usuario.Nome);
             controleUsuario.Cadastrar(usuario);
         }
 
@@ -91,7 +91,7 @@ namespace Testes
                 Senha = "athens"
             };
             ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarNome(usuario);
+            controleUsuario.ValidarNome(usuario.Nome);
             controleUsuario.Cadastrar(usuario);
         }
 
@@ -105,7 +105,7 @@ namespace Testes
                 Senha = "delphidanilo"
             };
             ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarSenha(usuario);
+            controleUsuario.ValidarSenha(usuario.Nome);
             controleUsuario.Cadastrar(usuario);
         }
 
@@ -119,7 +119,7 @@ namespace Testes
                 Senha = "creta"
             };
             ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarNome(usuario);
+            controleUsuario.ValidarNome(usuario.Nome);
             controleUsuario.Cadastrar(usuario);
         }
 
@@ -133,7 +133,7 @@ namespace Testes
                 Senha = null
             };
             ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarSenha(usuario);
+            controleUsuario.ValidarSenha(usuario.Nome);
             controleUsuario.Cadastrar(usuario);
         }
 
@@ -147,6 +147,7 @@ namespace Testes
                 Senha = "athens"
             };
             ControleUsuario controleUsuario = new ControleUsuario();
+            controleUsuario.Cadastrar(usuario);
             controleUsuario.Cadastrar(usuario);
         }
     }

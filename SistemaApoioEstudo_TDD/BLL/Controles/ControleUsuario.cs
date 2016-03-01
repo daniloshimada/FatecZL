@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Interfaces;
+using SistemaApoioEstudo.BLL.Utilitarios;
 using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Negocio;
 
@@ -16,8 +16,8 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
-                ValidarNome(usuario);
-                ValidarSenha(usuario);
+                ValidarNome(usuario.Nome);
+                ValidarSenha(usuario.Senha);
                 IUsuarioDAO usuarioDAO = new UsuarioDAO();
                 return usuarioDAO.Cadastrar(usuario);
             }
@@ -40,6 +40,19 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
+        public bool Atualizar(Usuario usuario)
+        {
+            try
+            {
+                IUsuarioDAO usuarioDAO = new UsuarioDAO();
+                return usuarioDAO.Atualizar(usuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool Excluir(int idUsuario)
         {
             try
@@ -53,12 +66,12 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public void ValidarNome(Usuario usuario)
+        public void ValidarNome(string nome)
         {
             NegocioUsuario negocioUsuario = new NegocioUsuario();
             try
             {
-                negocioUsuario.ValidaNome(usuario);
+                negocioUsuario.ValidarNome(nome);
             }
             catch (Exception)
             {
@@ -66,12 +79,25 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public void ValidarSenha(Usuario usuario)
+        public void ValidarSenha(string senha)
         {
             NegocioUsuario negocioUsuario = new NegocioUsuario();
             try
             {
-                negocioUsuario.ValidarSenha(usuario);
+                negocioUsuario.ValidarSenha(senha);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarSenhaConfirmacao(string senhaConfirmacao)
+        {
+            NegocioUsuario negocioUsuario = new NegocioUsuario();
+            try
+            {
+                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
             }
             catch (Exception)
             {
