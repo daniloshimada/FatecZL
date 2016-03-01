@@ -234,6 +234,7 @@ namespace Testes
         }
 
         [Test]
+        [ExpectedException(typeof(NullReferenceException))]
         public void CT11UC02FA_AtualizarUsuario_comSenhaDeConfirmaçãoNULL_semSucesso()
         {
             NegocioUsuario negocioUsuario = new NegocioUsuario();
