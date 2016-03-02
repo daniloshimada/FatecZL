@@ -12,12 +12,19 @@ namespace SistemaApoioEstudo.BLL.Controles
 {
     public class ControleUsuario
     {
+        private NegocioUsuario negocioUsuario;
+
+        public ControleUsuario()
+        {
+            negocioUsuario = new NegocioUsuario();
+        }
+
         public bool Cadastrar(Usuario usuario)
         {
             try
             {
-                ValidarNome(usuario.Nome);
-                ValidarSenha(usuario.Senha);
+                negocioUsuario.ValidarNome(usuario.Nome);
+                negocioUsuario.ValidarSenha(usuario.Senha);
                 IUsuarioDAO usuarioDAO = new UsuarioDAO();
                 return usuarioDAO.Cadastrar(usuario);
             }
@@ -40,12 +47,24 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public bool Atualizar(Usuario usuario)
+        public bool Atualizar(Usuario usuario, string senhaConfirmacao)
         {
             try
             {
+                negocioUsuario.ValidarNome(usuario.Nome);
+                bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
+                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
+                usuario.Id = Login.Usuario.Id;
                 IUsuarioDAO usuarioDAO = new UsuarioDAO();
-                return usuarioDAO.Atualizar(usuario);
+                if (resultado)
+                {
+                    resultado = usuarioDAO.Atualizar(usuario);
+                }
+                else
+                {
+                    resultado = usuarioDAO.AtualizarNome(usuario);
+                }
+                return Login.AtualizarLogin(usuario, resultado); ;
             }
             catch (Exception)
             {
@@ -59,45 +78,6 @@ namespace SistemaApoioEstudo.BLL.Controles
             {
                 IUsuarioDAO usuarioDAO = new UsuarioDAO();
                 return usuarioDAO.Excluir(idUsuario);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void ValidarNome(string nome)
-        {
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
-            try
-            {
-                negocioUsuario.ValidarNome(nome);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void ValidarSenha(string senha)
-        {
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
-            try
-            {
-                negocioUsuario.ValidarSenha(senha);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void ValidarSenhaConfirmacao(string senhaConfirmacao)
-        {
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
-            try
-            {
-                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
             }
             catch (Exception)
             {

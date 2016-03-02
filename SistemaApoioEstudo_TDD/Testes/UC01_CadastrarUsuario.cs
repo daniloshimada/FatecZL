@@ -7,36 +7,63 @@ using NUnit.Framework;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Controles;
 using System.Data.SqlClient;
+using SistemaApoioEstudo.BLL.Negocio;
+using SistemaApoioEstudo.BLL.DAO;
+using SistemaApoioEstudo.BLL.Utilitarios;
 
 namespace Testes
 {
     [TestFixture]
     public class UC01_CadastrarUsuario
     {
+        private NegocioUsuario negocioUsuario;
+        private IUsuarioDAO usuarioDAO;
+
+        public UC01_CadastrarUsuario()
+        {
+            negocioUsuario = new NegocioUsuario();
+            usuarioDAO = new UsuarioDAO();
+        }
+
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            ControleUsuario controleUsuario = new ControleUsuario();
-            Usuario usuario = new Usuario()
+            Usuario usuarioAlexandre = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            controleUsuario.Consultar(usuario);
-            controleUsuario.Excluir(usuario.Id);
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
+            {
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
+            }
+
+            Usuario usuarioDanilo = new Usuario()
+            {
+                Nome = "Danilo",
+                Senha = "delphi"
+            };
+            usuarioDanilo = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioDanilo == null)
+            {
+                usuarioDAO.Cadastrar(usuarioDanilo);
+            }
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            ControleUsuario controleUsuario = new ControleUsuario();
             Usuario usuario = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            controleUsuario.Consultar(usuario);
-            controleUsuario.Excluir(usuario.Id);
+            usuario = usuarioDAO.ConsultarNome(usuario.Nome);
+            if (usuario != null)
+            {
+                usuarioDAO.Excluir(usuario.Id);
+            }
         }
 
         [Test]
@@ -47,9 +74,7 @@ namespace Testes
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            ControleUsuario controleUsuario = new ControleUsuario();
-            bool resultadoCadastrar = controleUsuario.Cadastrar(usuario);
-
+            bool resultadoCadastrar = usuarioDAO.Cadastrar(usuario);
             Assert.IsTrue(resultadoCadastrar);
         }
 
@@ -62,9 +87,7 @@ namespace Testes
                 Nome = "   ",
                 Senha = "baralho"
             };
-            ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarNome(usuario.Nome);
-            controleUsuario.Cadastrar(usuario);
+            negocioUsuario.ValidarNome(usuario.Nome);
         }
 
         [Test]
@@ -76,9 +99,7 @@ namespace Testes
                 Nome = "Clayton",
                 Senha = "   "
             };
-            ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarSenha(usuario.Nome);
-            controleUsuario.Cadastrar(usuario);
+            negocioUsuario.ValidarSenha(usuario.Senha);
         }
 
         [Test]
@@ -90,9 +111,7 @@ namespace Testes
                 Nome = "Alexandreshigueru",
                 Senha = "athens"
             };
-            ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarNome(usuario.Nome);
-            controleUsuario.Cadastrar(usuario);
+            negocioUsuario.ValidarNome(usuario.Nome);
         }
 
         [Test]
@@ -104,9 +123,7 @@ namespace Testes
                 Nome = "Danilo",
                 Senha = "delphidanilo"
             };
-            ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarSenha(usuario.Nome);
-            controleUsuario.Cadastrar(usuario);
+            negocioUsuario.ValidarSenha(usuario.Senha);
         }
 
         [Test]
@@ -118,9 +135,7 @@ namespace Testes
                 Nome = null,
                 Senha = "creta"
             };
-            ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarNome(usuario.Nome);
-            controleUsuario.Cadastrar(usuario);
+            negocioUsuario.ValidarNome(usuario.Nome);
         }
 
         [Test]
@@ -132,9 +147,7 @@ namespace Testes
                 Nome = "Clayton",
                 Senha = null
             };
-            ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.ValidarSenha(usuario.Nome);
-            controleUsuario.Cadastrar(usuario);
+            negocioUsuario.ValidarSenha(usuario.Senha);
         }
 
         [Test]
@@ -143,12 +156,12 @@ namespace Testes
         {
             Usuario usuario = new Usuario()
             {
-                Nome = "Alexandre",
-                Senha = "athens"
+                Nome = "Danilo",
+                Senha = "delphi"
             };
-            ControleUsuario controleUsuario = new ControleUsuario();
-            controleUsuario.Cadastrar(usuario);
-            controleUsuario.Cadastrar(usuario);
+            negocioUsuario.ValidarNome(usuario.Nome);
+            negocioUsuario.ValidarSenha(usuario.Senha);
+            usuarioDAO.Cadastrar(usuario);
         }
     }
 }

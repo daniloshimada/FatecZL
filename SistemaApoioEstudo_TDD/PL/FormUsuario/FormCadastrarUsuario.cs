@@ -33,6 +33,11 @@ namespace SistemaApoioEstudo.PL.FormUsuario
                 if (resultadoCadastrar)
                 {
                     MessageBox.Show("Usuário cadastrado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                }
+                else
+                {
+                    throw new Exception("Não foi possível cadastrar o usuário, contate o suporte técnico!");
                 }
             }
             catch (Exception ex)

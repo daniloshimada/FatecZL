@@ -34,7 +34,7 @@
             this.textBoxSenha = new System.Windows.Forms.TextBox();
             this.buttonCadastrar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelCadastrar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -99,15 +99,15 @@
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
-            // label3
+            // labelCadastrar
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(38, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(178, 18);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "CADASTRAR USUÁRIO";
+            this.labelCadastrar.AutoSize = true;
+            this.labelCadastrar.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCadastrar.Location = new System.Drawing.Point(38, 9);
+            this.labelCadastrar.Name = "labelCadastrar";
+            this.labelCadastrar.Size = new System.Drawing.Size(178, 18);
+            this.labelCadastrar.TabIndex = 0;
+            this.labelCadastrar.Text = "CADASTRAR USUÁRIO";
             // 
             // FormCadastrarUsuario
             // 
@@ -116,7 +116,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancelar;
             this.ClientSize = new System.Drawing.Size(254, 176);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelCadastrar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonCadastrar);
             this.Controls.Add(this.textBoxSenha);
@@ -124,6 +124,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormCadastrarUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "USUÁRIO";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,6 +139,6 @@
         private System.Windows.Forms.TextBox textBoxSenha;
         private System.Windows.Forms.Button buttonCadastrar;
         private System.Windows.Forms.Button buttonCancelar;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelCadastrar;
     }
 }
