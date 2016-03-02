@@ -15,60 +15,51 @@ namespace Testes
     [TestFixture]
     public class UC02_AtualizarUsuario
     {
-        private Usuario usuarioAlexandre;
+        private NegocioUsuario negocioUsuario;
         private IUsuarioDAO usuarioDAO;
 
         public UC02_AtualizarUsuario()
         {
-            usuarioAlexandre = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
+            negocioUsuario = new NegocioUsuario();
             usuarioDAO = new UsuarioDAO();
         }
 
         [SetUp]
         public void SetUp()
         {
-            if (usuarioDAO.Consultar(usuarioAlexandre) == null)
+            //_(CT01-CT13) Cadastra e loga o usuário com nome "Alexandre" e senha "athens".
+            Usuario usuarioAlexandre = new Usuario()
             {
-                usuarioDAO.Cadastrar(usuarioAlexandre);
-            }
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
-
-            Usuario usuarioClaytonCreta = new Usuario()
-            {
-                Nome = "Clayton",
-                Senha = "creta"
-            };
-            usuarioClaytonCreta = usuarioDAO.Consultar(usuarioClaytonCreta);
-            if (usuarioClaytonCreta != null)
-            {
-                usuarioDAO.Excluir(usuarioClaytonCreta.Id);
-            }
-
-            Usuario usuarioClaytonAthens = new Usuario()
-            {
-                Nome = "Clayton",
+                Nome = "Alexandre",
                 Senha = "athens"
             };
-            usuarioClaytonAthens = usuarioDAO.Consultar(usuarioClaytonAthens);
-            if (usuarioClaytonAthens != null)
+            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioClaytonAthens.Id);
+                usuarioDAO.Excluir(usuarioRetorno.Id);
+            }
+            usuarioDAO.Cadastrar(usuarioAlexandre);
+            Login.RegistrarUsuario(usuarioDAO.ConsultarNome(usuarioAlexandre.Nome));
+
+            //_(CT01-CT03) Exclui o usuário com nome "Clayton".
+            Usuario usuarioClayton = usuarioDAO.ConsultarNome("Clayton");
+            if (usuarioClayton != null)
+            {
+                usuarioDAO.Excluir(usuarioClayton.Id);
             }
 
-            Usuario usuarioClaytonCretanova = new Usuario()
+            //_(CT13) Cadastra o usuário com nome "Danilo" e senha "delphi".
+            Usuario usuarioDanilo = new Usuario()
             {
-                Nome = "Clayton",
-                Senha = "cretanova"
+                Nome = "Danilo",
+                Senha = "delphi"
             };
-            usuarioClaytonCretanova = usuarioDAO.Consultar(usuarioClaytonCretanova);
-            if (usuarioClaytonCretanova != null)
+            Usuario usuarioDaniloRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioDaniloRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioClaytonCretanova.Id);
+                usuarioDAO.Excluir(usuarioDaniloRetorno.Id);
             }
+            usuarioDAO.Cadastrar(usuarioDanilo);
         }
 
         [Test]
@@ -79,9 +70,7 @@ namespace Testes
                 Nome = "Clayton",
                 Senha = "creta"
             };
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarNome(usuario.Nome);
-            negocioUsuario.ValidarSenhaNova(usuario.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
             usuario.Id = Login.Usuario.Id;
             bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
@@ -106,9 +95,7 @@ namespace Testes
                 Nome = "Clayton",
                 Senha = " "
             };
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarNome(usuario.Nome);
-            negocioUsuario.ValidarSenhaNova(usuario.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
             usuario.Id = Login.Usuario.Id;
             bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
@@ -130,12 +117,10 @@ namespace Testes
         {
             Usuario usuario = new Usuario()
             {
-                Nome = "Clayton",
+                Nome = "Alexandre",
                 Senha = "cretanova"
             };
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarNome(usuario.Nome);
-            negocioUsuario.ValidarSenhaNova(usuario.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
             usuario.Id = Login.Usuario.Id;
             bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
@@ -161,7 +146,6 @@ namespace Testes
                 Nome = " ",
                 Senha = ""
             };
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarNome(usuario.Nome);
         }
 
@@ -169,7 +153,6 @@ namespace Testes
         [ExpectedException(typeof(ArgumentException))]
         public void CT05UC02FA_AtualizarUsuario_comSenhaDeConfirmacaoEmBranco_semSucesso()
         {
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarSenhaConfirmacao(" ");
         }
 
@@ -182,7 +165,6 @@ namespace Testes
                 Nome = "Alexandreshigueru",
                 Senha = ""
             };
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarNome(usuario.Nome);
         }
 
@@ -195,7 +177,6 @@ namespace Testes
                 Nome = "Alexandre",
                 Senha = "danilodelphi"
             };
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarSenhaNova(usuario.Senha);
         }
 
@@ -203,7 +184,6 @@ namespace Testes
         [ExpectedException(typeof(ArgumentException))]
         public void CT08UC02FA_AtualizarUsuario_comSenhaDeConfirmacaoAcimaDe10Caracteres_semSucesso()
         {
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarSenhaConfirmacao("danilodelphi");
         }
 
@@ -211,12 +191,6 @@ namespace Testes
         [ExpectedException(typeof(NullReferenceException))]
         public void CT09UC02FA_AtualizarUsuario_comNomeNULL_semSucesso()
         {
-            Usuario usuario = new Usuario()
-            {
-                Nome = "Clayton",
-                Senha = ""
-            };
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarNome(null);
         }
 
@@ -224,12 +198,6 @@ namespace Testes
         [ExpectedException(typeof(NullReferenceException))]
         public void CT10UC02FA_AtualizarUsuario_comSenhaNovaNULL_semSucesso()
         {
-            Usuario usuario = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "cretanull"
-            };
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarSenhaNova(null);
         }
 
@@ -237,8 +205,37 @@ namespace Testes
         [ExpectedException(typeof(NullReferenceException))]
         public void CT11UC02FA_AtualizarUsuario_comSenhaDeConfirmaçãoNULL_semSucesso()
         {
-            NegocioUsuario negocioUsuario = new NegocioUsuario();
             negocioUsuario.ValidarSenhaConfirmacao(null);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CT12UC02FA_AtualizarUsuario_comSenhaDeConfirmacaoIncorreta_semSucesso()
+        {
+            negocioUsuario.ValidarSenhaConfirmacao("delphi");
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception))]
+        public void CT13UC02FA_AtualizarUsuaro_comNomeJaExistente_semSucesso()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nome = "Danilo",
+                Senha = ""
+            };
+            negocioUsuario.ValidarNome(usuario.Nome);
+            negocioUsuario.ValidarSenhaConfirmacao("athens");
+            usuario.Id = Login.Usuario.Id;
+            bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
+            if (resultado)
+            {
+                resultado = usuarioDAO.Atualizar(usuario);
+            }
+            else
+            {
+                resultado = usuarioDAO.AtualizarNome(usuario);
+            }
         }
     }
 }

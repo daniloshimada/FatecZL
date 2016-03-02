@@ -94,7 +94,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
                 }
                 else if (!senhaConfirmacao.Equals(Login.Usuario.Senha))
                 {
-                    throw new ArgumentException("Senha incorreta!");
+                    throw new ArgumentException("Senha de confirmação incorreta!");
                 }
             }
             catch (NullReferenceException)

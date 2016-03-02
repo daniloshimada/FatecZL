@@ -48,7 +48,7 @@ namespace SistemaApoioEstudo.BLL.DAO
                 dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultar");
                 if (dataTable.Rows.Count == 0)
                 {
-                    usuario = null;
+                    return null;
                 }
 
                 foreach (DataRow dataRow in dataTable.Rows)
@@ -65,6 +65,35 @@ namespace SistemaApoioEstudo.BLL.DAO
             }
         }
 
+        public Usuario ConsultarNome(string nomeUsuario)
+        {
+            try
+            {
+                ConexaoBD conexaoBD = new ConexaoBD();
+                conexaoBD.AdicionarParametros("@Nome_usuario", nomeUsuario);
+
+                DataTable dataTable = new DataTable();
+                dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultarNome");
+                if (dataTable.Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                Usuario usuario = new Usuario();
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    usuario.Id = Convert.ToInt32(dataRow[0]);
+                    usuario.Nome = Convert.ToString(dataRow[1]);
+                    usuario.Senha = Convert.ToString(dataRow[2]);
+                }
+                return usuario;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool Atualizar(Usuario usuario)
         {
             try
@@ -74,6 +103,14 @@ namespace SistemaApoioEstudo.BLL.DAO
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
                 return conexaoBD.ExecutarManipulacao("uspUsuarioAtualizar");
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                {
+                    throw new Exception("O nome já existe!");
+                }
+                throw;
             }
             catch (Exception)
             {
@@ -89,6 +126,14 @@ namespace SistemaApoioEstudo.BLL.DAO
                 conexaoBD.AdicionarParametros("@Id_usuario", usuario.Id);
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 return conexaoBD.ExecutarManipulacao("uspUsuarioAtualizarNome");
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                {
+                    throw new Exception("O nome já existe!");
+                }
+                throw;
             }
             catch (Exception)
             {
