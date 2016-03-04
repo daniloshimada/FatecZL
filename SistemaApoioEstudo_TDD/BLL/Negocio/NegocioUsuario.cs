@@ -25,7 +25,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException("Não foi possível gravar o nome, contate o suporte técnico!");
+                throw new NullReferenceException("Ocorreu um erro no campo nome, contate o suporte técnico!");
             }
             catch (Exception)
             {
@@ -48,7 +48,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException("Não foi possível gravar a senha, contate o suporte técnico!");
+                throw new NullReferenceException("Ocorreu um erro no campo senha, contate o suporte técnico!");
             }
             catch (Exception)
             {
@@ -72,7 +72,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException("Não foi possível gravar a senha nova, contate o suporte técnico!");
+                throw new NullReferenceException("Ocorreu um erro no campo senha, contate o suporte técnico!");
             }
             catch (Exception)
             {
@@ -86,11 +86,11 @@ namespace SistemaApoioEstudo.BLL.Negocio
             {
                 if (senhaConfirmacao.Trim().Equals(string.Empty))
                 {
-                    throw new ArgumentException("O campo senha de confirmação deve ser prrenchido!");
+                    throw new ArgumentException("O campo com a senha de confirmação deve ser prrenchido!");
                 }
                 else if (senhaConfirmacao.Trim().Length > 10)
                 {
-                    throw new ArgumentException("O campo senha de confirmação não deve conter acima de 10 caracteres!");
+                    throw new ArgumentException("O campo com a senha de confirmação não deve conter acima de 10 caracteres!");
                 }
                 else if (!senhaConfirmacao.Equals(Login.Usuario.Senha))
                 {
@@ -99,7 +99,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException("Não foi possível conferir a senha de confirmação, contate o suporte técnico!");
+                throw new NullReferenceException("Ocorreu um erro no campo de senha de confirmação, contate o suporte técnico!");
             }
             catch (Exception)
             {

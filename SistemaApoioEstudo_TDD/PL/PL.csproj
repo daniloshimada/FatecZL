@@ -45,25 +45,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormUsuario\FormAtualizarUsuario.cs">
+    <Compile Include="FormsLogin\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormUsuario\FormAtualizarUsuario.Designer.cs">
+    <Compile Include="FormsLogin\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsUsuario\FormAtualizarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsUsuario\FormAtualizarUsuario.Designer.cs">
       <DependentUpon>FormAtualizarUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormUsuario\FormCadastrarUsuario.cs">
+    <Compile Include="FormsUsuario\FormCadastrarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormUsuario\FormCadastrarUsuario.Designer.cs">
+    <Compile Include="FormsUsuario\FormCadastrarUsuario.Designer.cs">
       <DependentUpon>FormCadastrarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsUsuario\FormExcluirUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsUsuario\FormExcluirUsuario.Designer.cs">
+      <DependentUpon>FormExcluirUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsUtilitarios\FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsUtilitarios\FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormUsuario\FormAtualizarUsuario.resx">
+    <EmbeddedResource Include="FormsLogin\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsUsuario\FormAtualizarUsuario.resx">
       <DependentUpon>FormAtualizarUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormUsuario\FormCadastrarUsuario.resx">
+    <EmbeddedResource Include="FormsUsuario\FormCadastrarUsuario.resx">
       <DependentUpon>FormCadastrarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsUsuario\FormExcluirUsuario.resx">
+      <DependentUpon>FormExcluirUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsUtilitarios\FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -20,7 +20,11 @@ namespace SistemaApoioEstudo.BLL.DAO
                 ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
-                return conexaoBD.ExecutarManipulacao("uspUsuarioCadastrar");
+                if (conexaoBD.ExecutarManipulacao("uspUsuarioCadastrar"))
+                {
+                    return true;
+                }
+                throw new Exception("Não foi possível cadastrar o usuário, contate o suporte técnico!");
             }
             catch (SqlException sqlException)
             {
@@ -102,7 +106,11 @@ namespace SistemaApoioEstudo.BLL.DAO
                 conexaoBD.AdicionarParametros("@Id_usuario", usuario.Id);
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
-                return conexaoBD.ExecutarManipulacao("uspUsuarioAtualizar");
+                if (conexaoBD.ExecutarManipulacao("uspUsuarioAtualizar"))
+                {
+                    return true;
+                }
+                throw new Exception("Não foi possível atualizar o usuário, contate o suporte técnico!");
             }
             catch (SqlException ex)
             {
@@ -147,7 +155,11 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
-                return conexaoBD.ExecutarManipulacao("uspUsuarioExcluir"); ;
+                if (conexaoBD.ExecutarManipulacao("uspUsuarioExcluir"))
+                {
+                    return true;
+                }
+                throw new Exception("Não foi possível excluir o usuário, contate o suporte técnico!");
             }
             catch (Exception)
             {               

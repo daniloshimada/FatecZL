@@ -10,17 +10,19 @@ using SistemaApoioEstudo.BLL.Utilitarios;
 using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.DAO;
 
-namespace Testes
+namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
     [TestFixture]
     public class UC02_AtualizarUsuario
     {
         private NegocioUsuario negocioUsuario;
+        private NegocioLogin negocioLogin;
         private IUsuarioDAO usuarioDAO;
 
         public UC02_AtualizarUsuario()
         {
             negocioUsuario = new NegocioUsuario();
+            negocioLogin = new NegocioLogin();
             usuarioDAO = new UsuarioDAO();
         }
 
@@ -62,6 +64,32 @@ namespace Testes
             usuarioDAO.Cadastrar(usuarioDanilo);
         }
 
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            Usuario usuarioAlexandre = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
+            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioRetorno != null)
+            {
+                usuarioDAO.Excluir(usuarioRetorno.Id);
+            }
+
+            Usuario usuarioDanilo = new Usuario()
+            {
+                Nome = "Danilo",
+                Senha = "delphi"
+            };
+            Usuario usuarioDaniloRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioDaniloRetorno != null)
+            {
+                usuarioDAO.Excluir(usuarioDaniloRetorno.Id);
+            }
+        }
+
         [Test]
         public void CT01UC02FB_AtualizarUsuario_comNomeESenha_comSucesso()
         {
@@ -82,7 +110,7 @@ namespace Testes
             {
                 resultado = usuarioDAO.AtualizarNome(usuario);
             }
-            resultado = Login.AtualizarLogin(usuario, resultado);
+            resultado = negocioLogin.AtualizarLogin(usuario, resultado);
 
             Assert.IsTrue(resultado);
         }
@@ -107,7 +135,7 @@ namespace Testes
             {
                 resultado = usuarioDAO.AtualizarNome(usuario);
             }
-            resultado = Login.AtualizarLogin(usuario, resultado);
+            resultado = negocioLogin.AtualizarLogin(usuario, resultado);
 
             Assert.IsTrue(resultado);
         }
@@ -132,7 +160,7 @@ namespace Testes
             {
                 resultado = usuarioDAO.AtualizarNome(usuario);
             }
-            resultado = Login.AtualizarLogin(usuario, resultado);
+            resultado = negocioLogin.AtualizarLogin(usuario, resultado);
 
             Assert.IsTrue(resultado);
         }
@@ -203,7 +231,7 @@ namespace Testes
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT11UC02FA_AtualizarUsuario_comSenhaDeConfirmaçãoNULL_semSucesso()
+        public void CT11UC02FA_AtualizarUsuario_comSenhaDeConfirmacaoNULL_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao(null);
         }

@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UC01_CadastrarUsuario.cs" />
-    <Compile Include="UC02_AtualizarUsuario.cs" />
+    <Compile Include="TestesLogin\UC04_Logar.cs" />
+    <Compile Include="TestesUsuario\UC01_CadastrarUsuario.cs" />
+    <Compile Include="TestesUsuario\UC02_AtualizarUsuario.cs" />
+    <Compile Include="TestesUsuario\UC03_ExcluirUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

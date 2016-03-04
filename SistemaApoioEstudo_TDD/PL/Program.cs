@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SistemaApoioEstudo.PL.FormUsuario;
+using SistemaApoioEstudo.PL.FormsLogin;
 
 namespace PL
 {
@@ -17,7 +17,7 @@ namespace PL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAtualizarUsuario());
+            Application.Run(new FormLogin());
         }
     }
 }

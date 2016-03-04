@@ -13,10 +13,12 @@ namespace SistemaApoioEstudo.BLL.Controles
     public class ControleUsuario
     {
         private NegocioUsuario negocioUsuario;
+        private IUsuarioDAO usuarioDAO;
 
         public ControleUsuario()
         {
             negocioUsuario = new NegocioUsuario();
+            usuarioDAO = new UsuarioDAO();
         }
 
         public bool Cadastrar(Usuario usuario)
@@ -25,21 +27,7 @@ namespace SistemaApoioEstudo.BLL.Controles
             {
                 negocioUsuario.ValidarNome(usuario.Nome);
                 negocioUsuario.ValidarSenha(usuario.Senha);
-                IUsuarioDAO usuarioDAO = new UsuarioDAO();
                 return usuarioDAO.Cadastrar(usuario);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public Usuario Consultar(Usuario usuario)
-        {
-            try
-            {
-                IUsuarioDAO usuarioDAO = new UsuarioDAO();
-                return usuarioDAO.Consultar(usuario);
             }
             catch (Exception)
             {
@@ -55,7 +43,6 @@ namespace SistemaApoioEstudo.BLL.Controles
                 bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
                 negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
                 usuario.Id = Login.Usuario.Id;
-                IUsuarioDAO usuarioDAO = new UsuarioDAO();
                 if (resultado)
                 {
                     resultado = usuarioDAO.Atualizar(usuario);
@@ -64,7 +51,7 @@ namespace SistemaApoioEstudo.BLL.Controles
                 {
                     resultado = usuarioDAO.AtualizarNome(usuario);
                 }
-                return Login.AtualizarLogin(usuario, resultado); ;
+                return new NegocioLogin().AtualizarLogin(usuario, resultado); ;
             }
             catch (Exception)
             {
@@ -72,12 +59,17 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public bool Excluir(int idUsuario)
+        public bool Excluir(string senhaConfirmacao)
         {
             try
             {
-                IUsuarioDAO usuarioDAO = new UsuarioDAO();
-                return usuarioDAO.Excluir(idUsuario);
+                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
+                if (usuarioDAO.Excluir(Login.Usuario.Id))
+                {
+                    Login.RemoverUsuario();
+                    return true;
+                }
+                return false;
             }
             catch (Exception)
             {

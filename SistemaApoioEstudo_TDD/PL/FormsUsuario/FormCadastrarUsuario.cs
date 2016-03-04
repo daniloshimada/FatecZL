@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Controles;
 
-namespace SistemaApoioEstudo.PL.FormUsuario
+namespace SistemaApoioEstudo.PL.FormsUsuario
 {
     public partial class FormCadastrarUsuario : Form
     {
@@ -34,10 +34,6 @@ namespace SistemaApoioEstudo.PL.FormUsuario
                 {
                     MessageBox.Show("Usuário cadastrado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
-                }
-                else
-                {
-                    throw new Exception("Não foi possível cadastrar o usuário, contate o suporte técnico!");
                 }
             }
             catch (Exception ex)

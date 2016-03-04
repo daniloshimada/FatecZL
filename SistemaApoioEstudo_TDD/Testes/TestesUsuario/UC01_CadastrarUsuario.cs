@@ -11,7 +11,7 @@ using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Utilitarios;
 
-namespace Testes
+namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
     [TestFixture]
     public class UC01_CadastrarUsuario
@@ -44,8 +44,8 @@ namespace Testes
                 Nome = "Danilo",
                 Senha = "delphi"
             };
-            usuarioDanilo = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
-            if (usuarioDanilo == null)
+            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioRetorno == null)
             {
                 usuarioDAO.Cadastrar(usuarioDanilo);
             }
@@ -54,28 +54,39 @@ namespace Testes
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioAlexandre = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            usuario = usuarioDAO.ConsultarNome(usuario.Nome);
-            if (usuario != null)
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
             {
-                usuarioDAO.Excluir(usuario.Id);
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
+            }
+
+            Usuario usuarioDanilo = new Usuario()
+            {
+                Nome = "Danilo",
+                Senha = "delphi"
+            };
+            usuarioDanilo = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioDanilo != null)
+            {
+                usuarioDAO.Excluir(usuarioDanilo.Id);
             }
         }
 
         [Test]
-        public void CT01UC01FB_CadastrarUsuario_comSucesso()
+        public void CT01UC01FB_CadastrarUsuario_comDadosValidos_comSucesso()
         {
             Usuario usuario = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            bool resultadoCadastrar = usuarioDAO.Cadastrar(usuario);
-            Assert.IsTrue(resultadoCadastrar);
+            bool resultado = usuarioDAO.Cadastrar(usuario);
+            Assert.IsTrue(resultado);
         }
 
         [Test]

@@ -39,13 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controles\ControleLogin.cs" />
     <Compile Include="Controles\ControleUsuario.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Negocio\NegocioLogin.cs" />
     <Compile Include="Utilitarios\IUsuarioDAO.cs" />
     <Compile Include="Negocio\NegocioUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilitarios\Login.cs" />
+    <Compile Include="Entidades\Login.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

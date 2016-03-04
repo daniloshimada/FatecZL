@@ -1,4 +1,4 @@
-﻿namespace SistemaApoioEstudo.PL.FormUsuario
+﻿namespace SistemaApoioEstudo.PL.FormsUsuario
 {
     partial class FormCadastrarUsuario
     {
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelNome = new System.Windows.Forms.Label();
+            this.labelSenha = new System.Windows.Forms.Label();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.textBoxSenha = new System.Windows.Forms.TextBox();
             this.buttonCadastrar = new System.Windows.Forms.Button();
@@ -37,25 +37,25 @@
             this.labelCadastrar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // labelNome
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(37, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 18);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nome:";
+            this.labelNome.AutoSize = true;
+            this.labelNome.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNome.Location = new System.Drawing.Point(37, 55);
+            this.labelNome.Name = "labelNome";
+            this.labelNome.Size = new System.Drawing.Size(58, 18);
+            this.labelNome.TabIndex = 1;
+            this.labelNome.Text = "Nome:";
             // 
-            // label2
+            // labelSenha
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(27, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Senha:";
+            this.labelSenha.AutoSize = true;
+            this.labelSenha.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSenha.Location = new System.Drawing.Point(27, 84);
+            this.labelSenha.Name = "labelSenha";
+            this.labelSenha.Size = new System.Drawing.Size(68, 18);
+            this.labelSenha.TabIndex = 3;
+            this.labelSenha.Text = "Senha:";
             // 
             // textBoxNome
             // 
@@ -121,8 +121,8 @@
             this.Controls.Add(this.buttonCadastrar);
             this.Controls.Add(this.textBoxSenha);
             this.Controls.Add(this.textBoxNome);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelSenha);
+            this.Controls.Add(this.labelNome);
             this.Name = "FormCadastrarUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "USUÁRIO";
@@ -133,8 +133,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelNome;
+        private System.Windows.Forms.Label labelSenha;
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.TextBox textBoxSenha;
         private System.Windows.Forms.Button buttonCadastrar;
