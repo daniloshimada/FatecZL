@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using SistemaApoioEstudo.PL.FormsLogin;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.PL.FormsUsuario;
+using SistemaApoioEstudo.PL.FormsAssunto;
 
 namespace SistemaApoioEstudo.PL.FormsUtilitarios
 {
@@ -58,6 +59,19 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             {
                 FormExcluirUsuario formExcluirUsuario = new FormExcluirUsuario(formLogin, this);
                 formExcluirUsuario.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonAssunto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormAssunto formAssunto = new FormAssunto();
+                formAssunto.ShowDialog();
             }
             catch (Exception ex)
             {

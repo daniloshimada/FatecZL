@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestesAssunto\UC05_AssuntoCadastrar.cs" />
     <Compile Include="TestesLogin\UC04_Logar.cs" />
     <Compile Include="TestesUsuario\UC01_CadastrarUsuario.cs" />
     <Compile Include="TestesUsuario\UC02_AtualizarUsuario.cs" />
