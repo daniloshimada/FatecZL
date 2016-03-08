@@ -44,7 +44,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
             {
                 Nome = "Faculdade"
             };
-            assuntoFaculdade = assuntoDAO.ConsultarNome(assuntoFaculdade.Nome);
+            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
             if (assuntoFaculdade != null)
             {
                 assuntoDAO.Excluir(assuntoFaculdade.Id);
@@ -54,7 +54,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
             {
                 Nome = "FatecZL"
             };
-            Assunto assuntoRetorno = assuntoDAO.ConsultarNome(assuntoFatec.Nome);
+            Assunto assuntoRetorno = assuntoDAO.ConsultarNomeIdUsuario(assuntoFatec.Nome, Login.Usuario.Id);
             if (assuntoRetorno == null)
             {
                 assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFatec);
