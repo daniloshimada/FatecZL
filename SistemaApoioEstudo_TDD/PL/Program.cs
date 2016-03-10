@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SistemaApoioEstudo.PL.FormsLogin;
+using SistemaApoioEstudo.BLL.Utilitarios;
+using SistemaApoioEstudo.BLL.DAO;
+using SistemaApoioEstudo.BLL.Entidades;
+
 
 namespace PL
 {

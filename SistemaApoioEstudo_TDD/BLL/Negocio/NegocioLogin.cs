@@ -25,21 +25,5 @@ namespace SistemaApoioEstudo.BLL.Negocio
                 throw;
             }
         }
-
-        public bool ValidarDados(Usuario[] usuarios)
-        {
-            try
-            {
-                if (usuarios[0].Equals(usuarios[1]))
-                {
-                    return true;
-                }
-                throw new ArgumentException("Dados incorretos!");
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
     }
 }

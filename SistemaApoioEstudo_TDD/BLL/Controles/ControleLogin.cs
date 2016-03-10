@@ -18,13 +18,10 @@ namespace SistemaApoioEstudo.BLL.Controles
             {
                 IUsuarioDAO usuarioDAO = new UsuarioDAO();   
                 Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
-                Usuario[] usuarios = new Usuario[] { usuarioLogin, usuarioRetorno };
                 NegocioUsuario negocioUsuario = new NegocioUsuario();
                 negocioUsuario.ValidarNome(usuarioLogin.Nome);
                 negocioUsuario.ValidarSenha(usuarioLogin.Senha);
-                NegocioLogin negocioLogin = new NegocioLogin();
-                bool resultado = negocioLogin.ValidarDados(usuarios);
-                if (resultado)
+                if (usuarioRetorno != null)
                 {
                     Login.RegistrarUsuario(usuarioRetorno);
                     return true;

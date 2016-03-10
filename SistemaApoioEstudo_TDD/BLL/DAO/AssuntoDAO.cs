@@ -73,6 +73,66 @@ namespace SistemaApoioEstudo.BLL.DAO
             }
         }
 
+        public List<Assunto> ConsultarIdUsuario(int idUsuario)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
+                DataTable dataTable = new DataTable();
+                dataTable = conexaoBD.ExecutarConsultar("uspAssuntoConsultarIdUsuario");
+                if (dataTable.Rows.Count == 0)
+                {
+                    throw new Exception("Nenhum assunto cadastrado!");
+                }
+
+                List<Assunto> assuntos = new List<Assunto>();
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    Assunto assuntoForeach = new Assunto()
+                    {
+                        Id = Convert.ToInt32(dataRow[0]),
+                        Nome = Convert.ToString(dataRow[1])
+                    };
+                    assuntos.Add(assuntoForeach);
+                }
+                return assuntos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public Assunto ConsultarDados(int idAssunto)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_assunto", idAssunto);
+                DataTable dataTable = new DataTable();
+                dataTable = conexaoBD.ExecutarConsultar("uspAssuntoConsultarDados");
+                if (dataTable.Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                Assunto assunto = new Assunto();
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    assunto.Id = Convert.ToInt32(dataRow[0]);
+                    assunto.Nome = Convert.ToString(dataRow[1]);
+                    assunto.QtdCategorias = Convert.ToByte(dataRow[2]);
+                    assunto.QtdDicas = Convert.ToByte(dataRow[3]); ;
+                    assunto.QtdTermos = Convert.ToByte(dataRow[4]);
+
+                }
+                return assunto;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool Excluir(int idAssunto)
         {
             try

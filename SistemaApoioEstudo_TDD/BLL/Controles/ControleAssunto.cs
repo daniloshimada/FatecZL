@@ -33,5 +33,29 @@ namespace SistemaApoioEstudo.BLL.Controles
                 throw;
             }
         }
+
+        public List<Assunto> ConsultarIdUsuario()
+        {
+            try
+            {
+                return assuntoDAO.ConsultarIdUsuario(Login.Usuario.Id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public Assunto ConsultarDados(int idAssunto)
+        {
+            try
+            {
+                return assuntoDAO.ConsultarDados(idAssunto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

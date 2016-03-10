@@ -52,7 +52,7 @@ namespace SistemaApoioEstudo.BLL.DAO
                 dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultar");
                 if (dataTable.Rows.Count == 0)
                 {
-                    return null;
+                    throw new Exception("Dados incorretos!");
                 }
 
                 foreach (DataRow dataRow in dataTable.Rows)

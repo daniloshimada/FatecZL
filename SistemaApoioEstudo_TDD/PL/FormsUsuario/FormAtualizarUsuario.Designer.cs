@@ -36,7 +36,7 @@
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.textBoxSenha = new System.Windows.Forms.TextBox();
             this.textBoxSenhaConfirmacao = new System.Windows.Forms.TextBox();
-            this.labelAtualizar = new System.Windows.Forms.Label();
+            this.labelAtualizarMain = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelNome
@@ -120,15 +120,15 @@
             this.textBoxSenhaConfirmacao.TabIndex = 6;
             this.textBoxSenhaConfirmacao.UseSystemPasswordChar = true;
             // 
-            // labelAtualizar
+            // labelAtualizarMain
             // 
-            this.labelAtualizar.AutoSize = true;
-            this.labelAtualizar.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAtualizar.Location = new System.Drawing.Point(38, 9);
-            this.labelAtualizar.Name = "labelAtualizar";
-            this.labelAtualizar.Size = new System.Drawing.Size(178, 18);
-            this.labelAtualizar.TabIndex = 0;
-            this.labelAtualizar.Text = "ATUALIZAR USUÁRIO";
+            this.labelAtualizarMain.AutoSize = true;
+            this.labelAtualizarMain.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAtualizarMain.Location = new System.Drawing.Point(38, 9);
+            this.labelAtualizarMain.Name = "labelAtualizarMain";
+            this.labelAtualizarMain.Size = new System.Drawing.Size(178, 18);
+            this.labelAtualizarMain.TabIndex = 0;
+            this.labelAtualizarMain.Text = "ATUALIZAR USUÁRIO";
             // 
             // FormAtualizarUsuario
             // 
@@ -137,7 +137,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancelar;
             this.ClientSize = new System.Drawing.Size(254, 247);
-            this.Controls.Add(this.labelAtualizar);
+            this.Controls.Add(this.labelAtualizarMain);
             this.Controls.Add(this.textBoxSenhaConfirmacao);
             this.Controls.Add(this.textBoxSenha);
             this.Controls.Add(this.textBoxNome);
@@ -165,6 +165,6 @@
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.TextBox textBoxSenha;
         private System.Windows.Forms.TextBox textBoxSenhaConfirmacao;
-        private System.Windows.Forms.Label labelAtualizar;
+        private System.Windows.Forms.Label labelAtualizarMain;
     }
 }

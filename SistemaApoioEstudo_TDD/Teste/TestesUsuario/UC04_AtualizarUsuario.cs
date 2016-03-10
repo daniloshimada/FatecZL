@@ -13,13 +13,13 @@ using SistemaApoioEstudo.BLL.DAO;
 namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
     [TestFixture]
-    public class UC02_AtualizarUsuario
+    public class UC04_AtualizarUsuario
     {
         private NegocioUsuario negocioUsuario;
         private NegocioLogin negocioLogin;
         private IUsuarioDAO usuarioDAO;
 
-        public UC02_AtualizarUsuario()
+        public UC04_AtualizarUsuario()
         {
             negocioUsuario = new NegocioUsuario();
             negocioLogin = new NegocioLogin();
@@ -91,7 +91,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         }
 
         [Test]
-        public void CT01UC02FB_AtualizarUsuario_comNomeESenha_comSucesso()
+        public void CT01UC04FB_Atualizar_comNomeESenha_comSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -116,7 +116,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         }
 
         [Test]
-        public void CT02UC02FA_AtualizarUsuario_apenasNomeComSenhaEmBranco_comSucesso()
+        public void CT02UC04FA_Atualizar_apenasNomeComSenhaEmBranco_comSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -141,7 +141,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         }
 
         [Test]
-        public void CT03UC02FA_AtualizarUsuario_apenasSenha_comSucesso()
+        public void CT03UC04FA_Atualizar_apenasSenha_comSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -167,7 +167,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT04UC02FA_AtualizarUsuario_comNomeEmBranco_semSucesso()
+        public void CT04UC04FA_Atualizar_comNomeEmBranco_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -179,14 +179,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT05UC02FA_AtualizarUsuario_comSenhaDeConfirmacaoEmBranco_semSucesso()
+        public void CT05UC04FA_Atualizar_comSenhaDeConfirmacaoEmBranco_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao(" ");
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT06UC02FA_AtualizarUsuario_comNomeAcimaDe15Caracteres_semSucesso()
+        public void CT06UC04FA_Atualizar_comNomeAcimaDe15Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -198,7 +198,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT07UC02FA_AtualizarUsuario_comSenhaAcimaDe10Caracteres_semSucesso()
+        public void CT07UC04FA_Atualizar_comSenhaAcimaDe10Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -210,42 +210,42 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT08UC02FA_AtualizarUsuario_comSenhaDeConfirmacaoAcimaDe10Caracteres_semSucesso()
+        public void CT08UC04FA_Atualizar_comSenhaDeConfirmacaoAcimaDe10Caracteres_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao("danilodelphi");
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT09UC02FA_AtualizarUsuario_comNomeNULL_semSucesso()
+        public void CT09UC04FA_Atualizar_comNomeNULL_semSucesso()
         {
             negocioUsuario.ValidarNome(null);
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT10UC02FA_AtualizarUsuario_comSenhaNULL_semSucesso()
+        public void CT10UC04FA_Atualizar_comSenhaNULL_semSucesso()
         {
             negocioUsuario.ValidarSenhaNova(null);
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT11UC02FA_AtualizarUsuario_comSenhaDeConfirmacaoNULL_semSucesso()
+        public void CT11UC04FA_Atualizar_comSenhaDeConfirmacaoNULL_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao(null);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT12UC02FA_AtualizarUsuario_comSenhaDeConfirmacaoIncorreta_semSucesso()
+        public void CT12UC04FA_Atualizar_comSenhaDeConfirmacaoIncorreta_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao("delphi");
         }
 
         [Test]
         [ExpectedException(typeof(Exception))]
-        public void CT13UC02FA_AtualizarUsuaro_comNomeJaExistente_semSucesso()
+        public void CT13UC04FA_Atualizar_comNomeJaExistente_semSucesso()
         {
             Usuario usuario = new Usuario()
             {

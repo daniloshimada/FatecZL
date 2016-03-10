@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelMenu = new System.Windows.Forms.Label();
+            this.labelMenuMain = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonAlterar = new System.Windows.Forms.Button();
             this.textBoxNome = new System.Windows.Forms.TextBox();
@@ -37,15 +37,15 @@
             this.buttonAssunto = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // labelMenu
+            // labelMenuMain
             // 
-            this.labelMenu.AutoSize = true;
-            this.labelMenu.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMenu.Location = new System.Drawing.Point(103, 9);
-            this.labelMenu.Name = "labelMenu";
-            this.labelMenu.Size = new System.Drawing.Size(48, 18);
-            this.labelMenu.TabIndex = 0;
-            this.labelMenu.Text = "MENU";
+            this.labelMenuMain.AutoSize = true;
+            this.labelMenuMain.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMenuMain.Location = new System.Drawing.Point(103, 9);
+            this.labelMenuMain.Name = "labelMenuMain";
+            this.labelMenuMain.Size = new System.Drawing.Size(48, 18);
+            this.labelMenuMain.TabIndex = 0;
+            this.labelMenuMain.Text = "MENU";
             // 
             // buttonCancelar
             // 
@@ -124,7 +124,7 @@
             this.ClientSize = new System.Drawing.Size(254, 231);
             this.Controls.Add(this.buttonAssunto);
             this.Controls.Add(this.buttonExcluir);
-            this.Controls.Add(this.labelMenu);
+            this.Controls.Add(this.labelMenuMain);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonAlterar);
             this.Controls.Add(this.textBoxNome);
@@ -141,7 +141,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelMenu;
+        private System.Windows.Forms.Label labelMenuMain;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonAlterar;
         private System.Windows.Forms.TextBox textBoxNome;

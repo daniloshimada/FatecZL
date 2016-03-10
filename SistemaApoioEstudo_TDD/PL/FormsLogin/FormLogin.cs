@@ -34,7 +34,6 @@ namespace SistemaApoioEstudo.PL.FormsLogin
                 bool resultado = controleLogin.Logar(usuario);
                 if (resultado)
                 {
-                    textBoxNome.Focus();
                     Hide();
                     FormMenu formMenu = new FormMenu(this);
                     formMenu.Show();
@@ -48,6 +47,7 @@ namespace SistemaApoioEstudo.PL.FormsLogin
             {
                 textBoxNome.Text = string.Empty;
                 textBoxSenha.Text = string.Empty;
+                textBoxNome.Focus();
             }
         }
 

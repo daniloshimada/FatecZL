@@ -14,12 +14,12 @@ using SistemaApoioEstudo.BLL.Utilitarios;
 namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
     [TestFixture]
-    public class UC01_CadastrarUsuario
+    public class UC02_CadastrarUsuario
     {
         private NegocioUsuario negocioUsuario;
         private IUsuarioDAO usuarioDAO;
 
-        public UC01_CadastrarUsuario()
+        public UC02_CadastrarUsuario()
         {
             negocioUsuario = new NegocioUsuario();
             usuarioDAO = new UsuarioDAO();
@@ -78,7 +78,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         }
 
         [Test]
-        public void CT01UC01FB_CadastrarUsuario_comDadosValidos_comSucesso()
+        public void CT01UC02FB_Cadastrar_comDadosValidos_comSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -91,7 +91,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC01FA_CadastrarUsuario_comNomeEmBranco_semSucesso()
+        public void CT02UC02FA_Cadastrar_comNomeEmBranco_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -103,7 +103,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT03UC01FA_CadastrarUsuario_comSenhaEmBranco_semSucesso()
+        public void CT03UC02FA_Cadastrar_comSenhaEmBranco_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -115,7 +115,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT04UC01FA_CadastrarUsuario_comNomeAcimaDe15Caracteres_semSucesso()
+        public void CT04UC02FA_Cadastrar_comNomeAcimaDe15Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -127,7 +127,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT05UC01FA_CadastrarUsuario_comSenhaAcimaDe10Caracteres_semSucesso()
+        public void CT05UC02FA_Cadastrar_comSenhaAcimaDe10Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -139,7 +139,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT06UC01FA_CadastrarUsuario_comNomeNull_semSucesso()
+        public void CT06UC02FA_Cadastrar_comNomeNull_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -151,7 +151,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT07UC01FA_CadastrarUsuario_comSenhaNull_semSucesso()
+        public void CT07UC02FA_Cadastrar_comSenhaNull_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -163,7 +163,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(Exception))]
-        public void CT08UC01FA_CadastrarUsuario_comNomeJaExistente_semSucesso()
+        public void CT08UC02FA_Cadastrar_comNomeJaExistente_semSucesso()
         {
             Usuario usuario = new Usuario()
             {

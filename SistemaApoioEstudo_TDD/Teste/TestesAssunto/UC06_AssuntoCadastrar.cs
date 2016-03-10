@@ -12,12 +12,12 @@ using SistemaApoioEstudo.BLL.Negocio;
 namespace SistemaApoioEstudo.Teste.TestesAssunto
 {
     [TestFixture]
-    public class UC05_CadastrarAssunto
+    public class UC06_CadastrarAssunto
     {
         private NegocioAssunto negocioAssunto;
         private IAssuntoDAO assuntoDAO;
 
-        public UC05_CadastrarAssunto()
+        public UC06_CadastrarAssunto()
         {
             negocioAssunto = new NegocioAssunto();
             assuntoDAO = new AssuntoDAO();
@@ -62,7 +62,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         }
 
         [Test]
-        public void CT01UC05FB_CadastrarAssunto_comDadosValidos_comSucesso()
+        public void CT01UC06FB_Cadastrar_comDadosValidos_comSucesso()
         {
             Assunto assunto = new Assunto()
             {
@@ -75,7 +75,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC05FA_CadastrarAssunto_comAssuntoEmBranco_semSucesso()
+        public void CT02UC06FA_Cadastrar_comAssuntoEmBranco_semSucesso()
         {
             Assunto assunto = new Assunto()
             {
@@ -86,7 +86,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT03UC05FA_CadastrarAssunto_comAssuntoAcimaDe30Caracteres_semSucesso()
+        public void CT03UC06FA_Cadastrar_comAssuntoAcimaDe30Caracteres_semSucesso()
         {
             Assunto assunto = new Assunto()
             {
@@ -97,14 +97,14 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT04UC05FA_CadastrarAssunto_comAssuntoNULL_semSucesso()
+        public void CT04UC06FA_Cadastrar_comAssuntoNULL_semSucesso()
         {
             negocioAssunto.ValidarNome(null);
         }
 
         [Test]
         [ExpectedException(typeof(Exception))]
-        public void CT05UC05FA_CadastrarAssunto_comAssuntoJaExistente_semSucesso()
+        public void CT05UC06FA_Cadastrar_comAssuntoJaExistente_semSucesso()
         {
             Assunto assunto = new Assunto()
             {

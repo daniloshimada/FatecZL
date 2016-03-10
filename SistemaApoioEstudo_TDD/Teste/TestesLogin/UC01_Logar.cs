@@ -12,13 +12,13 @@ using SistemaApoioEstudo.BLL.DAO;
 namespace SistemaApoioEstudo.Teste.TestesLogin
 {
     [TestFixture]
-    public class UC04_Logar
+    public class UC01_Logar
     {
         private NegocioUsuario negocioUsuario;
         private NegocioLogin negocioLogin;
         private IUsuarioDAO usuarioDAO;
 
-        public UC04_Logar()
+        public UC01_Logar()
         {
             negocioUsuario = new NegocioUsuario();
             negocioLogin = new NegocioLogin();
@@ -57,7 +57,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         }
 
         [Test]
-        public void CT01UC04FB_Logar_comDadosValidos_comSucesso()
+        public void CT01UC01FB_Logar_comDadosValidos_comSucesso()
         {
             Usuario usuarioLogin = new Usuario()
             {
@@ -65,20 +65,20 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
                 Senha = "athens"
             };
             Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
-            Usuario[] usuarios = new Usuario[] { usuarioLogin, usuarioRetorno };
             negocioUsuario.ValidarNome(usuarioLogin.Nome);
             negocioUsuario.ValidarSenha(usuarioLogin.Senha);
-            bool resultado = negocioLogin.ValidarDados(usuarios);
-            if (resultado)
+            bool resultado = false;
+            if (usuarioRetorno != null)
             {
                 Login.RegistrarUsuario(usuarioRetorno);
+                resultado = true;
             }
             Assert.IsTrue(resultado);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC04FA_Logar_comNomeEmBranco_semSucesso()
+        public void CT02UC01FA_Logar_comNomeEmBranco_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -90,7 +90,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT03UC04FA_Logar_comSenhaEmBranco_semSucesso()
+        public void CT03UC01FA_Logar_comSenhaEmBranco_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -102,7 +102,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT04UC04FA_Logar_comNomeAcimaDe15Caracteres_semSucesso()
+        public void CT04UC01FA_Logar_comNomeAcimaDe15Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -114,7 +114,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT05UC04FA_Logar_comSenhaAcimaDe10Caracteres_semSucesso()
+        public void CT05UC01FA_Logar_comSenhaAcimaDe10Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -126,7 +126,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT06UC04FA_Logar_comNomeNULL_semSucesso()
+        public void CT06UC01FA_Logar_comNomeNULL_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -138,7 +138,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT07UC04FA_Logar_comSenhaNULL_semSucesso()
+        public void CT07UC01FA_Logar_comSenhaNULL_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -149,8 +149,8 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CT08UC04FA_Logar_comNomeIncorreto_semSucesso()
+        [ExpectedException(typeof(Exception))]
+        public void CT08UC01FA_Logar_comNomeIncorreto_semSucesso()
         {
             Usuario usuarioLogin = new Usuario()
             {
@@ -158,15 +158,12 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
                 Senha = "athens"
             };
             Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
-            Usuario[] usuarios = new Usuario[] { usuarioLogin, usuarioRetorno };
-            negocioUsuario.ValidarNome(usuarioLogin.Nome);
-            negocioUsuario.ValidarSenha(usuarioLogin.Senha);
-            negocioLogin.ValidarDados(usuarios);
+            Assert.IsNull(usuarioRetorno);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CT09UC04FA_Logar_comSenhaIncorreta_semSucesso()
+        [ExpectedException(typeof(Exception))]
+        public void CT09UC01FA_Logar_comSenhaIncorreta_semSucesso()
         {
             Usuario usuarioLogin = new Usuario()
             {
@@ -174,10 +171,6 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
                 Senha = "creta"
             };
             Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
-            Usuario[] usuarios = new Usuario[] { usuarioLogin, usuarioRetorno };
-            negocioUsuario.ValidarNome(usuarioLogin.Nome);
-            negocioUsuario.ValidarSenha(usuarioLogin.Senha);
-            negocioLogin.ValidarDados(usuarios);
         }
     }
 }

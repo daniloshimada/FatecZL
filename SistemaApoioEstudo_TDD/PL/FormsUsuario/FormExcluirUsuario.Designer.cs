@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelExcluir = new System.Windows.Forms.Label();
+            this.labelExcluirMain = new System.Windows.Forms.Label();
             this.textBoxSenhaConfirmacao = new System.Windows.Forms.TextBox();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.buttonCancelar = new System.Windows.Forms.Button();
@@ -37,15 +37,15 @@
             this.labelNome = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // labelExcluir
+            // labelExcluirMain
             // 
-            this.labelExcluir.AutoSize = true;
-            this.labelExcluir.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelExcluir.Location = new System.Drawing.Point(48, 9);
-            this.labelExcluir.Name = "labelExcluir";
-            this.labelExcluir.Size = new System.Drawing.Size(158, 18);
-            this.labelExcluir.TabIndex = 0;
-            this.labelExcluir.Text = "EXCLUIR USUÁRIO";
+            this.labelExcluirMain.AutoSize = true;
+            this.labelExcluirMain.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelExcluirMain.Location = new System.Drawing.Point(48, 9);
+            this.labelExcluirMain.Name = "labelExcluirMain";
+            this.labelExcluirMain.Size = new System.Drawing.Size(158, 18);
+            this.labelExcluirMain.TabIndex = 0;
+            this.labelExcluirMain.Text = "EXCLUIR USUÁRIO";
             // 
             // textBoxSenhaConfirmacao
             // 
@@ -117,7 +117,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancelar;
             this.ClientSize = new System.Drawing.Size(254, 218);
-            this.Controls.Add(this.labelExcluir);
+            this.Controls.Add(this.labelExcluirMain);
             this.Controls.Add(this.textBoxSenhaConfirmacao);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.buttonCancelar);
@@ -135,7 +135,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelExcluir;
+        private System.Windows.Forms.Label labelExcluirMain;
         private System.Windows.Forms.TextBox textBoxSenhaConfirmacao;
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Button buttonCancelar;

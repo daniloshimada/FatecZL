@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelLogin = new System.Windows.Forms.Label();
+            this.labelLoginMain = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonLogar = new System.Windows.Forms.Button();
             this.textBoxSenha = new System.Windows.Forms.TextBox();
@@ -40,15 +40,15 @@
             this.labelCadastrar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // labelLogin
+            // labelLoginMain
             // 
-            this.labelLogin.AutoSize = true;
-            this.labelLogin.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLogin.Location = new System.Drawing.Point(98, 9);
-            this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(58, 18);
-            this.labelLogin.TabIndex = 0;
-            this.labelLogin.Text = "LOGIN";
+            this.labelLoginMain.AutoSize = true;
+            this.labelLoginMain.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLoginMain.Location = new System.Drawing.Point(98, 9);
+            this.labelLoginMain.Name = "labelLoginMain";
+            this.labelLoginMain.Size = new System.Drawing.Size(58, 18);
+            this.labelLoginMain.TabIndex = 0;
+            this.labelLoginMain.Text = "LOGIN";
             // 
             // buttonCancelar
             // 
@@ -152,7 +152,7 @@
             this.Controls.Add(this.labelCadastrar);
             this.Controls.Add(this.labelLinha);
             this.Controls.Add(this.buttonCadastrar);
-            this.Controls.Add(this.labelLogin);
+            this.Controls.Add(this.labelLoginMain);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonLogar);
             this.Controls.Add(this.textBoxSenha);
@@ -169,7 +169,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelLogin;
+        private System.Windows.Forms.Label labelLoginMain;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonLogar;
         private System.Windows.Forms.TextBox textBoxSenha;
