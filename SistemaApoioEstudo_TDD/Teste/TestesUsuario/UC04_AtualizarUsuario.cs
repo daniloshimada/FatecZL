@@ -18,23 +18,30 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         private NegocioUsuario negocioUsuario;
         private NegocioLogin negocioLogin;
         private IUsuarioDAO usuarioDAO;
+        private Usuario usuarioAlexandre;
+        private Usuario usuarioDanilo;
 
         public UC04_AtualizarUsuario()
         {
             negocioUsuario = new NegocioUsuario();
             negocioLogin = new NegocioLogin();
             usuarioDAO = new UsuarioDAO();
+            usuarioAlexandre = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
+            usuarioDanilo = new Usuario()
+            {
+                Nome = "Danilo",
+                Senha = "delphi"
+            };
         }
 
         [SetUp]
         public void SetUp()
         {
-            //_(CT01-CT13) Cadastra e loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioAlexandre = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
+            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
             Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioRetorno != null)
             {
@@ -43,19 +50,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             usuarioDAO.Cadastrar(usuarioAlexandre);
             Login.RegistrarUsuario(usuarioDAO.ConsultarNome(usuarioAlexandre.Nome));
 
-            //_(CT01-CT02) Exclui o usuário com nome "Clayton".
+            //_Exclui o usuário com nome "Clayton".
             Usuario usuarioClayton = usuarioDAO.ConsultarNome("Clayton");
             if (usuarioClayton != null)
             {
                 usuarioDAO.Excluir(usuarioClayton.Id);
             }
 
-            //_(CT13) Cadastra o usuário com nome "Danilo" e senha "delphi".
-            Usuario usuarioDanilo = new Usuario()
-            {
-                Nome = "Danilo",
-                Senha = "delphi"
-            };
+            //_Cadastra o usuário com nome "Danilo" e senha "delphi".
             Usuario usuarioDaniloRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
             if (usuarioDaniloRetorno != null)
             {
@@ -67,26 +69,18 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            Usuario usuarioAlexandre = new Usuario()
+            //_Exclui o usuário com nome "Alexandre" e senha "athens".
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
             {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
-            {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
             }
 
-            Usuario usuarioDanilo = new Usuario()
+            //_Exclui o usuário com nome "Danilo" e senha "delphi".
+            usuarioDanilo = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioDanilo != null)
             {
-                Nome = "Danilo",
-                Senha = "delphi"
-            };
-            Usuario usuarioDaniloRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
-            if (usuarioDaniloRetorno != null)
-            {
-                usuarioDAO.Excluir(usuarioDaniloRetorno.Id);
+                usuarioDAO.Excluir(usuarioDanilo.Id);
             }
         }
 
@@ -136,6 +130,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             else
             {
                 resultado = usuarioDAO.AtualizarNome(usuario);
+                usuario.Senha = "athens";
             }
             resultado = negocioLogin.AtualizarLogin(usuario, resultado);
             Assert.IsTrue(resultado);
@@ -160,6 +155,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             else
             {
                 resultado = usuarioDAO.AtualizarNome(usuario);
+                usuario.Senha = "athens";
             }
             resultado = negocioLogin.AtualizarLogin(usuario, resultado);
             Assert.IsTrue(resultado);

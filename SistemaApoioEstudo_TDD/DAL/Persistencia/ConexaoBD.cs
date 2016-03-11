@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SistemaApoioEstudo.DAL.Persistencia
 {
     public class ConexaoBD
     {
+        private SqlConnection sqlConnection;
         private SqlParameterCollection sqlParameterCollection;
 
         public ConexaoBD()
         {
+            sqlConnection = new SqlConnection();
             sqlParameterCollection = new SqlCommand().Parameters;
         }
 
@@ -30,7 +28,6 @@ namespace SistemaApoioEstudo.DAL.Persistencia
 
         public bool ExecutarManipulacao(string userStoredProcedure)
         {
-            SqlConnection sqlConnection = new SqlConnection();
             try
             {
                 sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ConexaoSqlServer"].ConnectionString;
@@ -60,7 +57,6 @@ namespace SistemaApoioEstudo.DAL.Persistencia
 
         public DataTable ExecutarConsultar(string userStoredProcedure)
         {
-            SqlConnection sqlConnection = new SqlConnection();
             try
             {
                 sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ConexaoSqlServer"].ConnectionString;

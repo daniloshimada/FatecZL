@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Utilitarios;
+﻿using SistemaApoioEstudo.BLL.Entidades;
+using System;
 
 namespace SistemaApoioEstudo.BLL.Negocio
 {

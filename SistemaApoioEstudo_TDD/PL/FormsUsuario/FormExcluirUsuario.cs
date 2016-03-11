@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.Controles;
+﻿using SistemaApoioEstudo.BLL.Controles;
 using SistemaApoioEstudo.BLL.Entidades;
-
 using SistemaApoioEstudo.PL.FormsLogin;
 using SistemaApoioEstudo.PL.FormsUtilitarios;
+using System;
+using System.Windows.Forms;
 
 namespace SistemaApoioEstudo.PL.FormsUsuario
 {
@@ -40,7 +31,7 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
             try
             {
                 ControleUsuario controleUsuario = new ControleUsuario();
-                controleUsuario.ValidarCamposExcluir(textBoxSenhaConfirmacao.Text);
+                controleUsuario.ValidarCampos(textBoxSenhaConfirmacao.Text);
                 DialogResult dialogResult = MessageBox.Show("Todos os seus dados serão perdidos!\nDeseja mesmo excluir o usuário?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                 if (dialogResult == DialogResult.OK)
                 {

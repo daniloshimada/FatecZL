@@ -2,18 +2,19 @@
 using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Utilitarios;
-using System.Collections.Generic;
 
 namespace SistemaApoioEstudo.Teste.TestesAssunto
 {
     [TestFixture]
-    public class UC07_AssuntoConsultar
+    public class UC09_ExcluirAssunto
     {
         private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
+        private Assunto assuntoFaculdade;
         private Usuario usuarioAlexandre;
+        
 
-        public UC07_AssuntoConsultar()
+        public UC09_ExcluirAssunto()
         {
             assuntoDAO = new AssuntoDAO();
             usuarioDAO = new UsuarioDAO();
@@ -21,6 +22,10 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
             {
                 Nome = "Alexandre",
                 Senha = "athens"
+            };
+            assuntoFaculdade = new Assunto()
+            {
+                Nome = "Faculdade"
             };
         }
 
@@ -37,11 +42,10 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
             Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
 
             //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre.
-            Assunto assuntoFaculdade = new Assunto()
-            {
-                Nome = "Faculdade"
-            };
             assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
+
+            //_Consulta o id do assunto "Faculdade".
+            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
         }
 
         [TestFixtureTearDown]
@@ -56,25 +60,10 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         }
 
         [Test]
-        public void CT01UC07FB_Consultar_assuntosDoUsuario_comSucesso()
+        public void CT01UC09FB_Excluir_assuntoEDadosRelacionados_comSucesso()
         {
-            List<Assunto> assuntos = assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
-            Assert.AreEqual(1, assuntos.Count);
-        }
-
-        [Test]
-        public void CT02UC07FB_Consultar_dadosDoAssunto_comSucesso()
-        {
-            List<Assunto> assuntosRetorno = assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
-            Assunto assuntoEsperado = new Assunto()
-            {
-                Id = assuntosRetorno[0].Id,
-                Nome = "Faculdade",
-                QtdCategorias = 0,
-                QtdTermos = 0,
-                QtdDicas = 0
-            };
-            Assert.IsTrue(assuntosRetorno[0].Equals(assuntoEsperado));
+            bool resultado = assuntoDAO.Excluir(assuntoFaculdade.Id);
+            Assert.IsTrue(resultado);
         }
     }
 }

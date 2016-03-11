@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SistemaApoioEstudo.PL.FormsUsuario;
+﻿using SistemaApoioEstudo.BLL.Controles;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Controles;
+using SistemaApoioEstudo.PL.FormsUsuario;
 using SistemaApoioEstudo.PL.FormsUtilitarios;
+using System;
+using System.Windows.Forms;
 
 namespace SistemaApoioEstudo.PL.FormsLogin
 {

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.DAL.Persistencia;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -13,11 +9,16 @@ namespace SistemaApoioEstudo.BLL.DAO
 {
     public class UsuarioDAO : IUsuarioDAO
     {
+        private ConexaoBD conexaoBD;
+
+        public UsuarioDAO()
+        {
+            conexaoBD = new ConexaoBD();
+        }
         public bool Cadastrar(Usuario usuario)
         {
             try
             {
-                ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
                 if (conexaoBD.ExecutarManipulacao("uspUsuarioCadastrar"))
@@ -44,7 +45,6 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
 
@@ -73,7 +73,6 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Nome_usuario", nomeUsuario);
 
                 DataTable dataTable = new DataTable();
@@ -102,7 +101,6 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
 
                 DataTable dataTable = new DataTable();
@@ -135,7 +133,6 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Id_usuario", usuario.Id);
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
@@ -163,7 +160,6 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Id_usuario", usuario.Id);
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 return conexaoBD.ExecutarManipulacao("uspUsuarioAtualizarNome");
@@ -186,7 +182,6 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                ConexaoBD conexaoBD = new ConexaoBD();
                 conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
                 if (conexaoBD.ExecutarManipulacao("uspUsuarioExcluir"))
                 {

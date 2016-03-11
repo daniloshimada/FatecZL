@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Negocio;
+using SistemaApoioEstudo.BLL.Utilitarios;
+using System;
 
 namespace SistemaApoioEstudo.BLL.Controles
 {
@@ -25,7 +21,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
-                ValidarCamposCadastrar(usuario);
+                ValidarCampos(usuario);
                 return usuarioDAO.Cadastrar(usuario);
             }
             catch (Exception)
@@ -38,7 +34,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
-                bool resultado = ValidarCamposAtualizar(usuario, senhaConfirmacao);
+                bool resultado = ValidarCampos(usuario, senhaConfirmacao);
                 usuario.Id = Login.Usuario.Id;
                 if (resultado)
                 {
@@ -73,7 +69,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
-                ValidarCamposExcluir(senhaConfirmacao);
+                ValidarCampos(senhaConfirmacao);
                 if (usuarioDAO.Excluir(Login.Usuario.Id))
                 {
                     Login.RemoverUsuario();
@@ -87,7 +83,8 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public void ValidarCamposCadastrar(Usuario usuario)
+        #region ...método ValidarCampos() utilizando sobrecarga...
+        public void ValidarCampos(Usuario usuario)
         {
             try
             {
@@ -100,7 +97,7 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public bool ValidarCamposAtualizar(Usuario usuario, string senhaConfirmacao)
+        public bool ValidarCampos(Usuario usuario, string senhaConfirmacao)
         {
             try
             {
@@ -114,7 +111,7 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public void ValidarCamposExcluir(string senhaConfirmacao)
+        public void ValidarCampos(string senhaConfirmacao)
         {
             try
             {
@@ -125,5 +122,6 @@ namespace SistemaApoioEstudo.BLL.Controles
                 throw;
             }
         }
+        #endregion
     }
 }

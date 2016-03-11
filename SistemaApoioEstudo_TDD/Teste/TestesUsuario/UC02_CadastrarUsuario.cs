@@ -42,8 +42,8 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             }
 
             //_Cadastra o usuário com nome "Danilo" e senha "delphi".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
-            if (usuarioRetorno == null)
+            Usuario usuarioDaniloRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioDaniloRetorno == null)
             {
                 usuarioDAO.Cadastrar(usuarioDanilo);
             }

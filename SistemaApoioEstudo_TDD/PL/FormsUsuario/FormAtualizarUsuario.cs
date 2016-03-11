@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.Controles;
+﻿using SistemaApoioEstudo.BLL.Controles;
 using SistemaApoioEstudo.BLL.Entidades;
+using System;
+using System.Windows.Forms;
 
 namespace SistemaApoioEstudo.PL.FormsUsuario
 {
@@ -43,7 +35,7 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
                     Senha = textBoxSenha.Text
                 };
                 ControleUsuario controleUsuario = new ControleUsuario();
-                controleUsuario.ValidarCamposAtualizar(usuario, textBoxSenhaConfirmacao.Text);
+                controleUsuario.ValidarCampos(usuario, textBoxSenhaConfirmacao.Text);
                 DialogResult dialogResult = MessageBox.Show("Deseja mesmo atualizar seus dados?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                 if (dialogResult == DialogResult.OK)
                 {

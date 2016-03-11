@@ -54,6 +54,8 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         {
             negocioUsuario.ValidarSenhaConfirmacao("athens");
             bool resultado = usuarioDAO.Excluir(Login.Usuario.Id);
+            Login.RemoverUsuario();
+            resultado = Login.Usuario != null ? false : true;
             Assert.IsTrue(resultado);
         }
 

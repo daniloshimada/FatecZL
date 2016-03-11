@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using SistemaApoioEstudo.PL.FormsLogin;
+using System;
 using System.Windows.Forms;
-using SistemaApoioEstudo.PL.FormsLogin;
-using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.DAO;
-using SistemaApoioEstudo.BLL.Entidades;
 
 
 namespace PL

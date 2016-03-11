@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SistemaApoioEstudo.PL.FormsLogin;
-using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.PL.FormsUsuario;
+﻿using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.PL.FormsAssunto;
+using SistemaApoioEstudo.PL.FormsLogin;
+using SistemaApoioEstudo.PL.FormsUsuario;
+using System;
+using System.Windows.Forms;
 
 namespace SistemaApoioEstudo.PL.FormsUtilitarios
 {

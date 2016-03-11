@@ -8,7 +8,7 @@ using System;
 namespace SistemaApoioEstudo.Teste.TestesAssunto
 {
     [TestFixture]
-    public class UC08_AtualzarAssunto
+    public class UC08_AtualizarAssunto
     {
         private NegocioAssunto negocioAssunto;
         private IAssuntoDAO assuntoDAO;
@@ -16,7 +16,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         private Assunto assuntoFaculdade;
         private Usuario usuarioAlexandre;
 
-        public UC08_AtualzarAssunto()
+        public UC08_AtualizarAssunto()
         {
             negocioAssunto = new NegocioAssunto();
             assuntoDAO = new AssuntoDAO();

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SistemaApoioEstudo.BLL.Controles;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Controles;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SistemaApoioEstudo.PL.FormsAssunto
 {
@@ -70,6 +64,21 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
             }
         }
 
+        private void limparCampos()
+        {
+            try
+            {
+                textBoxAssunto.Clear();
+                textBoxCategorias.Clear();
+                textBoxTermos.Clear();
+                textBoxDicas.Clear();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
             try
@@ -78,7 +87,6 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
                 {
                     Nome = textBoxAssunto.Text
                 };
-                ControleAssunto controleAssunto = new ControleAssunto();
                 bool resultado = controleAssunto.Cadastrar(assuntoCadastrar);
                 if (resultado)
                 {
@@ -101,7 +109,6 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
                     Nome = textBoxAssunto.Text
                 };
                 assuntoAtualizar.Id = (comboBoxAssuntos.SelectedItem as Assunto).Id;
-                ControleAssunto controleAssunto = new ControleAssunto();
                 controleAssunto.ValidarCampos(assuntoAtualizar);
                 DialogResult dialogResult = MessageBox.Show("Deseja mesmo atualizar o assunto?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                 if (dialogResult == DialogResult.OK)
@@ -111,6 +118,32 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
                     {
                         MessageBox.Show("Assunto atualizado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         carregarTela(assuntoAtualizar.Id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Assunto assuntoExcluir = new Assunto()
+                {
+                    Id = (comboBoxAssuntos.SelectedItem as Assunto).Id
+                };
+                DialogResult dialogResult = MessageBox.Show("Deseja mesmo excluir o assunto?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                if (dialogResult == DialogResult.OK)
+                {
+                    bool resultado = controleAssunto.Excluir(assuntoExcluir.Id);
+                    if (resultado)
+                    {
+                        MessageBox.Show("Assunto excluído com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        carregarTela();
+                        limparCampos();
                     }
                 }
             }
