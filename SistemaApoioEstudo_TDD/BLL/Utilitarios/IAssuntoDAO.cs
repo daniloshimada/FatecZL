@@ -12,8 +12,8 @@ namespace SistemaApoioEstudo.BLL.Utilitarios
     {
         bool Cadastrar(int idUsuario, Assunto assunto);
         Assunto ConsultarNomeIdUsuario(string nomeAssunto, int idUsuario);
-        List<Assunto> ConsultarIdUsuario(int idUsuario);
-        Assunto ConsultarDados(int idAssunto);
+        List<Assunto> ConsultarDadosIdUsuario(int idUsuario);
+        bool Atualizar(Assunto assunto);
         bool Excluir(int idAssunto);
     }
 }

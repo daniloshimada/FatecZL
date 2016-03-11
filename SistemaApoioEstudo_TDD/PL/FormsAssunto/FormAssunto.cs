@@ -24,15 +24,45 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
 
         private void FormAssunto_Shown(object sender, EventArgs e)
         {
+            carregarTela();
+        }
+
+        private void comboBoxAssuntos_SelectedIndexChanged(object sender, EventArgs e)
+        {
             try
             {
+                textBoxAssunto.Text = (comboBoxAssuntos.SelectedItem as Assunto).Nome;
+                textBoxCategorias.Text = (comboBoxAssuntos.SelectedItem as Assunto).QtdCategorias.ToString();
+                textBoxTermos.Text = (comboBoxAssuntos.SelectedItem as Assunto).QtdTermos.ToString();
+                textBoxDicas.Text = (comboBoxAssuntos.SelectedItem as Assunto).QtdDicas.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void carregarTela(int idAssunto=0)
+        {
+            try
+            {
+                comboBoxAssuntos.Items.Clear();
                 comboBoxAssuntos.ValueMember = "Id";
                 comboBoxAssuntos.DisplayMember = "Nome";
-                foreach (Assunto assunto in controleAssunto.ConsultarIdUsuario())
+                List<Assunto> assuntosRetorno = controleAssunto.ConsultarDadosIdUsuario();
+                foreach (Assunto assunto in assuntosRetorno)
                 {
                     comboBoxAssuntos.Items.Add(assunto);
                 }
-                comboBoxAssuntos.SelectedIndex = 0;
+                for (int i = 0; i < assuntosRetorno.Count; i++)
+                {
+                    if (assuntosRetorno[i].Id == idAssunto)
+                    {
+                        comboBoxAssuntos.SelectedIndex = i;
+                        return;
+                    }
+                }
+                comboBoxAssuntos.SelectedIndex = idAssunto;
             }
             catch (Exception)
             {
@@ -40,34 +70,48 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
             }
         }
 
-        private void comboBoxAssuntos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                Assunto assunto = controleAssunto.ConsultarDados((comboBoxAssuntos.SelectedItem as Assunto).Id);
-                textBoxCategorias.Text = assunto.QtdCategorias.ToString();
-                textBoxTermos.Text = assunto.QtdTermos.ToString();
-                textBoxDicas.Text = assunto.QtdDicas.ToString();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
             try
             {
-                Assunto assunto = new Assunto()
+                Assunto assuntoCadastrar = new Assunto()
                 {
-                    Nome = textBoxNome.Text
+                    Nome = textBoxAssunto.Text
                 };
                 ControleAssunto controleAssunto = new ControleAssunto();
-                bool resultado = controleAssunto.Cadastrar(assunto);
+                bool resultado = controleAssunto.Cadastrar(assuntoCadastrar);
                 if (resultado)
                 {
                     MessageBox.Show("Assunto cadastrado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    carregarTela(controleAssunto.ConsultarNomeIdUsuario(assuntoCadastrar.Nome).Id);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonAtualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Assunto assuntoAtualizar = new Assunto()
+                {
+                    Nome = textBoxAssunto.Text
+                };
+                assuntoAtualizar.Id = (comboBoxAssuntos.SelectedItem as Assunto).Id;
+                ControleAssunto controleAssunto = new ControleAssunto();
+                controleAssunto.ValidarCampos(assuntoAtualizar);
+                DialogResult dialogResult = MessageBox.Show("Deseja mesmo atualizar o assunto?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                if (dialogResult == DialogResult.OK)
+                {
+                    bool resultado = controleAssunto.Atualizar(assuntoAtualizar);
+                    if (resultado)
+                    {
+                        MessageBox.Show("Assunto atualizado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        carregarTela(assuntoAtualizar.Id);
+                    }
                 }
             }
             catch (Exception ex)

@@ -39,6 +39,9 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxNome.Clear();
+                textBoxSenha.Clear();
+                textBoxNome.Focus();
             }
         }
 

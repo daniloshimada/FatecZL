@@ -98,6 +98,39 @@ namespace SistemaApoioEstudo.BLL.DAO
             }
         }
 
+        public Usuario ConsultarDados(int idUsuario)
+        {
+            try
+            {
+                ConexaoBD conexaoBD = new ConexaoBD();
+                conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
+
+                DataTable dataTable = new DataTable();
+                dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultarDados");
+                if (dataTable.Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                Usuario usuario = new Usuario();
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    usuario.Id = Convert.ToInt32(dataRow[0]);
+                    usuario.Nome = Convert.ToString(dataRow[1]);
+                    usuario.Senha = Convert.ToString(dataRow[2]);
+                    usuario.QtdAssuntos = Convert.ToInt32(dataRow[3]);
+                    usuario.QtdCategorias = Convert.ToInt32(dataRow[4]);
+                    usuario.QtdTermos = Convert.ToInt32(dataRow[5]);
+                    usuario.QtdDicas = Convert.ToInt32(dataRow[6]);
+                }
+                return usuario;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool Atualizar(Usuario usuario)
         {
             try

@@ -15,12 +15,20 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
 {
     public partial class FormAtualizarUsuario : Form
     {
-        public FormAtualizarUsuario()
+        private FormConsultarUsuario formConsultarUsuario;
+
+        public FormAtualizarUsuario(FormConsultarUsuario formConsultarUsuario)
         {
             InitializeComponent();
+            this.formConsultarUsuario = formConsultarUsuario;
         }
 
         private void FormAtualizarUsuario_Shown(object sender, EventArgs e)
+        {
+            CarregarTela();
+        }
+
+        public void CarregarTela()
         {
             textBoxNome.Text = Login.Usuario.Nome;
         }
@@ -34,14 +42,16 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
                     Nome = textBoxNome.Text,
                     Senha = textBoxSenha.Text
                 };
-                DialogResult dialogResult = MessageBox.Show("Deseja mesmo atualizar seus dados?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 ControleUsuario controleUsuario = new ControleUsuario();
+                controleUsuario.ValidarCamposAtualizar(usuario, textBoxSenhaConfirmacao.Text);
+                DialogResult dialogResult = MessageBox.Show("Deseja mesmo atualizar seus dados?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                 if (dialogResult == DialogResult.OK)
                 {
                     bool resultadoAtualizar = controleUsuario.Atualizar(usuario, textBoxSenhaConfirmacao.Text);
                     if (resultadoAtualizar)
                     {
                         MessageBox.Show("Usuário atualizado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        formConsultarUsuario.CarregarTela();
                         Close();
                     }
                 }
@@ -49,6 +59,10 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxSenha.Clear();
+                textBoxSenhaConfirmacao.Clear();
+                CarregarTela();
+                textBoxNome.Focus();
             }
         }
 

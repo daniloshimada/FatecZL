@@ -45,8 +45,8 @@ namespace SistemaApoioEstudo.PL.FormsLogin
             }
             finally
             {
-                textBoxNome.Text = string.Empty;
-                textBoxSenha.Text = string.Empty;
+                textBoxNome.Clear();
+                textBoxSenha.Clear();
                 textBoxNome.Focus();
             }
         }
@@ -61,6 +61,12 @@ namespace SistemaApoioEstudo.PL.FormsLogin
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                textBoxNome.Clear();
+                textBoxSenha.Clear();
+                textBoxNome.Focus();
             }
         }
 

@@ -25,8 +25,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
-                negocioUsuario.ValidarNome(usuario.Nome);
-                negocioUsuario.ValidarSenha(usuario.Senha);
+                ValidarCamposCadastrar(usuario);
                 return usuarioDAO.Cadastrar(usuario);
             }
             catch (Exception)
@@ -39,9 +38,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
-                negocioUsuario.ValidarNome(usuario.Nome);
-                bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
-                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
+                bool resultado = ValidarCamposAtualizar(usuario, senhaConfirmacao);
                 usuario.Id = Login.Usuario.Id;
                 if (resultado)
                 {
@@ -59,17 +56,68 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
+        public Usuario ConsultarDados()
+        {
+            try
+            {
+                return usuarioDAO.ConsultarDados(Login.Usuario.Id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool Excluir(string senhaConfirmacao)
         {
             try
             {
-                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
+                ValidarCamposExcluir(senhaConfirmacao);
                 if (usuarioDAO.Excluir(Login.Usuario.Id))
                 {
                     Login.RemoverUsuario();
                     return true;
                 }
                 return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarCamposCadastrar(Usuario usuario)
+        {
+            try
+            {
+                negocioUsuario.ValidarNome(usuario.Nome);
+                negocioUsuario.ValidarSenha(usuario.Senha);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool ValidarCamposAtualizar(Usuario usuario, string senhaConfirmacao)
+        {
+            try
+            {
+                negocioUsuario.ValidarNome(usuario.Nome);
+                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
+                return negocioUsuario.ValidarSenhaNova(usuario.Senha);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarCamposExcluir(string senhaConfirmacao)
+        {
+            try
+            {
+                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
             }
             catch (Exception)
             {

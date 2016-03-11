@@ -73,7 +73,7 @@ namespace SistemaApoioEstudo.BLL.DAO
             }
         }
 
-        public List<Assunto> ConsultarIdUsuario(int idUsuario)
+        public List<Assunto> ConsultarDadosIdUsuario(int idUsuario)
         {
             try
             {
@@ -103,29 +103,25 @@ namespace SistemaApoioEstudo.BLL.DAO
             }
         }
 
-        public Assunto ConsultarDados(int idAssunto)
+        public bool Atualizar(Assunto assunto)
         {
             try
             {
-                conexaoBD.AdicionarParametros("@Id_assunto", idAssunto);
-                DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspAssuntoConsultarDados");
-                if (dataTable.Rows.Count == 0)
+                conexaoBD.AdicionarParametros("@Id_assunto", assunto.Id);
+                conexaoBD.AdicionarParametros("@Nome_assunto", assunto.Nome);
+                if (conexaoBD.ExecutarManipulacao("uspAssuntoAtualizar"))
                 {
-                    return null;
+                    return true;
                 }
-
-                Assunto assunto = new Assunto();
-                foreach (DataRow dataRow in dataTable.Rows)
+                throw new Exception("Não foi possível atualizar o assunto, contate o suporte técnico!");
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
                 {
-                    assunto.Id = Convert.ToInt32(dataRow[0]);
-                    assunto.Nome = Convert.ToString(dataRow[1]);
-                    assunto.QtdCategorias = Convert.ToByte(dataRow[2]);
-                    assunto.QtdDicas = Convert.ToByte(dataRow[3]); ;
-                    assunto.QtdTermos = Convert.ToByte(dataRow[4]);
-
+                    throw new Exception("O assunto já existe!");
                 }
-                return assunto;
+                throw;
             }
             catch (Exception)
             {

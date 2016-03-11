@@ -25,7 +25,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
-                negocioAssunto.ValidarNome(assunto.Nome);
+                ValidarCampos(assunto);
                 return assuntoDAO.Cadastrar(Login.Usuario.Id, assunto); ;
             }
             catch (Exception)
@@ -34,11 +34,11 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public List<Assunto> ConsultarIdUsuario()
+        public List<Assunto> ConsultarDadosIdUsuario()
         {
             try
             {
-                return assuntoDAO.ConsultarIdUsuario(Login.Usuario.Id);
+                return assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
             }
             catch (Exception)
             {
@@ -46,11 +46,35 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public Assunto ConsultarDados(int idAssunto)
+        public Assunto ConsultarNomeIdUsuario(string nomeAssunto)
         {
             try
             {
-                return assuntoDAO.ConsultarDados(idAssunto);
+                return assuntoDAO.ConsultarNomeIdUsuario(nomeAssunto, Login.Usuario.Id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Atualizar(Assunto assunto)
+        {
+            try
+            {
+                return assuntoDAO.Atualizar(assunto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarCampos(Assunto assunto)
+        {
+            try
+            {
+                negocioAssunto.ValidarNome(assunto.Nome);
             }
             catch (Exception)
             {

@@ -52,24 +52,23 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         [Test]
         public void CT01UC07FB_Consultar_assuntosDoUsuario_comSucesso()
         {
-            List<Assunto> assuntos = assuntoDAO.ConsultarIdUsuario(Login.Usuario.Id);
+            List<Assunto> assuntos = assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
             Assert.AreEqual(1, assuntos.Count);
         }
 
         [Test]
         public void CT02UC07FB_Consultar_dadosDoAssunto_comSucesso()
         {
-            List<Assunto> assuntos = assuntoDAO.ConsultarIdUsuario(Login.Usuario.Id);
-            Assunto assuntoRetorno = assuntoDAO.ConsultarDados(assuntos[0].Id);
+            List<Assunto> assuntosRetorno = assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
             Assunto assuntoEsperado = new Assunto()
             {
-                Id = assuntos[0].Id,
+                Id = assuntosRetorno[0].Id,
                 Nome = "Faculdade",
                 QtdCategorias = 0,
                 QtdTermos = 0,
                 QtdDicas = 0
             };
-            Assert.IsTrue(assuntoRetorno.Equals(assuntoEsperado));
+            Assert.IsTrue(assuntosRetorno[0].Equals(assuntoEsperado));
         }
     }
 }

@@ -20,12 +20,14 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
     {
         private FormLogin formLogin;
         private FormMenu formMenu;
+        private FormConsultarUsuario formConsultarUsuario;
 
-        public FormExcluirUsuario(FormLogin formLogin, FormMenu formMenu)
+        public FormExcluirUsuario(FormLogin formLogin, FormMenu formMenu, FormConsultarUsuario formConsultarUsuario)
         {
             InitializeComponent();
             this.formLogin = formLogin;
             this.formMenu = formMenu;
+            this.formConsultarUsuario = formConsultarUsuario;
         }
 
         private void FormExcluirUsuario_Shown(object sender, EventArgs e)
@@ -37,8 +39,9 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Todos os seus dados serão perdidos!\nDeseja mesmo excluir o usuário?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 ControleUsuario controleUsuario = new ControleUsuario();
+                controleUsuario.ValidarCamposExcluir(textBoxSenhaConfirmacao.Text);
+                DialogResult dialogResult = MessageBox.Show("Todos os seus dados serão perdidos!\nDeseja mesmo excluir o usuário?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                 if (dialogResult == DialogResult.OK)
                 {
                     bool resultado = controleUsuario.Excluir(textBoxSenhaConfirmacao.Text);
@@ -46,6 +49,7 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
                     {
                         MessageBox.Show("Usuário excluído com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();
+                        formConsultarUsuario.Close();
                         formMenu.Hide();
                         formLogin.Show();
                     }
@@ -54,6 +58,8 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxSenhaConfirmacao.Clear();
+                textBoxSenhaConfirmacao.Focus();
             }
         }
 

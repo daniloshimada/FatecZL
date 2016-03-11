@@ -10,9 +10,9 @@ namespace SistemaApoioEstudo.BLL.Entidades
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public byte QtdCategorias { get; set; }
-        public byte QtdTermos { get; set; }
-        public byte QtdDicas { get; set; }
+        public int QtdCategorias { get; set; }
+        public int QtdTermos { get; set; }
+        public int QtdDicas { get; set; }
 
         public override bool Equals(object obj)
         {

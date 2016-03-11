@@ -69,6 +69,12 @@
     <Compile Include="FormsUsuario\FormCadastrarUsuario.Designer.cs">
       <DependentUpon>FormCadastrarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsUsuario\FormConsultarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsUsuario\FormConsultarUsuario.Designer.cs">
+      <DependentUpon>FormConsultarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsUsuario\FormExcluirUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsUsuario\FormCadastrarUsuario.resx">
       <DependentUpon>FormCadastrarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsUsuario\FormConsultarUsuario.resx">
+      <DependentUpon>FormConsultarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsUsuario\FormExcluirUsuario.resx">
       <DependentUpon>FormExcluirUsuario.cs</DependentUpon>

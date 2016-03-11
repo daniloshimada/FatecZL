@@ -111,7 +111,6 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
                 resultado = usuarioDAO.AtualizarNome(usuario);
             }
             resultado = negocioLogin.AtualizarLogin(usuario, resultado);
-
             Assert.IsTrue(resultado);
         }
 
@@ -136,7 +135,6 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
                 resultado = usuarioDAO.AtualizarNome(usuario);
             }
             resultado = negocioLogin.AtualizarLogin(usuario, resultado);
-
             Assert.IsTrue(resultado);
         }
 
@@ -161,7 +159,6 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
                 resultado = usuarioDAO.AtualizarNome(usuario);
             }
             resultado = negocioLogin.AtualizarLogin(usuario, resultado);
-
             Assert.IsTrue(resultado);
         }
 

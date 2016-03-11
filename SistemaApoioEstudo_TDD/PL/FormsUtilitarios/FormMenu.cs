@@ -24,14 +24,9 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             this.formLogin = formLogin;
         }
 
-        private void recarregarTela()
-        {
-            textBoxNome.Text = Login.Usuario.Nome;
-        }
-
         private void FormMenu_Shown(object sender, EventArgs e)
         {
-            recarregarTela();
+            carregarTela();
         }
 
         private void FormMenu_FormClosing(object sender, FormClosingEventArgs e)
@@ -39,26 +34,21 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             Application.Exit();
         }
 
-        private void buttonAlterar_Click(object sender, EventArgs e)
+        private void carregarTela()
         {
-            try
+            if (Login.Usuario != null)
             {
-                FormAtualizarUsuario formAtualizarUsuario = new FormAtualizarUsuario();
-                formAtualizarUsuario.ShowDialog();
-                recarregarTela();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxNome.Text = Login.Usuario.Nome;
             }
         }
 
-        private void buttonExcluir_Click(object sender, EventArgs e)
+        private void buttonUsuario_Click(object sender, EventArgs e)
         {
             try
             {
-                FormExcluirUsuario formExcluirUsuario = new FormExcluirUsuario(formLogin, this);
-                formExcluirUsuario.Show();
+                FormConsultarUsuario formConsultarUsuario = new FormConsultarUsuario(formLogin, this);
+                formConsultarUsuario.ShowDialog();
+                carregarTela();
             }
             catch (Exception ex)
             {

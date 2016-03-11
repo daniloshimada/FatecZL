@@ -45,8 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestesAssunto\UC06_AssuntoCadastrar.cs" />
     <Compile Include="TestesAssunto\UC07_AssuntoConsultar.cs" />
+    <Compile Include="TestesAssunto\UC08_AtualzarAssunto.cs" />
     <Compile Include="TestesLogin\UC01_Logar.cs" />
     <Compile Include="TestesUsuario\UC02_CadastrarUsuario.cs" />
+    <Compile Include="TestesUsuario\UC03_ConsultarUsuario.cs" />
     <Compile Include="TestesUsuario\UC04_AtualizarUsuario.cs" />
     <Compile Include="TestesUsuario\UC05_ExcluirUsuario.cs" />
   </ItemGroup>
