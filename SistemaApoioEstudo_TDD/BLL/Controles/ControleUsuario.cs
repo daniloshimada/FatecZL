@@ -47,6 +47,7 @@ namespace SistemaApoioEstudo.BLL.Controles
                 else
                 {
                     resultado = usuarioDAO.AtualizarNome(usuario);
+                    usuario.Senha = senhaConfirmacao;
                 }
                 return new NegocioLogin().AtualizarLogin(usuario, resultado); ;
             }

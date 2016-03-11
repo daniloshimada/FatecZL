@@ -1,38 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.DAO;
+using System;
 
 namespace SistemaApoioEstudo.Teste.TestesLogin
 {
     [TestFixture]
     public class UC01_Logar
     {
-        private NegocioUsuario negocioUsuario;
         private NegocioLogin negocioLogin;
+        private NegocioUsuario negocioUsuario;
         private IUsuarioDAO usuarioDAO;
+        private Usuario usuarioAlexandre;
 
         public UC01_Logar()
         {
-            negocioUsuario = new NegocioUsuario();
             negocioLogin = new NegocioLogin();
+            negocioUsuario = new NegocioUsuario();
             usuarioDAO = new UsuarioDAO();
+            usuarioAlexandre = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetup()
         {
-            Usuario usuarioAlexandre = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
+            //_Exclui e Cadastra o usuário com nome "Alexandre" e senha "athens".
             Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioRetorno != null)
             {
@@ -44,29 +42,20 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            Usuario usuarioAlexandre = new Usuario()
+            //_Exclui o usuário com nome "Alexandre".
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
             {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
-            {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
             }
         }
 
         [Test]
         public void CT01UC01FB_Logar_comDadosValidos_comSucesso()
         {
-            Usuario usuarioLogin = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
-            negocioUsuario.ValidarNome(usuarioLogin.Nome);
-            negocioUsuario.ValidarSenha(usuarioLogin.Senha);
+            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioAlexandre);
+            negocioUsuario.ValidarNome(usuarioAlexandre.Nome);
+            negocioUsuario.ValidarSenha(usuarioAlexandre.Senha);
             bool resultado = false;
             if (usuarioRetorno != null)
             {

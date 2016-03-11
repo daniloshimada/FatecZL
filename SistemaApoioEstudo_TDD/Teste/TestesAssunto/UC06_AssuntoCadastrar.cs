@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Utilitarios;
+﻿using NUnit.Framework;
 using SistemaApoioEstudo.BLL.DAO;
+using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Negocio;
+using SistemaApoioEstudo.BLL.Utilitarios;
+using System;
 
 namespace SistemaApoioEstudo.Teste.TestesAssunto
 {
@@ -16,22 +12,25 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
     {
         private NegocioAssunto negocioAssunto;
         private IAssuntoDAO assuntoDAO;
+        private IUsuarioDAO usuarioDAO;
+        private Usuario usuarioAlexandre;
 
         public UC06_CadastrarAssunto()
         {
             negocioAssunto = new NegocioAssunto();
             assuntoDAO = new AssuntoDAO();
-        }
-
-        [TestFixtureSetUp]
-        public void SetUp()
-        {
-            Usuario usuarioAlexandre = new Usuario()
+            usuarioDAO = new UsuarioDAO();
+            usuarioAlexandre = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            IUsuarioDAO usuarioDAO = new UsuarioDAO();
+        }
+
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
             Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioRetorno != null)
             {
@@ -40,24 +39,22 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
             usuarioDAO.Cadastrar(usuarioAlexandre);
             Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
 
-            Assunto assuntoFaculdade = new Assunto()
-            {
-                Nome = "Faculdade"
-            };
-            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
-            if (assuntoFaculdade != null)
-            {
-                assuntoDAO.Excluir(assuntoFaculdade.Id);
-            }
-
+            //_Cadastra o assunto "FatecZL" para o usuário com nome "Alexandre.
             Assunto assuntoFatec = new Assunto()
             {
                 Nome = "FatecZL"
             };
-            Assunto assuntoRetorno = assuntoDAO.ConsultarNomeIdUsuario(assuntoFatec.Nome, Login.Usuario.Id);
-            if (assuntoRetorno == null)
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFatec);
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            //_Exclui o usuário com nome "Alexandre".
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
             {
-                assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFatec);
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
             }
         }
 
@@ -99,6 +96,10 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         [ExpectedException(typeof(NullReferenceException))]
         public void CT04UC06FA_Cadastrar_comAssuntoNULL_semSucesso()
         {
+            Assunto assunto = new Assunto()
+            {
+                Nome = "Curso"
+            };
             negocioAssunto.ValidarNome(null);
         }
 

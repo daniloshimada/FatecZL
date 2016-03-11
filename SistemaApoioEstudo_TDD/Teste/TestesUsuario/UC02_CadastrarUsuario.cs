@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Controles;
-using System.Data.SqlClient;
-using SistemaApoioEstudo.BLL.Negocio;
+﻿using NUnit.Framework;
 using SistemaApoioEstudo.BLL.DAO;
+using SistemaApoioEstudo.BLL.Entidades;
+using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.Utilitarios;
+using System;
 
 namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
@@ -18,32 +12,36 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
     {
         private NegocioUsuario negocioUsuario;
         private IUsuarioDAO usuarioDAO;
+        private Usuario usuarioAlexandre;
+        private Usuario usuarioDanilo;
 
         public UC02_CadastrarUsuario()
         {
             negocioUsuario = new NegocioUsuario();
             usuarioDAO = new UsuarioDAO();
+            usuarioAlexandre = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
+            usuarioDanilo = new Usuario()
+            {
+                Nome = "Danilo",
+                Senha = "delphi"
+            };
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            Usuario usuarioAlexandre = new Usuario()
+            //_Exclui o usuário com nome "Alexandre" e senha "athens".
+            Usuario usuarioAlexandreRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandreRetorno != null)
             {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
-            {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioAlexandreRetorno.Id);
             }
 
-            Usuario usuarioDanilo = new Usuario()
-            {
-                Nome = "Danilo",
-                Senha = "delphi"
-            };
+            //_Cadastra o usuário com nome "Danilo" e senha "delphi".
             Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
             if (usuarioRetorno == null)
             {
@@ -54,22 +52,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            Usuario usuarioAlexandre = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
+            //_Exclui o usuário com nome "Alexandre" e senha "athens".
             usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioAlexandre != null)
             {
                 usuarioDAO.Excluir(usuarioAlexandre.Id);
             }
 
-            Usuario usuarioDanilo = new Usuario()
-            {
-                Nome = "Danilo",
-                Senha = "delphi"
-            };
+            //_Exclui o usuário com nome "Danilo" e senha "delphi".
             usuarioDanilo = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
             if (usuarioDanilo != null)
             {
@@ -80,12 +70,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [Test]
         public void CT01UC02FB_Cadastrar_comDadosValidos_comSucesso()
         {
-            Usuario usuario = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            bool resultado = usuarioDAO.Cadastrar(usuario);
+            bool resultado = usuarioDAO.Cadastrar(usuarioAlexandre);
             Assert.IsTrue(resultado);
         }
 
@@ -95,7 +80,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         {
             Usuario usuario = new Usuario()
             {
-                Nome = "   ",
+                Nome = " ",
                 Senha = "baralho"
             };
             negocioUsuario.ValidarNome(usuario.Nome);
@@ -108,7 +93,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             Usuario usuario = new Usuario()
             {
                 Nome = "Clayton",
-                Senha = "   "
+                Senha = " "
             };
             negocioUsuario.ValidarSenha(usuario.Senha);
         }

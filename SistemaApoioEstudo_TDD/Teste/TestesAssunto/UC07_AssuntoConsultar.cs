@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using SistemaApoioEstudo.BLL.Utilitarios;
+﻿using NUnit.Framework;
 using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
+using SistemaApoioEstudo.BLL.Utilitarios;
+using System.Collections.Generic;
 
 namespace SistemaApoioEstudo.Teste.TestesAssunto
 {
@@ -15,21 +11,23 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
     {
         private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
+        private Usuario usuarioAlexandre;
 
         public UC07_AssuntoConsultar()
         {
             assuntoDAO = new AssuntoDAO();
             usuarioDAO = new UsuarioDAO();
+            usuarioAlexandre = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            Usuario usuarioAlexandre = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
+            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
             Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioRetorno != null)
             {
@@ -38,14 +36,22 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
             usuarioDAO.Cadastrar(usuarioAlexandre);
             Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
 
+            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre.
             Assunto assuntoFaculdade = new Assunto()
             {
                 Nome = "Faculdade"
             };
-            Assunto assuntoRetorno = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
-            if (assuntoRetorno == null)
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            //_Exclui o usuário com nome "Alexandre".
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
             {
-                assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
             }
         }
 

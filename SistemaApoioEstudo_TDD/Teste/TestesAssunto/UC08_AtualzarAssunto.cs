@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.DAO;
+using System;
 
 namespace SistemaApoioEstudo.Teste.TestesAssunto
 {
@@ -16,24 +12,27 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
     {
         private NegocioAssunto negocioAssunto;
         private IAssuntoDAO assuntoDAO;
+        private IUsuarioDAO usuarioDAO;
         private Assunto assuntoFaculdade;
+        private Usuario usuarioAlexandre;
 
         public UC08_AtualzarAssunto()
         {
             negocioAssunto = new NegocioAssunto();
             assuntoDAO = new AssuntoDAO();
+            usuarioDAO = new UsuarioDAO();
             assuntoFaculdade = new Assunto();
+            usuarioAlexandre = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            Usuario usuarioAlexandre = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            IUsuarioDAO usuarioDAO = new UsuarioDAO();
+            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
             Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioRetorno != null)
             {
@@ -42,15 +41,30 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
             usuarioDAO.Cadastrar(usuarioAlexandre);
             Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
 
+            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre".
             assuntoFaculdade.Nome = "Faculdade";
             assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
+
+            //_Consulta o id do assunto "Faculdade".
             assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
 
+            //_Cadastra o assunto "FatecZL" para o usuário com nome "Alexandre.
             Assunto assuntoFatecZL = new Assunto()
             {
                 Nome = "FatecZL"
             };
             assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFatecZL);
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            //_Exclui o usuário com nome "Alexandre".
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
+            {
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
+            }
         }
 
         [Test]

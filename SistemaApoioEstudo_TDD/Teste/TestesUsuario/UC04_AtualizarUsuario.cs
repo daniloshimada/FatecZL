@@ -104,11 +104,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             usuario.Id = Login.Usuario.Id;
             if (resultado)
             {
+                //_Atualiza o nome e a senha.
                 resultado = usuarioDAO.Atualizar(usuario);
             }
             else
             {
+                //_Atualiza apenas o nome.
                 resultado = usuarioDAO.AtualizarNome(usuario);
+                usuario.Senha = "athens";
             }
             resultado = negocioLogin.AtualizarLogin(usuario, resultado);
             Assert.IsTrue(resultado);

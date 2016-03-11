@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.DAO;
 
 namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
@@ -14,21 +9,22 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
     public class UC03_ConsultarUsuario
     {
         private IUsuarioDAO usuarioDAO;
+        private Usuario usuarioAlexandre;
 
         public UC03_ConsultarUsuario()
         {
             usuarioDAO = new UsuarioDAO();
+            usuarioAlexandre = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            Usuario usuarioAlexandre = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            IUsuarioDAO usuarioDAO = new UsuarioDAO();
+            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
             Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioRetorno != null)
             {
@@ -38,6 +34,17 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             Login.RegistrarUsuario(usuarioDAO.ConsultarNome(usuarioAlexandre.Nome));
         }
 
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            //_Exclui o usuário com nome "Alexandre" e senha "athens".
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
+            {
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
+            }
+        }
+
         [Test]
         public void CT01UC03FB_Consultar_dadosDoUsuario_comSucesso()
         {
@@ -45,8 +52,8 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             Usuario usuarioComparacao = new Usuario()
             {
                 Id = Login.Usuario.Id,
-                Nome = Login.Usuario.Nome,
-                Senha = Login.Usuario.Senha,
+                Nome = "Alexandre",
+                Senha = "athens",
                 QtdAssuntos = 0,
                 QtdCategorias = 0,
                 QtdTermos = 0,
