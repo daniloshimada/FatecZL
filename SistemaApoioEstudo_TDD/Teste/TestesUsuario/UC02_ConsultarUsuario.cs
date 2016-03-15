@@ -6,12 +6,12 @@ using SistemaApoioEstudo.BLL.Utilitarios;
 namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
     [TestFixture]
-    public class UC03_ConsultarUsuario
+    public class UC02_ConsultarUsuario
     {
         private IUsuarioDAO usuarioDAO;
         private Usuario usuarioAlexandre;
 
-        public UC03_ConsultarUsuario()
+        public UC02_ConsultarUsuario()
         {
             usuarioDAO = new UsuarioDAO();
             usuarioAlexandre = new Usuario()
@@ -46,7 +46,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         }
 
         [Test]
-        public void CT01UC03FB_Consultar_dadosDoUsuario_comSucesso()
+        public void CT01UC02FB_Consultar_dadosDoUsuario_comSucesso()
         {
             Usuario usuarioRetorno = usuarioDAO.ConsultarDados(Login.Usuario.Id);
             Usuario usuarioComparacao = new Usuario()

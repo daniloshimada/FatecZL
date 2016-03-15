@@ -43,15 +43,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestesAssunto\UC06_CadastrarAssunto.cs" />
-    <Compile Include="TestesAssunto\UC07_ConsultarAssunto.cs" />
-    <Compile Include="TestesAssunto\UC08_AtualizarAssunto.cs" />
-    <Compile Include="TestesAssunto\UC09_ExcluirAssunto.cs" />
-    <Compile Include="TestesLogin\UC01_Logar.cs" />
-    <Compile Include="TestesUsuario\UC02_CadastrarUsuario.cs" />
-    <Compile Include="TestesUsuario\UC03_ConsultarUsuario.cs" />
-    <Compile Include="TestesUsuario\UC04_AtualizarUsuario.cs" />
-    <Compile Include="TestesUsuario\UC05_ExcluirUsuario.cs" />
+    <Compile Include="TestesAssunto\UC05_CadastrarAssunto.cs" />
+    <Compile Include="TestesAssunto\UC06_ConsultarAssunto.cs" />
+    <Compile Include="TestesAssunto\UC07_AtualizarAssunto.cs" />
+    <Compile Include="TestesAssunto\UC08_ExcluirAssunto.cs" />
+    <Compile Include="TestesLogin\UC20_Logar.cs" />
+    <Compile Include="TestesUsuario\UC01_CadastrarUsuario.cs" />
+    <Compile Include="TestesUsuario\UC02_ConsultarUsuario.cs" />
+    <Compile Include="TestesUsuario\UC03_AtualizarUsuario.cs" />
+    <Compile Include="TestesUsuario\UC04_ExcluirUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

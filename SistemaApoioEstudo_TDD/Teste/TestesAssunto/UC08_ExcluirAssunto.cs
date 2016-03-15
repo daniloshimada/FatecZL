@@ -6,7 +6,7 @@ using SistemaApoioEstudo.BLL.Utilitarios;
 namespace SistemaApoioEstudo.Teste.TestesAssunto
 {
     [TestFixture]
-    public class UC09_ExcluirAssunto
+    public class UC08_ExcluirAssunto
     {
         private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
@@ -14,7 +14,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         private Usuario usuarioAlexandre;
         
 
-        public UC09_ExcluirAssunto()
+        public UC08_ExcluirAssunto()
         {
             assuntoDAO = new AssuntoDAO();
             usuarioDAO = new UsuarioDAO();
@@ -60,7 +60,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         }
 
         [Test]
-        public void CT01UC09FB_Excluir_assuntoEDadosRelacionados_comSucesso()
+        public void CT01UC08FB_Excluir_assuntoEDadosRelacionados_comSucesso()
         {
             bool resultado = assuntoDAO.Excluir(assuntoFaculdade.Id);
             Assert.IsTrue(resultado);

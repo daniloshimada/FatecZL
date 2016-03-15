@@ -8,13 +8,13 @@ using System;
 namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
     [TestFixture]
-    public class UC05_ExcluirUsuario
+    public class UC04_ExcluirUsuario
     {
         private NegocioUsuario negocioUsuario;
         private IUsuarioDAO usuarioDAO;
         private Usuario usuarioAlexandre;
 
-        public UC05_ExcluirUsuario()
+        public UC04_ExcluirUsuario()
         {
             negocioUsuario = new NegocioUsuario();
             usuarioDAO = new UsuarioDAO();
@@ -50,7 +50,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         }
 
         [Test]
-        public void CT01UC05FB_Excluir_comSenhaDeConfirmacaoCorreta_comSucesso()
+        public void CT01UC04FB_Excluir_comSenhaDeConfirmacaoCorreta_comSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao("athens");
             bool resultado = usuarioDAO.Excluir(Login.Usuario.Id);
@@ -61,28 +61,28 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC05FA_Excluir_comSenhaDeConfirmacaoEmBranco_semSucesso()
+        public void CT02UC04FA_Excluir_comSenhaDeConfirmacaoEmBranco_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao(" ");
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT03UC05FA_Excluir_comSenhaDeConfirmacaoAcimaDe10Caracteres_semSucesso()
+        public void CT03UC04FA_Excluir_comSenhaDeConfirmacaoAcimaDe10Caracteres_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao("danilodelphi");
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT04UC05FA_Excluir_comSenhaDeConfirmacaoNULL_semSucesso()
+        public void CT04UC04FA_Excluir_comSenhaDeConfirmacaoNULL_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao(null);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT05UC05FA_Excluir_comSenhaDeConfirmacaoIncorreta_semSucesso()
+        public void CT05UC04FA_Excluir_comSenhaDeConfirmacaoIncorreta_semSucesso()
         {
             negocioUsuario.ValidarSenhaConfirmacao("creta");
         }

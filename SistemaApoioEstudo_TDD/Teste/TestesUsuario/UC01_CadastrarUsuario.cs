@@ -5,19 +5,18 @@ using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.Utilitarios;
 using System;
 
-namespace SistemaApoioEstudo.Teste.TestesLogin
+namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
     [TestFixture]
-    public class UC01_Logar
+    public class UC01_CadastrarUsuario
     {
-        private NegocioLogin negocioLogin;
         private NegocioUsuario negocioUsuario;
         private IUsuarioDAO usuarioDAO;
         private Usuario usuarioAlexandre;
+        private Usuario usuarioDanilo;
 
-        public UC01_Logar()
+        public UC01_CadastrarUsuario()
         {
-            negocioLogin = new NegocioLogin();
             negocioUsuario = new NegocioUsuario();
             usuarioDAO = new UsuarioDAO();
             usuarioAlexandre = new Usuario()
@@ -25,65 +24,75 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
                 Nome = "Alexandre",
                 Senha = "athens"
             };
+            usuarioDanilo = new Usuario()
+            {
+                Nome = "Danilo",
+                Senha = "delphi"
+            };
         }
 
         [TestFixtureSetUp]
-        public void TestFixtureSetup()
+        public void TestFixtureSetUp()
         {
-            //_Exclui e Cadastra o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui o usuário com nome "Alexandre" e senha "athens".
+            Usuario usuarioAlexandreRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandreRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioAlexandreRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
+
+            //_Cadastra o usuário com nome "Danilo" e senha "delphi".
+            Usuario usuarioDaniloRetorno = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioDaniloRetorno == null)
+            {
+                usuarioDAO.Cadastrar(usuarioDanilo);
+            }
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
+            //_Exclui o usuário com nome "Alexandre" e senha "athens".
             usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioAlexandre != null)
             {
                 usuarioDAO.Excluir(usuarioAlexandre.Id);
             }
+
+            //_Exclui o usuário com nome "Danilo" e senha "delphi".
+            usuarioDanilo = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
+            if (usuarioDanilo != null)
+            {
+                usuarioDAO.Excluir(usuarioDanilo.Id);
+            }
         }
 
         [Test]
-        public void CT01UC01FB_Logar_comDadosValidos_comSucesso()
+        public void CT01UC01FB_Cadastrar_comDadosValidos_comSucesso()
         {
-            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioAlexandre);
-            negocioUsuario.ValidarNome(usuarioAlexandre.Nome);
-            negocioUsuario.ValidarSenha(usuarioAlexandre.Senha);
-            bool resultado = false;
-            if (usuarioRetorno != null)
-            {
-                Login.RegistrarUsuario(usuarioRetorno);
-                resultado = true;
-            }
+            bool resultado = usuarioDAO.Cadastrar(usuarioAlexandre);
             Assert.IsTrue(resultado);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC01FA_Logar_comNomeEmBranco_semSucesso()
+        public void CT02UC01FA_Cadastrar_comNomeEmBranco_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
                 Nome = " ",
-                Senha = "athens"
+                Senha = "baralho"
             };
             negocioUsuario.ValidarNome(usuario.Nome);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT03UC01FA_Logar_comSenhaEmBranco_semSucesso()
+        public void CT03UC01FA_Cadastrar_comSenhaEmBranco_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
-                Nome = "Alexandre",
+                Nome = "Clayton",
                 Senha = " "
             };
             negocioUsuario.ValidarSenha(usuario.Senha);
@@ -91,7 +100,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT04UC01FA_Logar_comNomeAcimaDe15Caracteres_semSucesso()
+        public void CT04UC01FA_Cadastrar_comNomeAcimaDe15Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
@@ -103,63 +112,52 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT05UC01FA_Logar_comSenhaAcimaDe10Caracteres_semSucesso()
+        public void CT05UC01FA_Cadastrar_comSenhaAcimaDe10Caracteres_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
-                Nome = "Alexandre",
-                Senha = "athensalexandre"
+                Nome = "Danilo",
+                Senha = "delphidanilo"
             };
             negocioUsuario.ValidarSenha(usuario.Senha);
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT06UC01FA_Logar_comNomeNULL_semSucesso()
+        public void CT06UC01FA_Cadastrar_comNomeNull_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
-                Nome = "Alexandre",
-                Senha = "athens"
+                Nome = null,
+                Senha = "creta"
             };
-            negocioUsuario.ValidarNome(null);
+            negocioUsuario.ValidarNome(usuario.Nome);
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT07UC01FA_Logar_comSenhaNULL_semSucesso()
+        public void CT07UC01FA_Cadastrar_comSenhaNull_semSucesso()
         {
             Usuario usuario = new Usuario()
             {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            negocioUsuario.ValidarSenha(null);
-        }
-
-        [Test]
-        [ExpectedException(typeof(Exception))]
-        public void CT08UC01FA_Logar_comNomeIncorreto_semSucesso()
-        {
-            Usuario usuarioLogin = new Usuario()
-            {
                 Nome = "Clayton",
-                Senha = "athens"
+                Senha = null
             };
-            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
-            Assert.IsNull(usuarioRetorno);
+            negocioUsuario.ValidarSenha(usuario.Senha);
         }
 
         [Test]
         [ExpectedException(typeof(Exception))]
-        public void CT09UC01FA_Logar_comSenhaIncorreta_semSucesso()
+        public void CT08UC01FA_Cadastrar_comNomeJaExistente_semSucesso()
         {
-            Usuario usuarioLogin = new Usuario()
+            Usuario usuario = new Usuario()
             {
-                Nome = "Alexandre",
-                Senha = "creta"
+                Nome = "Danilo",
+                Senha = "delphi"
             };
-            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
+            negocioUsuario.ValidarNome(usuario.Nome);
+            negocioUsuario.ValidarSenha(usuario.Senha);
+            usuarioDAO.Cadastrar(usuario);
         }
     }
 }

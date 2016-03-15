@@ -7,13 +7,13 @@ using System.Collections.Generic;
 namespace SistemaApoioEstudo.Teste.TestesAssunto
 {
     [TestFixture]
-    public class UC07_ConsultarAssunto
+    public class UC06_ConsultarAssunto
     {
         private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
         private Usuario usuarioAlexandre;
 
-        public UC07_ConsultarAssunto()
+        public UC06_ConsultarAssunto()
         {
             assuntoDAO = new AssuntoDAO();
             usuarioDAO = new UsuarioDAO();
@@ -56,14 +56,14 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         }
 
         [Test]
-        public void CT01UC07FB_Consultar_assuntosDoUsuario_comSucesso()
+        public void CT01UC06FB_Consultar_assuntosDoUsuario_comSucesso()
         {
             List<Assunto> assuntos = assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
             Assert.AreEqual(1, assuntos.Count);
         }
 
         [Test]
-        public void CT02UC07FB_Consultar_dadosDoAssunto_comSucesso()
+        public void CT02UC06FB_Consultar_dadosDoAssunto_comSucesso()
         {
             List<Assunto> assuntosRetorno = assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
             Assunto assuntoEsperado = new Assunto()
