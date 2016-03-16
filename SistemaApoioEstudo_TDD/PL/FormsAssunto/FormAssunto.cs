@@ -40,6 +40,7 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
         {
             try
             {
+                limparCampos();
                 comboBoxAssuntos.Items.Clear();
                 comboBoxAssuntos.ValueMember = "Id";
                 comboBoxAssuntos.DisplayMember = "Nome";
@@ -143,7 +144,6 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
                     {
                         MessageBox.Show("Assunto excluído com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         carregarTela();
-                        limparCampos();
                     }
                 }
             }

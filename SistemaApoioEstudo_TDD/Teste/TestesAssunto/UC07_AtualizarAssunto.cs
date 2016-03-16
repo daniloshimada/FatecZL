@@ -68,15 +68,15 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         }
 
         [Test]
-        public void CT01UC07FB_Atualizar_comDadosValidos_comSucesso()
+        public void CT01UC07FB_Atualizar_assuntoComDadosValidos_comSucesso()
         {
-            Assunto assuntoCurso = new Assunto()
+            Assunto assuntoValido = new Assunto()
             {
                 Nome = "Curso"
             };
-            assuntoCurso.Id = assuntoFaculdade.Id;
-            negocioAssunto.ValidarNome(assuntoCurso.Nome);
-            bool resultado = assuntoDAO.Atualizar(assuntoCurso);
+            assuntoValido.Id = assuntoFaculdade.Id;
+            negocioAssunto.ValidarNome(assuntoValido.Nome);
+            bool resultado = assuntoDAO.Atualizar(assuntoValido);
             Assert.IsTrue(resultado);
         }
 
@@ -120,13 +120,13 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         [ExpectedException(typeof(Exception))]
         public void CT05UC07FA_Atualziar_assuntoJaExistente_semSucesso()
         {
-            Assunto assuntoFatecZL = new Assunto()
+            Assunto assuntoExistente = new Assunto()
             {
                 Nome = "FatecZL"
             };
-            assuntoFatecZL.Id = assuntoFaculdade.Id;
-            negocioAssunto.ValidarNome(assuntoFatecZL.Nome);
-            bool resultado = assuntoDAO.Atualizar(assuntoFatecZL);
+            assuntoExistente.Id = assuntoFaculdade.Id;
+            negocioAssunto.ValidarNome(assuntoExistente.Nome);
+            bool resultado = assuntoDAO.Atualizar(assuntoExistente);
             Assert.IsTrue(resultado);
         }
     }

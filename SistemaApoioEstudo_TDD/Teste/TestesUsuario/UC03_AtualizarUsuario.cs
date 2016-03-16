@@ -69,14 +69,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre" e senha "athens".
+            //_Exclui o usuário com nome "Alexandre".
             usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioAlexandre != null)
             {
                 usuarioDAO.Excluir(usuarioAlexandre.Id);
             }
 
-            //_Exclui o usuário com nome "Danilo" e senha "delphi".
+            //_Exclui o usuário com nome "Danilo".
             usuarioDanilo = usuarioDAO.ConsultarNome(usuarioDanilo.Nome);
             if (usuarioDanilo != null)
             {
@@ -87,77 +87,77 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [Test]
         public void CT01UC03FB_Atualizar_comNomeESenha_comSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioNomeSenha = new Usuario()
             {
                 Nome = "Clayton",
                 Senha = "creta"
             };
-            negocioUsuario.ValidarNome(usuario.Nome);
-            bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
+            negocioUsuario.ValidarNome(usuarioNomeSenha.Nome);
+            bool resultado = negocioUsuario.ValidarSenhaNova(usuarioNomeSenha.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
-            usuario.Id = Login.Usuario.Id;
+            usuarioNomeSenha.Id = Login.Usuario.Id;
             if (resultado)
             {
                 //_Atualiza o nome e a senha.
-                resultado = usuarioDAO.Atualizar(usuario);
+                resultado = usuarioDAO.Atualizar(usuarioNomeSenha);
             }
             else
             {
                 //_Atualiza apenas o nome.
-                resultado = usuarioDAO.AtualizarNome(usuario);
-                usuario.Senha = "athens";
+                resultado = usuarioDAO.AtualizarNome(usuarioNomeSenha);
+                usuarioNomeSenha.Senha = "athens";
             }
-            resultado = negocioLogin.AtualizarLogin(usuario, resultado);
+            resultado = negocioLogin.AtualizarLogin(usuarioNomeSenha, resultado);
             Assert.IsTrue(resultado);
         }
 
         [Test]
         public void CT02UC03FA_Atualizar_apenasNomeComSenhaEmBranco_comSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioSenhaBranco = new Usuario()
             {
                 Nome = "Clayton",
                 Senha = " "
             };
-            negocioUsuario.ValidarNome(usuario.Nome);
-            bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
+            negocioUsuario.ValidarNome(usuarioSenhaBranco.Nome);
+            bool resultado = negocioUsuario.ValidarSenhaNova(usuarioSenhaBranco.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
-            usuario.Id = Login.Usuario.Id;
+            usuarioSenhaBranco.Id = Login.Usuario.Id;
             if (resultado)
             {
-                resultado = usuarioDAO.Atualizar(usuario);
+                resultado = usuarioDAO.Atualizar(usuarioSenhaBranco);
             }
             else
             {
-                resultado = usuarioDAO.AtualizarNome(usuario);
-                usuario.Senha = "athens";
+                resultado = usuarioDAO.AtualizarNome(usuarioSenhaBranco);
+                usuarioSenhaBranco.Senha = "athens";
             }
-            resultado = negocioLogin.AtualizarLogin(usuario, resultado);
+            resultado = negocioLogin.AtualizarLogin(usuarioSenhaBranco, resultado);
             Assert.IsTrue(resultado);
         }
 
         [Test]
         public void CT03UC03FA_Atualizar_apenasSenha_comSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioSenha = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "cretanova"
             };
-            negocioUsuario.ValidarNome(usuario.Nome);
-            bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
+            negocioUsuario.ValidarNome(usuarioSenha.Nome);
+            bool resultado = negocioUsuario.ValidarSenhaNova(usuarioSenha.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
-            usuario.Id = Login.Usuario.Id;
+            usuarioSenha.Id = Login.Usuario.Id;
             if (resultado)
             {
-                resultado = usuarioDAO.Atualizar(usuario);
+                resultado = usuarioDAO.Atualizar(usuarioSenha);
             }
             else
             {
-                resultado = usuarioDAO.AtualizarNome(usuario);
-                usuario.Senha = "athens";
+                resultado = usuarioDAO.AtualizarNome(usuarioSenha);
+                usuarioSenha.Senha = "athens";
             }
-            resultado = negocioLogin.AtualizarLogin(usuario, resultado);
+            resultado = negocioLogin.AtualizarLogin(usuarioSenha, resultado);
             Assert.IsTrue(resultado);
         }
 
@@ -165,12 +165,12 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [ExpectedException(typeof(ArgumentException))]
         public void CT04UC03FA_Atualizar_comNomeEmBranco_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioNomeBranco = new Usuario()
             {
                 Nome = " ",
                 Senha = ""
             };
-            negocioUsuario.ValidarNome(usuario.Nome);
+            negocioUsuario.ValidarNome(usuarioNomeBranco.Nome);
         }
 
         [Test]
@@ -184,24 +184,24 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [ExpectedException(typeof(ArgumentException))]
         public void CT06UC03FA_Atualizar_comNomeAcimaDe15Caracteres_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioNomeCaracteres = new Usuario()
             {
                 Nome = "Alexandreshigueru",
                 Senha = ""
             };
-            negocioUsuario.ValidarNome(usuario.Nome);
+            negocioUsuario.ValidarNome(usuarioNomeCaracteres.Nome);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CT07UC03FA_Atualizar_comSenhaAcimaDe10Caracteres_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioSenhaCaracteres = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "danilodelphi"
             };
-            negocioUsuario.ValidarSenhaNova(usuario.Senha);
+            negocioUsuario.ValidarSenhaNova(usuarioSenhaCaracteres.Senha);
         }
 
         [Test]
@@ -215,6 +215,11 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [ExpectedException(typeof(NullReferenceException))]
         public void CT09UC03FA_Atualizar_comNomeNULL_semSucesso()
         {
+            Usuario usuarioNomeNULL = new Usuario()
+            {
+                Nome = "Clayton",
+                Senha = ""
+            };
             negocioUsuario.ValidarNome(null);
         }
 
@@ -222,6 +227,11 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [ExpectedException(typeof(NullReferenceException))]
         public void CT10UC03FA_Atualizar_comSenhaNULL_semSucesso()
         {
+            Usuario usuarioSenhaCaracteres = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "cretanull"
+            };
             negocioUsuario.ValidarSenhaNova(null);
         }
 
@@ -243,22 +253,22 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [ExpectedException(typeof(Exception))]
         public void CT13UC03FA_Atualizar_comNomeJaExistente_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioNomeExistente = new Usuario()
             {
                 Nome = "Danilo",
                 Senha = ""
             };
-            negocioUsuario.ValidarNome(usuario.Nome);
+            negocioUsuario.ValidarNome(usuarioNomeExistente.Nome);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
-            usuario.Id = Login.Usuario.Id;
-            bool resultado = negocioUsuario.ValidarSenhaNova(usuario.Senha);
+            usuarioNomeExistente.Id = Login.Usuario.Id;
+            bool resultado = negocioUsuario.ValidarSenhaNova(usuarioNomeExistente.Senha);
             if (resultado)
             {
-                resultado = usuarioDAO.Atualizar(usuario);
+                resultado = usuarioDAO.Atualizar(usuarioNomeExistente);
             }
             else
             {
-                resultado = usuarioDAO.AtualizarNome(usuario);
+                resultado = usuarioDAO.AtualizarNome(usuarioNomeExistente);
             }
         }
     }

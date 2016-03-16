@@ -51,6 +51,12 @@
     <Compile Include="FormsAssunto\FormAssunto.Designer.cs">
       <DependentUpon>FormAssunto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsCategoria\FormCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsCategoria\FormCategoria.Designer.cs">
+      <DependentUpon>FormCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsLogin\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormsAssunto\FormAssunto.resx">
       <DependentUpon>FormAssunto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsCategoria\FormCategoria.resx">
+      <DependentUpon>FormCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLogin\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

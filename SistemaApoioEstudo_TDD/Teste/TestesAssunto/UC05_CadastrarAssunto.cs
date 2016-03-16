@@ -59,44 +59,44 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         }
 
         [Test]
-        public void CT01UC05FB_Cadastrar_comDadosValidos_comSucesso()
+        public void CT01UC05FB_Cadastrar_assuntoComDadosValidos_comSucesso()
         {
-            Assunto assunto = new Assunto()
+            Assunto assuntoValido = new Assunto()
             {
                 Nome = "Faculdade"
             };
-            negocioAssunto.ValidarNome(assunto.Nome);
-            bool resultado = assuntoDAO.Cadastrar(Login.Usuario.Id, assunto);
+            negocioAssunto.ValidarNome(assuntoValido.Nome);
+            bool resultado = assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoValido);
             Assert.IsTrue(resultado);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC05FA_Cadastrar_comAssuntoEmBranco_semSucesso()
+        public void CT02UC05FA_Cadastrar_assuntoEmBranco_semSucesso()
         {
-            Assunto assunto = new Assunto()
+            Assunto assuntoBranco = new Assunto()
             {
                 Nome = " "
             };
-            negocioAssunto.ValidarNome(assunto.Nome);
+            negocioAssunto.ValidarNome(assuntoBranco.Nome);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT03UC05FA_Cadastrar_comAssuntoAcimaDe30Caracteres_semSucesso()
+        public void CT03UC05FA_Cadastrar_assuntoAcimaDe30Caracteres_semSucesso()
         {
-            Assunto assunto = new Assunto()
+            Assunto assuntoCaracteres = new Assunto()
             {
                 Nome = "Faculdade de Tecnologia da Zona Leste"
             };
-            negocioAssunto.ValidarNome(assunto.Nome);
+            negocioAssunto.ValidarNome(assuntoCaracteres.Nome);
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT04UC05FA_Cadastrar_comAssuntoNULL_semSucesso()
+        public void CT04UC05FA_Cadastrar_assuntoNULL_semSucesso()
         {
-            Assunto assunto = new Assunto()
+            Assunto assuntoNULL = new Assunto()
             {
                 Nome = "Curso"
             };
@@ -105,14 +105,14 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
 
         [Test]
         [ExpectedException(typeof(Exception))]
-        public void CT05UC05FA_Cadastrar_comAssuntoJaExistente_semSucesso()
+        public void CT05UC05FA_Cadastrar_assuntoJaExistente_semSucesso()
         {
-            Assunto assunto = new Assunto()
+            Assunto assuntoExistente = new Assunto()
             {
                 Nome = "FatecZL"
             };
-            negocioAssunto.ValidarNome(assunto.Nome);
-            bool resultado = assuntoDAO.Cadastrar(Login.Usuario.Id, assunto);
+            negocioAssunto.ValidarNome(assuntoExistente.Nome);
+            bool resultado = assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoExistente);
             Assert.IsTrue(resultado);
         }
     }

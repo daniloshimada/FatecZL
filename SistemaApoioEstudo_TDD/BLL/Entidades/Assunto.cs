@@ -2,7 +2,7 @@
 
 namespace SistemaApoioEstudo.BLL.Entidades
 {
-    public class Assunto : Object
+    public class Assunto
     {
         public int Id { get; set; }
         public string Nome { get; set; }

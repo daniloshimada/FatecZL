@@ -2,6 +2,7 @@
 using SistemaApoioEstudo.PL.FormsAssunto;
 using SistemaApoioEstudo.PL.FormsLogin;
 using SistemaApoioEstudo.PL.FormsUsuario;
+using SistemaApoioEstudo.PL.FormsCategoria;
 using System;
 using System.Windows.Forms;
 
@@ -55,6 +56,19 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             {
                 FormAssunto formAssunto = new FormAssunto();
                 formAssunto.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonCategoria_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormCategoria formCategoria = new FormCategoria();
+                formCategoria.ShowDialog();
             }
             catch (Exception ex)
             {

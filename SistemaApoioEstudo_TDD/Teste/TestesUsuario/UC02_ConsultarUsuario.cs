@@ -37,7 +37,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre" e senha "athens".
+            //_Exclui o usuário com nome "Alexandre".
             usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioAlexandre != null)
             {
@@ -49,7 +49,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         public void CT01UC02FB_Consultar_dadosDoUsuario_comSucesso()
         {
             Usuario usuarioRetorno = usuarioDAO.ConsultarDados(Login.Usuario.Id);
-            Usuario usuarioComparacao = new Usuario()
+            Usuario usuarioEsperado = new Usuario()
             {
                 Id = Login.Usuario.Id,
                 Nome = "Alexandre",
@@ -59,7 +59,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
                 QtdTermos = 0,
                 QtdDicas = 0
             };
-            bool resultado = usuarioRetorno.Equals(usuarioComparacao);
+            bool resultado = usuarioRetorno.Equals(usuarioEsperado);
             Assert.IsTrue(resultado);
         }
     }

@@ -34,6 +34,7 @@
             this.labelNome = new System.Windows.Forms.Label();
             this.buttonAssunto = new System.Windows.Forms.Button();
             this.buttonUsuario = new System.Windows.Forms.Button();
+            this.buttonCategoria = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelMenuMain
@@ -102,6 +103,18 @@
             this.buttonUsuario.UseVisualStyleBackColor = true;
             this.buttonUsuario.Click += new System.EventHandler(this.buttonUsuario_Click);
             // 
+            // buttonCategoria
+            // 
+            this.buttonCategoria.AutoSize = true;
+            this.buttonCategoria.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCategoria.Location = new System.Drawing.Point(12, 141);
+            this.buttonCategoria.Name = "buttonCategoria";
+            this.buttonCategoria.Size = new System.Drawing.Size(108, 28);
+            this.buttonCategoria.TabIndex = 6;
+            this.buttonCategoria.Text = "CATEGORIA";
+            this.buttonCategoria.UseVisualStyleBackColor = true;
+            this.buttonCategoria.Click += new System.EventHandler(this.buttonCategoria_Click);
+            // 
             // FormMenu
             // 
             this.AcceptButton = this.buttonUsuario;
@@ -109,6 +122,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancelar;
             this.ClientSize = new System.Drawing.Size(254, 231);
+            this.Controls.Add(this.buttonCategoria);
             this.Controls.Add(this.buttonUsuario);
             this.Controls.Add(this.buttonAssunto);
             this.Controls.Add(this.labelMenuMain);
@@ -133,5 +147,6 @@
         private System.Windows.Forms.Label labelNome;
         private System.Windows.Forms.Button buttonAssunto;
         private System.Windows.Forms.Button buttonUsuario;
+        private System.Windows.Forms.Button buttonCategoria;
     }
 }

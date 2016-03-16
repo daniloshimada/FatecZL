@@ -69,55 +69,55 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         [ExpectedException(typeof(ArgumentException))]
         public void CT02UC20FA_Logar_comNomeEmBranco_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioNomeBranco = new Usuario()
             {
                 Nome = " ",
                 Senha = "athens"
             };
-            negocioUsuario.ValidarNome(usuario.Nome);
+            negocioUsuario.ValidarNome(usuarioNomeBranco.Nome);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CT03UC20FA_Logar_comSenhaEmBranco_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioSenhaBranco = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = " "
             };
-            negocioUsuario.ValidarSenha(usuario.Senha);
+            negocioUsuario.ValidarSenha(usuarioSenhaBranco.Senha);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CT04UC20FA_Logar_comNomeAcimaDe15Caracteres_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioNomeCaracteres = new Usuario()
             {
                 Nome = "Alexandreshigueru",
                 Senha = "athens"
             };
-            negocioUsuario.ValidarNome(usuario.Nome);
+            negocioUsuario.ValidarNome(usuarioNomeCaracteres.Nome);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CT05UC20FA_Logar_comSenhaAcimaDe10Caracteres_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioSenhaCaracteres = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athensalexandre"
             };
-            negocioUsuario.ValidarSenha(usuario.Senha);
+            negocioUsuario.ValidarSenha(usuarioSenhaCaracteres.Senha);
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
         public void CT06UC20FA_Logar_comNomeNULL_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioNomeNULL = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
@@ -129,7 +129,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         [ExpectedException(typeof(NullReferenceException))]
         public void CT07UC20FA_Logar_comSenhaNULL_semSucesso()
         {
-            Usuario usuario = new Usuario()
+            Usuario usuarioSenhaNULL = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
@@ -141,12 +141,12 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         [ExpectedException(typeof(Exception))]
         public void CT08UC20FA_Logar_comNomeIncorreto_semSucesso()
         {
-            Usuario usuarioLogin = new Usuario()
+            Usuario usuarioNomeIncorreto = new Usuario()
             {
                 Nome = "Clayton",
                 Senha = "athens"
             };
-            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
+            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioNomeIncorreto);
             Assert.IsNull(usuarioRetorno);
         }
 
@@ -154,12 +154,12 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         [ExpectedException(typeof(Exception))]
         public void CT09UC20FA_Logar_comSenhaIncorreta_semSucesso()
         {
-            Usuario usuarioLogin = new Usuario()
+            Usuario usuarioSenhaIncorreta = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "creta"
             };
-            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
+            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioSenhaIncorreta);
         }
     }
 }

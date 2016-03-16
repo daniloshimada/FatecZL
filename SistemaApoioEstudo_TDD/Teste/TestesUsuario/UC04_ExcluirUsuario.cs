@@ -41,7 +41,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre" e senha "athens".
+            //_Exclui o usuário com nome "Alexandre".
             usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioAlexandre != null)
             {

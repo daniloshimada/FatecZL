@@ -21,7 +21,7 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                conexaoBD.AdicionarParametros("@Id_Usuario", idUsuario);
+                conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
                 conexaoBD.AdicionarParametros("@Nome_assunto", assunto.Nome);
                 if (conexaoBD.ExecutarManipulacao("uspAssuntoCadastrar"))
                 {
@@ -36,6 +36,36 @@ namespace SistemaApoioEstudo.BLL.DAO
                     throw new Exception("Assunto já existe!");
                 }
                 throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<Assunto> ConsultarDadosIdUsuario(int idUsuario)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
+                DataTable dataTable = new DataTable();
+                dataTable = conexaoBD.ExecutarConsultar("uspAssuntoConsultarDadosIdUsuario");
+                if (dataTable.Rows.Count == 0)
+                {
+                    throw new Exception("Nenhum assunto cadastrado!");
+                }
+
+                List<Assunto> assuntos = new List<Assunto>();
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    Assunto assuntoForeach = new Assunto()
+                    {
+                        Id = Convert.ToInt32(dataRow[0]),
+                        Nome = Convert.ToString(dataRow[1])
+                    };
+                    assuntos.Add(assuntoForeach);
+                }
+                return assuntos;
             }
             catch (Exception)
             {
@@ -63,36 +93,6 @@ namespace SistemaApoioEstudo.BLL.DAO
                     assunto.Nome = Convert.ToString(dataRow[1]);
                 }
                 return assunto;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public List<Assunto> ConsultarDadosIdUsuario(int idUsuario)
-        {
-            try
-            {
-                conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
-                DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspAssuntoConsultarIdUsuario");
-                if (dataTable.Rows.Count == 0)
-                {
-                    throw new Exception("Nenhum assunto cadastrado!");
-                }
-
-                List<Assunto> assuntos = new List<Assunto>();
-                foreach (DataRow dataRow in dataTable.Rows)
-                {
-                    Assunto assuntoForeach = new Assunto()
-                    {
-                        Id = Convert.ToInt32(dataRow[0]),
-                        Nome = Convert.ToString(dataRow[1])
-                    };
-                    assuntos.Add(assuntoForeach);
-                }
-                return assuntos;
             }
             catch (Exception)
             {
