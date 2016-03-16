@@ -49,7 +49,7 @@
             this.labelCategorias.Location = new System.Drawing.Point(12, 85);
             this.labelCategorias.Name = "labelCategorias";
             this.labelCategorias.Size = new System.Drawing.Size(118, 18);
-            this.labelCategorias.TabIndex = 30;
+            this.labelCategorias.TabIndex = 3;
             this.labelCategorias.Text = "Categorias:";
             // 
             // buttonExcluir
@@ -59,7 +59,7 @@
             this.buttonExcluir.Location = new System.Drawing.Point(292, 186);
             this.buttonExcluir.Name = "buttonExcluir";
             this.buttonExcluir.Size = new System.Drawing.Size(108, 28);
-            this.buttonExcluir.TabIndex = 28;
+            this.buttonExcluir.TabIndex = 10;
             this.buttonExcluir.Text = "EXCLUIR";
             this.buttonExcluir.UseVisualStyleBackColor = true;
             this.buttonExcluir.Click += new System.EventHandler(this.buttonExcluir_Click);
@@ -71,7 +71,7 @@
             this.buttonAtualizar.Location = new System.Drawing.Point(170, 186);
             this.buttonAtualizar.Name = "buttonAtualizar";
             this.buttonAtualizar.Size = new System.Drawing.Size(108, 28);
-            this.buttonAtualizar.TabIndex = 27;
+            this.buttonAtualizar.TabIndex = 9;
             this.buttonAtualizar.Text = "ATUALIZAR";
             this.buttonAtualizar.UseVisualStyleBackColor = true;
             this.buttonAtualizar.Click += new System.EventHandler(this.buttonAtualizar_Click);
@@ -84,7 +84,7 @@
             this.comboBoxCategorias.Location = new System.Drawing.Point(136, 84);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(423, 24);
-            this.comboBoxCategorias.TabIndex = 18;
+            this.comboBoxCategorias.TabIndex = 4;
             this.comboBoxCategorias.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategorias_SelectedIndexChanged);
             // 
             // labelCategoriaMain
@@ -94,7 +94,7 @@
             this.labelCategoriaMain.Location = new System.Drawing.Point(236, 9);
             this.labelCategoriaMain.Name = "labelCategoriaMain";
             this.labelCategoriaMain.Size = new System.Drawing.Size(98, 18);
-            this.labelCategoriaMain.TabIndex = 16;
+            this.labelCategoriaMain.TabIndex = 0;
             this.labelCategoriaMain.Text = "CATEGORIA";
             // 
             // buttonCancelar
@@ -105,7 +105,7 @@
             this.buttonCancelar.Location = new System.Drawing.Point(414, 186);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(108, 28);
-            this.buttonCancelar.TabIndex = 29;
+            this.buttonCancelar.TabIndex = 11;
             this.buttonCancelar.Text = "CANCELAR";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
@@ -117,7 +117,7 @@
             this.buttonCadastrar.Location = new System.Drawing.Point(48, 186);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(108, 28);
-            this.buttonCadastrar.TabIndex = 26;
+            this.buttonCadastrar.TabIndex = 8;
             this.buttonCadastrar.Text = "CADASTRAR";
             this.buttonCadastrar.UseVisualStyleBackColor = true;
             this.buttonCadastrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
@@ -129,7 +129,7 @@
             this.labelCategoria.Location = new System.Drawing.Point(22, 134);
             this.labelCategoria.Name = "labelCategoria";
             this.labelCategoria.Size = new System.Drawing.Size(108, 18);
-            this.labelCategoria.TabIndex = 31;
+            this.labelCategoria.TabIndex = 6;
             this.labelCategoria.Text = "Categoria:";
             // 
             // textBoxCategoria
@@ -138,7 +138,7 @@
             this.textBoxCategoria.Location = new System.Drawing.Point(136, 133);
             this.textBoxCategoria.Name = "textBoxCategoria";
             this.textBoxCategoria.Size = new System.Drawing.Size(406, 23);
-            this.textBoxCategoria.TabIndex = 32;
+            this.textBoxCategoria.TabIndex = 7;
             // 
             // labelAssuntos
             // 
@@ -147,7 +147,7 @@
             this.labelAssuntos.Location = new System.Drawing.Point(32, 55);
             this.labelAssuntos.Name = "labelAssuntos";
             this.labelAssuntos.Size = new System.Drawing.Size(98, 18);
-            this.labelAssuntos.TabIndex = 34;
+            this.labelAssuntos.TabIndex = 1;
             this.labelAssuntos.Text = "Assuntos:";
             // 
             // comboBoxAssuntos
@@ -158,7 +158,7 @@
             this.comboBoxAssuntos.Location = new System.Drawing.Point(136, 54);
             this.comboBoxAssuntos.Name = "comboBoxAssuntos";
             this.comboBoxAssuntos.Size = new System.Drawing.Size(263, 24);
-            this.comboBoxAssuntos.TabIndex = 33;
+            this.comboBoxAssuntos.TabIndex = 2;
             this.comboBoxAssuntos.SelectedIndexChanged += new System.EventHandler(this.comboBoxAssuntos_SelectedIndexChanged);
             // 
             // labelLinha
@@ -167,7 +167,7 @@
             this.labelLinha.Location = new System.Drawing.Point(15, 119);
             this.labelLinha.Name = "labelLinha";
             this.labelLinha.Size = new System.Drawing.Size(547, 3);
-            this.labelLinha.TabIndex = 35;
+            this.labelLinha.TabIndex = 5;
             // 
             // FormCategoria
             // 

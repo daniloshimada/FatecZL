@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.DAL.Persistencia;
-using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SistemaApoioEstudo.BLL.DAO
 {
@@ -101,6 +98,49 @@ namespace SistemaApoioEstudo.BLL.DAO
                     categoria.Nome = Convert.ToString(dataRow[1]);
                 }
                 return categoria;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Atualizar(Categoria categoria)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_categoria", categoria.Id);
+                conexaoBD.AdicionarParametros("@Nome_categoria", categoria.Nome);
+                if (conexaoBD.ExecutarManipulacao("uspCategoriaAtualizar"))
+                {
+                    return true;
+                }
+                throw new Exception("Não foi possível atualizar a categoria, contate o suporte técnico!");
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                {
+                    throw new Exception("A categoria já existe!");
+                }
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Excluir(int idCategoria)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_categoria", idCategoria);
+                if (conexaoBD.ExecutarManipulacao("uspCategoriaExcluir"))
+                {
+                    return true;
+                }
+                throw new Exception("Não foi possível excluir a categoria, contate o suporte técnico!");
             }
             catch (Exception)
             {

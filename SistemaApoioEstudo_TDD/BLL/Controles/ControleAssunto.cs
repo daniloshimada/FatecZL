@@ -90,5 +90,17 @@ namespace SistemaApoioEstudo.BLL.Controles
                 throw;
             }
         }
+
+        public void VeriricarAssuntoSelecionado(int assuntoSelecionado)
+        {
+            try
+            {
+                negocioAssunto.VerificarAssuntoConsultado(assuntoSelecionado);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

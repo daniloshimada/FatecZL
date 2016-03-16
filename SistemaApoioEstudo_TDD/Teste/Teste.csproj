@@ -49,6 +49,8 @@
     <Compile Include="TestesAssunto\UC08_ExcluirAssunto.cs" />
     <Compile Include="TestesCategoria\UC09_CadastrarCategoria.cs" />
     <Compile Include="TestesCategoria\UC10_ConsultarCategoria.cs" />
+    <Compile Include="TestesCategoria\UC11_AtualizarCategoria.cs" />
+    <Compile Include="TestesCategoria\UC12_ExcluirCategoria.cs" />
     <Compile Include="TestesLogin\UC20_Logar.cs" />
     <Compile Include="TestesUsuario\UC01_CadastrarUsuario.cs" />
     <Compile Include="TestesUsuario\UC02_ConsultarUsuario.cs" />

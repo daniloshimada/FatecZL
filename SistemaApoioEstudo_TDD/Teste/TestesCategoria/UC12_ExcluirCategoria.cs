@@ -5,21 +5,23 @@ using SistemaApoioEstudo.BLL.Utilitarios;
 using SistemaApoioEstudo.BLL.Negocio;
 using System;
 
-namespace SistemaApoioEstudo.Teste.TestesAssunto
+namespace SistemaApoioEstudo.Teste.TestesCategoria
 {
     [TestFixture]
-    public class UC08_ExcluirAssunto
+    public class UC12_ExcluirCategoria
     {
-        private NegocioAssunto negocioAssunto;
+        private NegocioCategoria negocioCategoria;
+        private ICategoriaDAO categoriaDAO;
         private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
-        private Assunto assuntoFaculdade;
         private Usuario usuarioAlexandre;
-        
+        private Assunto assuntoFaculdade;
+        private Categoria categoriaPOO;
 
-        public UC08_ExcluirAssunto()
+        public UC12_ExcluirCategoria()
         {
-            negocioAssunto = new NegocioAssunto();
+            negocioCategoria = new NegocioCategoria();
+            categoriaDAO = new CategoriaDAO();
             assuntoDAO = new AssuntoDAO();
             usuarioDAO = new UsuarioDAO();
             usuarioAlexandre = new Usuario()
@@ -30,6 +32,10 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
             assuntoFaculdade = new Assunto()
             {
                 Nome = "Faculdade"
+            };
+            categoriaPOO = new Categoria()
+            {
+                Nome = "POO"
             };
         }
 
@@ -50,6 +56,12 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
 
             //_Consulta o id do assunto "Faculdade".
             assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
+
+            //_Cadastra a categoria "POO" para o assunto "Faculdade".
+            categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaPOO);
+
+            //_Consulta o id da categoria "POO".
+            categoriaPOO = categoriaDAO.ConsultarNomeIdAssunto(categoriaPOO.Nome, assuntoFaculdade.Id);
         }
 
         [TestFixtureTearDown]
@@ -64,17 +76,17 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         }
 
         [Test]
-        public void CT01UC08FB_Excluir_assuntoEDadosRelacionados_comSucesso()
+        public void CT01UC12FB_Excluir_categoriaEDadosRelacionados()
         {
-            bool resultado = assuntoDAO.Excluir(assuntoFaculdade.Id);
+            bool resultado = categoriaDAO.Excluir(categoriaPOO.Id);
             Assert.IsTrue(resultado);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC08FA_Excluir_assuntoSemConsulta_semSucesso()
+        public void CT02UC12FA_Excluir_categoriaSemConsulta_semSucesso()
         {
-            negocioAssunto.VerificarAssuntoConsultado(-1);
+            negocioCategoria.VerificarCategoriaSelecionada(-1);
         }
     }
 }

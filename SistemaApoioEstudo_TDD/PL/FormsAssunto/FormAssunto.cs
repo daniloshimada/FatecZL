@@ -26,9 +26,6 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
             try
             {
                 textBoxAssunto.Text = (comboBoxAssuntos.SelectedItem as Assunto).Nome;
-                textBoxCategorias.Text = (comboBoxAssuntos.SelectedItem as Assunto).QtdCategorias.ToString();
-                textBoxTermos.Text = (comboBoxAssuntos.SelectedItem as Assunto).QtdTermos.ToString();
-                textBoxDicas.Text = (comboBoxAssuntos.SelectedItem as Assunto).QtdDicas.ToString();
             }
             catch (Exception ex)
             {
@@ -70,9 +67,6 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
             try
             {
                 textBoxAssunto.Clear();
-                textBoxCategorias.Clear();
-                textBoxTermos.Clear();
-                textBoxDicas.Clear();
             }
             catch (Exception)
             {
@@ -105,6 +99,7 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
         {
             try
             {
+                controleAssunto.VeriricarAssuntoSelecionado(comboBoxAssuntos.SelectedIndex);
                 Assunto assuntoAtualizar = new Assunto()
                 {
                     Nome = textBoxAssunto.Text
@@ -132,6 +127,7 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
         {
             try
             {
+                controleAssunto.VeriricarAssuntoSelecionado(comboBoxAssuntos.SelectedIndex);
                 Assunto assuntoExcluir = new Assunto()
                 {
                     Id = (comboBoxAssuntos.SelectedItem as Assunto).Id

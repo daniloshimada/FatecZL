@@ -41,7 +41,7 @@
             // 
             this.labelNome.AutoSize = true;
             this.labelNome.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNome.Location = new System.Drawing.Point(37, 55);
+            this.labelNome.Location = new System.Drawing.Point(32, 55);
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(58, 18);
             this.labelNome.TabIndex = 1;
@@ -51,7 +51,7 @@
             // 
             this.labelSenha.AutoSize = true;
             this.labelSenha.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSenha.Location = new System.Drawing.Point(27, 84);
+            this.labelSenha.Location = new System.Drawing.Point(22, 84);
             this.labelSenha.Name = "labelSenha";
             this.labelSenha.Size = new System.Drawing.Size(68, 18);
             this.labelSenha.TabIndex = 3;
@@ -60,7 +60,7 @@
             // textBoxNome
             // 
             this.textBoxNome.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNome.Location = new System.Drawing.Point(101, 54);
+            this.textBoxNome.Location = new System.Drawing.Point(96, 54);
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(126, 23);
             this.textBoxNome.TabIndex = 2;
@@ -68,7 +68,7 @@
             // textBoxSenha
             // 
             this.textBoxSenha.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSenha.Location = new System.Drawing.Point(101, 83);
+            this.textBoxSenha.Location = new System.Drawing.Point(96, 83);
             this.textBoxSenha.Name = "textBoxSenha";
             this.textBoxSenha.Size = new System.Drawing.Size(86, 23);
             this.textBoxSenha.TabIndex = 4;

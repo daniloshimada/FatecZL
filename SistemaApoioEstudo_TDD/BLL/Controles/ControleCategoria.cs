@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
+using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.Utilitarios;
-using SistemaApoioEstudo.BLL.DAO;
+using System;
+using System.Collections.Generic;
 
 namespace SistemaApoioEstudo.BLL.Controles
 {
     public class ControleCategoria
     {
+        private NegocioCategoria negocioCategoria;
         private ICategoriaDAO categoriaDAO;
 
         public ControleCategoria()
         {
+            negocioCategoria = new NegocioCategoria();
             categoriaDAO = new CategoriaDAO();
         }
 
@@ -22,6 +22,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
+                ValidarCampos(categoria);
                 return categoriaDAO.Cadastrar(idAssunto, categoria);
             }
             catch (Exception)
@@ -47,6 +48,54 @@ namespace SistemaApoioEstudo.BLL.Controles
             try
             {
                 return categoriaDAO.ConsultarNomeIdAssunto(nomeCategoria, idAssunto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Atualizar(Categoria categoria)
+        {
+            try
+            {
+                return categoriaDAO.Atualizar(categoria);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Excluir(int idCategoria)
+        {
+            try
+            {
+                return categoriaDAO.Excluir(idCategoria);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarCampos(Categoria categoria)
+        {
+            try
+            {
+                negocioCategoria.ValidarNome(categoria.Nome);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void VerificarCategoriaSelecionada(int categoriaSelecionada)
+        {
+            try
+            {
+                negocioCategoria.VerificarCategoriaSelecionada(categoriaSelecionada);
             }
             catch (Exception)
             {

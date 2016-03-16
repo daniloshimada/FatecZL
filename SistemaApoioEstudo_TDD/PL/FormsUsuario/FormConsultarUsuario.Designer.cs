@@ -83,7 +83,7 @@
             // 
             this.textBoxNome.Enabled = false;
             this.textBoxNome.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNome.Location = new System.Drawing.Point(187, 54);
+            this.textBoxNome.Location = new System.Drawing.Point(157, 54);
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(126, 23);
             this.textBoxNome.TabIndex = 2;
@@ -92,7 +92,7 @@
             // 
             this.labelNome.AutoSize = true;
             this.labelNome.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNome.Location = new System.Drawing.Point(123, 55);
+            this.labelNome.Location = new System.Drawing.Point(93, 55);
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(58, 18);
             this.labelNome.TabIndex = 1;
@@ -102,7 +102,7 @@
             // 
             this.textBoxDicas.Enabled = false;
             this.textBoxDicas.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxDicas.Location = new System.Drawing.Point(187, 170);
+            this.textBoxDicas.Location = new System.Drawing.Point(157, 170);
             this.textBoxDicas.Name = "textBoxDicas";
             this.textBoxDicas.Size = new System.Drawing.Size(31, 23);
             this.textBoxDicas.TabIndex = 10;
@@ -112,7 +112,7 @@
             // 
             this.textBoxTermos.Enabled = false;
             this.textBoxTermos.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTermos.Location = new System.Drawing.Point(187, 141);
+            this.textBoxTermos.Location = new System.Drawing.Point(157, 141);
             this.textBoxTermos.Name = "textBoxTermos";
             this.textBoxTermos.Size = new System.Drawing.Size(31, 23);
             this.textBoxTermos.TabIndex = 8;
@@ -122,7 +122,7 @@
             // 
             this.textBoxCategorias.Enabled = false;
             this.textBoxCategorias.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCategorias.Location = new System.Drawing.Point(187, 112);
+            this.textBoxCategorias.Location = new System.Drawing.Point(157, 112);
             this.textBoxCategorias.Name = "textBoxCategorias";
             this.textBoxCategorias.Size = new System.Drawing.Size(31, 23);
             this.textBoxCategorias.TabIndex = 6;
@@ -132,7 +132,7 @@
             // 
             this.labelDicas.AutoSize = true;
             this.labelDicas.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDicas.Location = new System.Drawing.Point(113, 171);
+            this.labelDicas.Location = new System.Drawing.Point(83, 171);
             this.labelDicas.Name = "labelDicas";
             this.labelDicas.Size = new System.Drawing.Size(68, 18);
             this.labelDicas.TabIndex = 9;
@@ -142,7 +142,7 @@
             // 
             this.labelTermos.AutoSize = true;
             this.labelTermos.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTermos.Location = new System.Drawing.Point(103, 142);
+            this.labelTermos.Location = new System.Drawing.Point(73, 142);
             this.labelTermos.Name = "labelTermos";
             this.labelTermos.Size = new System.Drawing.Size(78, 18);
             this.labelTermos.TabIndex = 7;
@@ -152,7 +152,7 @@
             // 
             this.labelCategorias.AutoSize = true;
             this.labelCategorias.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCategorias.Location = new System.Drawing.Point(63, 113);
+            this.labelCategorias.Location = new System.Drawing.Point(33, 113);
             this.labelCategorias.Name = "labelCategorias";
             this.labelCategorias.Size = new System.Drawing.Size(118, 18);
             this.labelCategorias.TabIndex = 5;
@@ -162,7 +162,7 @@
             // 
             this.textBoxAssuntos.Enabled = false;
             this.textBoxAssuntos.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAssuntos.Location = new System.Drawing.Point(187, 83);
+            this.textBoxAssuntos.Location = new System.Drawing.Point(157, 83);
             this.textBoxAssuntos.Name = "textBoxAssuntos";
             this.textBoxAssuntos.Size = new System.Drawing.Size(31, 23);
             this.textBoxAssuntos.TabIndex = 4;
@@ -172,7 +172,7 @@
             // 
             this.labelAssuntos.AutoSize = true;
             this.labelAssuntos.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAssuntos.Location = new System.Drawing.Point(83, 84);
+            this.labelAssuntos.Location = new System.Drawing.Point(53, 84);
             this.labelAssuntos.Name = "labelAssuntos";
             this.labelAssuntos.Size = new System.Drawing.Size(98, 18);
             this.labelAssuntos.TabIndex = 3;

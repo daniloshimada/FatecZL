@@ -161,5 +161,12 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
             };
             Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioSenhaIncorreta);
         }
+
+        [Test]
+        public void CT10UC20FA_Logar_sairDoSistema()
+        {
+            Login.RemoverUsuario();
+            Assert.AreEqual(null, Login.Usuario);
+        }
     }
 }

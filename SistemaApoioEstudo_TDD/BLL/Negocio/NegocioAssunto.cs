@@ -26,5 +26,20 @@ namespace SistemaApoioEstudo.BLL.Negocio
                 throw;
             }
         }
+
+        public void VerificarAssuntoConsultado(int assuntoSelecionado)
+        {
+            try
+            {
+                if (assuntoSelecionado < 0)
+                {
+                    throw new ArgumentException("Nenhum assunto selecionado!");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

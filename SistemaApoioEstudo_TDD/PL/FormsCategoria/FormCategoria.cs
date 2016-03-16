@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SistemaApoioEstudo.BLL.Controles;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Controles;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SistemaApoioEstudo.PL.FormsCategoria
 {
@@ -33,6 +27,7 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
         {
             carregarComboBoxCategorias();
         }
+
         private void comboBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -45,10 +40,10 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
             }
         }
 
-        private void carregarTela(int idAssunto, Categoria categoria)
+        private void carregarTela(int idAssunto=0, int idCategoria=0)
         {
             carregarComboBoxAssuntos(idAssunto);
-            carregarComboBoxCategorias(categoria.Id);
+            carregarComboBoxCategorias(idCategoria);
         }
 
         private void carregarComboBoxAssuntos(int idAssunto = 0)
@@ -134,7 +129,7 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
                 if (resultado)
                 {
                     MessageBox.Show("Categoria cadastrada com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    carregarTela(idAssunto, controleCategoria.ConsultarNomeIdAssunto(categoriaCadastrar.Nome, idAssunto));
+                    carregarTela(idAssunto, controleCategoria.ConsultarNomeIdAssunto(categoriaCadastrar.Nome, idAssunto).Id);
                 }
             }
             catch (Exception ex)
@@ -145,12 +140,56 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
 
         private void buttonAtualizar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                controleAssunto.VeriricarAssuntoSelecionado(comboBoxCategorias.SelectedIndex);
+                Categoria categoriaAtualizar = new Categoria()
+                {
+                    Id = (comboBoxCategorias.SelectedItem as Categoria).Id,
+                    Nome = textBoxCategoria.Text
+                };
+                controleCategoria.ValidarCampos(categoriaAtualizar);
+                DialogResult dialogResult = MessageBox.Show("Deseja mesmo atualizar a categoria?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                if (dialogResult == DialogResult.OK)
+                {
+                    bool resultado = controleCategoria.Atualizar(categoriaAtualizar);
+                    if (resultado)
+                    {
+                        MessageBox.Show("Categoria atualizada com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        carregarTela((comboBoxAssuntos.SelectedItem as Assunto).Id, categoriaAtualizar.Id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonExcluir_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                controleAssunto.VeriricarAssuntoSelecionado(comboBoxCategorias.SelectedIndex);
+                Categoria categoriaExcluir = new Categoria()
+                {
+                    Id = (comboBoxCategorias.SelectedItem as Categoria).Id
+                };
+                DialogResult dialogResult = MessageBox.Show("Deseja mesmo excluir a categoria?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                if (dialogResult == DialogResult.OK)
+                {
+                    bool resultado = controleCategoria.Excluir(categoriaExcluir.Id);
+                    if (resultado)
+                    {
+                        MessageBox.Show("Categoria excluída com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        carregarTela((comboBoxAssuntos.SelectedItem as Assunto).Id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)

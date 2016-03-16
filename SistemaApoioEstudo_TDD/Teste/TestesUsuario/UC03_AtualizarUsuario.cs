@@ -89,13 +89,13 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         {
             Usuario usuarioNomeSenha = new Usuario()
             {
+                Id = Login.Usuario.Id,
                 Nome = "Clayton",
                 Senha = "creta"
             };
             negocioUsuario.ValidarNome(usuarioNomeSenha.Nome);
             bool resultado = negocioUsuario.ValidarSenhaNova(usuarioNomeSenha.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
-            usuarioNomeSenha.Id = Login.Usuario.Id;
             if (resultado)
             {
                 //_Atualiza o nome e a senha.
@@ -116,13 +116,13 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         {
             Usuario usuarioSenhaBranco = new Usuario()
             {
+                Id = Login.Usuario.Id,
                 Nome = "Clayton",
                 Senha = " "
             };
             negocioUsuario.ValidarNome(usuarioSenhaBranco.Nome);
             bool resultado = negocioUsuario.ValidarSenhaNova(usuarioSenhaBranco.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
-            usuarioSenhaBranco.Id = Login.Usuario.Id;
             if (resultado)
             {
                 resultado = usuarioDAO.Atualizar(usuarioSenhaBranco);
@@ -141,13 +141,13 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         {
             Usuario usuarioSenha = new Usuario()
             {
+                Id = Login.Usuario.Id,
                 Nome = "Alexandre",
                 Senha = "cretanova"
             };
             negocioUsuario.ValidarNome(usuarioSenha.Nome);
             bool resultado = negocioUsuario.ValidarSenhaNova(usuarioSenha.Senha);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
-            usuarioSenha.Id = Login.Usuario.Id;
             if (resultado)
             {
                 resultado = usuarioDAO.Atualizar(usuarioSenha);
@@ -255,12 +255,12 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         {
             Usuario usuarioNomeExistente = new Usuario()
             {
+                Id = Login.Usuario.Id,
                 Nome = "Danilo",
                 Senha = ""
             };
             negocioUsuario.ValidarNome(usuarioNomeExistente.Nome);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
-            usuarioNomeExistente.Id = Login.Usuario.Id;
             bool resultado = negocioUsuario.ValidarSenhaNova(usuarioNomeExistente.Senha);
             if (resultado)
             {

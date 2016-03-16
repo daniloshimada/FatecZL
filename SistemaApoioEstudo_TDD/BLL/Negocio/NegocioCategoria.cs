@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SistemaApoioEstudo.BLL.Entidades;
 
 namespace SistemaApoioEstudo.BLL.Negocio
 {
@@ -25,6 +20,21 @@ namespace SistemaApoioEstudo.BLL.Negocio
             catch (NullReferenceException)
             {
                 throw new NullReferenceException("Ocorreu um erro no campo categoria, contate o suporte técnico!");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void VerificarCategoriaSelecionada(int categoriaSelecionada)
+        {
+            try
+            {
+                if (categoriaSelecionada < 0)
+                {
+                    throw new ArgumentException("Nenhum categoria selecionada!");
+                }
             }
             catch (Exception)
             {

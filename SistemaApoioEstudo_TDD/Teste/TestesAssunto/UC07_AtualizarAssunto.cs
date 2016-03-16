@@ -72,9 +72,9 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoValido = new Assunto()
             {
+                Id = assuntoFaculdade.Id,
                 Nome = "Curso"
             };
-            assuntoValido.Id = assuntoFaculdade.Id;
             negocioAssunto.ValidarNome(assuntoValido.Nome);
             bool resultado = assuntoDAO.Atualizar(assuntoValido);
             Assert.IsTrue(resultado);
@@ -86,9 +86,9 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoBranco = new Assunto()
             {
+                Id = assuntoFaculdade.Id,
                 Nome = " "
             };
-            assuntoBranco.Id = assuntoFaculdade.Id;
             negocioAssunto.ValidarNome(assuntoBranco.Nome);
         }
 
@@ -98,9 +98,9 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoCaracteres = new Assunto()
             {
+                Id = assuntoFaculdade.Id,
                 Nome = "Faculdade de Tecnologia da Zona Leste"
             };
-            assuntoCaracteres.Id = assuntoFaculdade.Id;
             negocioAssunto.ValidarNome(assuntoCaracteres.Nome);
         }
 
@@ -110,9 +110,9 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoNULL = new Assunto()
             {
+                Id = assuntoFaculdade.Id,
                 Nome = "Curso"
             };
-            assuntoNULL.Id = assuntoFaculdade.Id;
             negocioAssunto.ValidarNome(null);
         }
 
@@ -122,12 +122,19 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoExistente = new Assunto()
             {
+                Id = assuntoFaculdade.Id,
                 Nome = "FatecZL"
             };
-            assuntoExistente.Id = assuntoFaculdade.Id;
             negocioAssunto.ValidarNome(assuntoExistente.Nome);
             bool resultado = assuntoDAO.Atualizar(assuntoExistente);
             Assert.IsTrue(resultado);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CT06UC07FA_Atualizar_assuntoSemConsulta_semSucesso()
+        {
+            negocioAssunto.VerificarAssuntoConsultado(-1);
         }
     }
 }

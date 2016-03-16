@@ -50,7 +50,7 @@
             // textBoxSenhaConfirmacao
             // 
             this.textBoxSenhaConfirmacao.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSenhaConfirmacao.Location = new System.Drawing.Point(110, 125);
+            this.textBoxSenhaConfirmacao.Location = new System.Drawing.Point(96, 125);
             this.textBoxSenhaConfirmacao.Name = "textBoxSenhaConfirmacao";
             this.textBoxSenhaConfirmacao.Size = new System.Drawing.Size(86, 23);
             this.textBoxSenhaConfirmacao.TabIndex = 4;
@@ -60,7 +60,7 @@
             // 
             this.textBoxNome.Enabled = false;
             this.textBoxNome.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNome.Location = new System.Drawing.Point(110, 54);
+            this.textBoxNome.Location = new System.Drawing.Point(96, 54);
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(126, 23);
             this.textBoxNome.TabIndex = 2;
@@ -94,7 +94,7 @@
             // 
             this.labelSenhaConfirmacao.AutoSize = true;
             this.labelSenhaConfirmacao.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSenhaConfirmacao.Location = new System.Drawing.Point(18, 104);
+            this.labelSenhaConfirmacao.Location = new System.Drawing.Point(38, 104);
             this.labelSenhaConfirmacao.Name = "labelSenhaConfirmacao";
             this.labelSenhaConfirmacao.Size = new System.Drawing.Size(178, 18);
             this.labelSenhaConfirmacao.TabIndex = 3;
@@ -104,7 +104,7 @@
             // 
             this.labelNome.AutoSize = true;
             this.labelNome.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNome.Location = new System.Drawing.Point(46, 55);
+            this.labelNome.Location = new System.Drawing.Point(32, 55);
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(58, 18);
             this.labelNome.TabIndex = 1;

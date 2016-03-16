@@ -1,9 +1,5 @@
-﻿using System;
+﻿using SistemaApoioEstudo.BLL.Entidades;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SistemaApoioEstudo.BLL.Entidades;
 
 namespace SistemaApoioEstudo.BLL.Utilitarios
 {
@@ -12,5 +8,7 @@ namespace SistemaApoioEstudo.BLL.Utilitarios
         bool Cadastrar(int idAssunto, Categoria categoria);
         List<Categoria> ConsultarDadosIdAssunto(int idAssunto);
         Categoria ConsultarNomeIdAssunto(string nomeCategoria, int idAssunto);
+        bool Atualizar(Categoria categoria);
+        bool Excluir(int idCategoria);
     }
 }

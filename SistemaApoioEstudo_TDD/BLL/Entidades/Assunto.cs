@@ -6,9 +6,6 @@ namespace SistemaApoioEstudo.BLL.Entidades
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int QtdCategorias { get; set; }
-        public int QtdTermos { get; set; }
-        public int QtdDicas { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -17,8 +14,7 @@ namespace SistemaApoioEstudo.BLL.Entidades
             {
                 return false;
             }
-            return (this.Id == assunto.Id && this.Nome.Equals(assunto.Nome) && this.QtdCategorias == assunto.QtdCategorias
-                && this.QtdTermos == assunto.QtdTermos && this.QtdDicas == assunto.QtdDicas);
+            return (this.Id == assunto.Id && this.Nome.Equals(assunto.Nome));
         }
     }
 }
