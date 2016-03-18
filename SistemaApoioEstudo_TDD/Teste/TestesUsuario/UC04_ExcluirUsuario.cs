@@ -50,11 +50,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         }
 
         [Test]
-        public void CT01UC04FB_Excluir_comSenhaDeConfirmacaoCorreta_comSucesso()
+        public void CT01UC04FB_Excluir_usuarioEDadosRelacionados_comSucesso()
         {
             bool resultado = usuarioDAO.Excluir(Login.Usuario.Id);
-            Login.RemoverUsuario();
-            resultado = Login.Usuario != null ? false : true;
+            if (resultado)
+            {
+                Login.RemoverUsuario();
+                resultado = Login.Usuario == null ? true : false;
+            }
             Assert.IsTrue(resultado);
         }
     }

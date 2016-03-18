@@ -60,8 +60,8 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
         {
             try
             {
-                ControleUsuario controleUsuario = new ControleUsuario();
                 DialogResult dialogResult = MessageBox.Show("Todos os seus dados serão perdidos!\nDeseja mesmo excluir o usuário?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                ControleUsuario controleUsuario = new ControleUsuario();
                 if (dialogResult == DialogResult.OK)
                 {
                     bool resultado = controleUsuario.Excluir();
