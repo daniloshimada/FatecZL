@@ -57,7 +57,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
             {
                 if (senhaNova.Trim().Length > 10)
                 {
-                    throw new ArgumentException("O campo senha nova não deve conter acima de 10 caracteres!");
+                    throw new ArgumentException("O campo senha não deve conter acima de 10 caracteres!");
                 }
                 else if (!senhaNova.Trim().Equals(string.Empty)) //_Possui alguma senha
                 {
