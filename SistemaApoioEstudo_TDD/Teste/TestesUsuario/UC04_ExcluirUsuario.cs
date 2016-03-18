@@ -52,39 +52,10 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [Test]
         public void CT01UC04FB_Excluir_comSenhaDeConfirmacaoCorreta_comSucesso()
         {
-            negocioUsuario.ValidarSenhaConfirmacao("athens");
             bool resultado = usuarioDAO.Excluir(Login.Usuario.Id);
             Login.RemoverUsuario();
             resultado = Login.Usuario != null ? false : true;
             Assert.IsTrue(resultado);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC04FA_Excluir_comSenhaDeConfirmacaoEmBranco_semSucesso()
-        {
-            negocioUsuario.ValidarSenhaConfirmacao(" ");
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CT03UC04FA_Excluir_comSenhaDeConfirmacaoAcimaDe10Caracteres_semSucesso()
-        {
-            negocioUsuario.ValidarSenhaConfirmacao("danilodelphi");
-        }
-
-        [Test]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void CT04UC04FA_Excluir_comSenhaDeConfirmacaoNULL_semSucesso()
-        {
-            negocioUsuario.ValidarSenhaConfirmacao(null);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CT05UC04FA_Excluir_comSenhaDeConfirmacaoIncorreta_semSucesso()
-        {
-            negocioUsuario.ValidarSenhaConfirmacao("creta");
         }
     }
 }

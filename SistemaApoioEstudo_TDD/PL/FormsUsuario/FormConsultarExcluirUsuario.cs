@@ -7,23 +7,53 @@ using System.Windows.Forms;
 
 namespace SistemaApoioEstudo.PL.FormsUsuario
 {
-    public partial class FormExcluirUsuario : Form
+    public partial class FormConsultarUsuario : Form
     {
         private FormLogin formLogin;
         private FormMenu formMenu;
-        private FormConsultarUsuario formConsultarUsuario;
+        private ControleUsuario controleUsuario;
 
-        public FormExcluirUsuario(FormLogin formLogin, FormMenu formMenu, FormConsultarUsuario formConsultarUsuario)
+        public FormConsultarUsuario(FormLogin formLogin, FormMenu formMenu)
         {
             InitializeComponent();
             this.formLogin = formLogin;
             this.formMenu = formMenu;
-            this.formConsultarUsuario = formConsultarUsuario;
+            controleUsuario = new ControleUsuario();
         }
 
-        private void FormExcluirUsuario_Shown(object sender, EventArgs e)
+        private void FormConsultarUsuario_Shown(object sender, EventArgs e)
         {
-            textBoxNome.Text = Login.Usuario.Nome;
+            CarregarTela();
+        }
+
+        public void CarregarTela()
+        {
+            try
+            {
+                Usuario usuarioDados = controleUsuario.ConsultarDados();
+                textBoxNome.Text = usuarioDados.Nome;
+                textBoxAssuntos.Text = usuarioDados.QtdAssuntos.ToString();
+                textBoxCategorias.Text = usuarioDados.QtdCategorias.ToString();
+                textBoxTermos.Text = usuarioDados.QtdTermos.ToString();
+                textBoxDicas.Text = usuarioDados.QtdDicas.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonAtualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormAtualizarUsuario formAtualizarUsuario = new FormAtualizarUsuario(this);
+                formAtualizarUsuario.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonExcluir_Click(object sender, EventArgs e)
@@ -31,16 +61,14 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
             try
             {
                 ControleUsuario controleUsuario = new ControleUsuario();
-                controleUsuario.ValidarCampos(textBoxSenhaConfirmacao.Text);
                 DialogResult dialogResult = MessageBox.Show("Todos os seus dados serão perdidos!\nDeseja mesmo excluir o usuário?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                 if (dialogResult == DialogResult.OK)
                 {
-                    bool resultado = controleUsuario.Excluir(textBoxSenhaConfirmacao.Text);
+                    bool resultado = controleUsuario.Excluir();
                     if (resultado)
                     {
                         MessageBox.Show("Usuário excluído com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();
-                        formConsultarUsuario.Close();
                         formMenu.Hide();
                         formLogin.Show();
                     }
@@ -49,8 +77,6 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxSenhaConfirmacao.Clear();
-                textBoxSenhaConfirmacao.Focus();
             }
         }
 

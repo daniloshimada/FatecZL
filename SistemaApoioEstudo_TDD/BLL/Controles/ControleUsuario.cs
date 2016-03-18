@@ -65,11 +65,10 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
-        public bool Excluir(string senhaConfirmacao)
+        public bool Excluir()
         {
             try
             {
-                ValidarCampos(senhaConfirmacao);
                 if (usuarioDAO.Excluir(Login.Usuario.Id))
                 {
                     Login.RemoverUsuario();
@@ -104,18 +103,6 @@ namespace SistemaApoioEstudo.BLL.Controles
                 negocioUsuario.ValidarNome(usuario.Nome);
                 negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
                 return negocioUsuario.ValidarSenhaNova(usuario.Senha);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void ValidarCampos(string senhaConfirmacao)
-        {
-            try
-            {
-                negocioUsuario.ValidarSenhaConfirmacao(senhaConfirmacao);
             }
             catch (Exception)
             {
