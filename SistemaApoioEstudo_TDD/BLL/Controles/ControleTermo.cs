@@ -25,6 +25,7 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
+                ValidarCampos(termo);
                 return termoDAO.Cadastrar(idCategoria, termo);
             }
             catch (Exception)
@@ -38,6 +39,57 @@ namespace SistemaApoioEstudo.BLL.Controles
             try
             {
                 return termoDAO.ConsultarDadosIdCategoria(idCategoria);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Atualizar(Termo termo)
+        {
+            try
+            {
+                ValidarCampos(termo);
+                return termoDAO.Atualizar(termo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Excluir(int idTermo)
+        {
+            try
+            {
+                return termoDAO.Excluir(idTermo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarCampos(Termo termo)
+        {
+            try
+            {
+                negocioTermo.ValidarNome(termo.Nome);
+                negocioTermo.ValidarCorrespondencia(termo.Correspondencia);
+                negocioTermo.ValidarDica(termo.Dica);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void VeriricarTermoSelecionado(int termoSelecionado)
+        {
+            try
+            {
+                negocioTermo.VerificarTermoSelecionado(termoSelecionado);
             }
             catch (Exception)
             {

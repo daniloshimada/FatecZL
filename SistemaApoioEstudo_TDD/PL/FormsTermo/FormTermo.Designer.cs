@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelLinha = new System.Windows.Forms.Label();
             this.labelAssuntos = new System.Windows.Forms.Label();
             this.comboBoxAssuntos = new System.Windows.Forms.ComboBox();
@@ -46,16 +47,16 @@
             this.buttonCadastrar = new System.Windows.Forms.Button();
             this.labelTermos = new System.Windows.Forms.Label();
             this.dataGridViewTermos = new System.Windows.Forms.DataGridView();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCorrespondencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTermo = new System.Windows.Forms.Label();
             this.textBoxTermo = new System.Windows.Forms.TextBox();
             this.labelCorrespondencia = new System.Windows.Forms.Label();
             this.textBoxCorrespondencia = new System.Windows.Forms.TextBox();
             this.labelDica = new System.Windows.Forms.Label();
             this.textBoxDica = new System.Windows.Forms.TextBox();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCorrespondencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,6 +185,14 @@
             this.dataGridViewTermos.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridViewTermos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTermos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTermos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTermos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
@@ -195,13 +204,55 @@
             this.dataGridViewTermos.Name = "dataGridViewTermos";
             this.dataGridViewTermos.ReadOnly = true;
             this.dataGridViewTermos.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.dataGridViewTermos.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dataGridViewTermos.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTermos.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTermos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewTermos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTermos.Size = new System.Drawing.Size(488, 150);
             this.dataGridViewTermos.TabIndex = 6;
             this.dataGridViewTermos.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTermos_RowEnter);
+            // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "Id";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colId.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colId.HeaderText = "ID";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            this.colId.Visible = false;
+            // 
+            // colNome
+            // 
+            this.colNome.DataPropertyName = "Nome";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colNome.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colNome.HeaderText = "TERMO";
+            this.colNome.MaxInputLength = 300;
+            this.colNome.Name = "colNome";
+            this.colNome.ReadOnly = true;
+            this.colNome.Width = 485;
+            // 
+            // colCorrespondencia
+            // 
+            this.colCorrespondencia.DataPropertyName = "Correspondencia";
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colCorrespondencia.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colCorrespondencia.HeaderText = "CORRESPONDÊNCIA";
+            this.colCorrespondencia.Name = "colCorrespondencia";
+            this.colCorrespondencia.ReadOnly = true;
+            this.colCorrespondencia.Visible = false;
+            // 
+            // colDica
+            // 
+            this.colDica.DataPropertyName = "Dica";
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colDica.DefaultCellStyle = dataGridViewCellStyle6;
+            this.colDica.HeaderText = "DICA";
+            this.colDica.Name = "colDica";
+            this.colDica.ReadOnly = true;
+            this.colDica.Visible = false;
             // 
             // labelTermo
             // 
@@ -260,51 +311,12 @@
             this.textBoxDica.Size = new System.Drawing.Size(409, 38);
             this.textBoxDica.TabIndex = 13;
             // 
-            // colId
-            // 
-            this.colId.DataPropertyName = "Id";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colId.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colId.HeaderText = "ID";
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
-            this.colId.Visible = false;
-            // 
-            // colNome
-            // 
-            this.colNome.DataPropertyName = "Nome";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colNome.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colNome.HeaderText = "TERMO";
-            this.colNome.MaxInputLength = 300;
-            this.colNome.Name = "colNome";
-            this.colNome.ReadOnly = true;
-            this.colNome.Width = 485;
-            // 
-            // colCorrespondencia
-            // 
-            this.colCorrespondencia.DataPropertyName = "Correspondencia";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colCorrespondencia.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colCorrespondencia.HeaderText = "CORRESPONDÊNCIA";
-            this.colCorrespondencia.Name = "colCorrespondencia";
-            this.colCorrespondencia.ReadOnly = true;
-            this.colCorrespondencia.Visible = false;
-            // 
-            // colDica
-            // 
-            this.colDica.DataPropertyName = "Dica";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colDica.DefaultCellStyle = dataGridViewCellStyle5;
-            this.colDica.HeaderText = "DICA";
-            this.colDica.Name = "colDica";
-            this.colDica.ReadOnly = true;
-            this.colDica.Visible = false;
-            // 
             // FormTermo
             // 
+            this.AcceptButton = this.buttonCadastrar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonCancelar;
             this.ClientSize = new System.Drawing.Size(633, 585);
             this.Controls.Add(this.labelDica);
             this.Controls.Add(this.textBoxDica);
@@ -325,6 +337,7 @@
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonCadastrar);
             this.Name = "FormTermo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormTermo";
             this.Shown += new System.EventHandler(this.FormTermo_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermos)).EndInit();

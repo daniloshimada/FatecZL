@@ -112,5 +112,50 @@ namespace SistemaApoioEstudo.BLL.DAO
                 throw;
             }
         }
+
+        public bool Atualizar(Termo termo)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_termo", termo.Id);
+                conexaoBD.AdicionarParametros("@Nome_termo", termo.Nome);
+                conexaoBD.AdicionarParametros("@Correspondencia_termo", termo.Correspondencia);
+                conexaoBD.AdicionarParametros("@Dica_termo", string.IsNullOrWhiteSpace(termo.Dica) ? (object)DBNull.Value : termo.Dica);
+                if (conexaoBD.ExecutarManipulacao("uspTermoAtualizar"))
+                {
+                    return true;
+                }
+                throw new Exception("Não foi possível atualizar o termo, contate o suporte técnico!");
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                {
+                    throw new Exception("O termo já existe!");
+                }
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Excluir(int idTermo)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_termo", idTermo);
+                if (conexaoBD.ExecutarManipulacao("uspTermoExcluir"))
+                {
+                    return true;
+                }
+                throw new Exception("Não foi possível excluir o termo, contate o suporte técnico!");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

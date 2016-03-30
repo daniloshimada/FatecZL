@@ -54,6 +54,8 @@
     <Compile Include="TestesLogin\UC20_Logar.cs" />
     <Compile Include="TestesTermo\UC12_CadastrarTermo.cs" />
     <Compile Include="TestesTermo\UC13_ConsultarTermo.cs" />
+    <Compile Include="TestesTermo\UC15_ExcluirTermo.cs" />
+    <Compile Include="TestesTermo\UC14_AtualizarTermo.cs" />
     <Compile Include="TestesUsuario\UC01_CadastrarUsuario.cs" />
     <Compile Include="TestesUsuario\UC02_ConsultarUsuario.cs" />
     <Compile Include="TestesUsuario\UC03_AtualizarUsuario.cs" />

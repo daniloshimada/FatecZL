@@ -73,5 +73,20 @@ namespace SistemaApoioEstudo.BLL.Negocio
                 throw;
             }
         }
+
+        public void VerificarTermoSelecionado(int termoSelecionado)
+        {
+            try
+            {
+                if (termoSelecionado < 1)
+                {
+                    throw new ArgumentException("Nenhum termo selecionado!");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
