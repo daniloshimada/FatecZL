@@ -13,6 +13,7 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
         private IUsuarioDAO usuarioDAO;
         private Usuario usuarioAlexandre;
         private Assunto assuntoFaculdade;
+        private Categoria categoriaPOO;
 
         public UC10_ConsultarCategoria()
         {
@@ -28,6 +29,10 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
             {
                 Nome = "Faculdade"
             };
+            categoriaPOO = new Categoria()
+            {
+                Nome = "POO"
+            };
         }
 
         [TestFixtureSetUp]
@@ -42,18 +47,15 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
             usuarioDAO.Cadastrar(usuarioAlexandre);
             Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
 
-            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre.
+            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre".
             assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
-
             //_Consulta o id do assunto "Faculdade".
             assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
 
             //_Cadastra a categoria "POO" para o assunto "Faculdade".
-            Categoria categoriaPOO = new Categoria()
-            {
-                Nome = "POO"
-            };
             categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaPOO);
+            //_Consulta o id da categoria "POO".
+            categoriaPOO = categoriaDAO.ConsultarNomeIdAssunto(categoriaPOO.Nome, assuntoFaculdade.Id);
         }
 
         [TestFixtureTearDown]
@@ -80,8 +82,8 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
             List<Categoria> categoriasRetorno = categoriaDAO.ConsultarDadosIdAssunto(assuntoFaculdade.Id);
             Categoria categoriaEsperada = new Categoria()
             {
-                Id = categoriasRetorno[0].Id,
-                Nome = "POO"
+                Id = categoriaPOO.Id,
+                Nome = categoriaPOO.Nome
             };
             Assert.IsTrue(categoriaEsperada.Equals(categoriasRetorno[0]));
         }

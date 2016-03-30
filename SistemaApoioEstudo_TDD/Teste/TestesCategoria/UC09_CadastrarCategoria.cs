@@ -135,7 +135,6 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
             {
                 Nome = "Programação"
             };
-            negocioCategoria.ValidarNome(categoriaSemAssunto.Nome);
             categoriaDAO.Cadastrar(new int(), categoriaSemAssunto);
         }
     }

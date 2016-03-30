@@ -37,7 +37,7 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 if (ex.Number == 2627)
                 {
-                    throw new Exception("Categoria já existe!");
+                    throw new Exception("A categoria já existe!");
                 }
                 throw;
             }

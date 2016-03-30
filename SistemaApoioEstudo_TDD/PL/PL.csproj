@@ -63,6 +63,12 @@
     <Compile Include="FormsLogin\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsTermo\FormTermo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsTermo\FormTermo.Designer.cs">
+      <DependentUpon>FormTermo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsUsuario\FormAtualizarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLogin\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsTermo\FormTermo.resx">
+      <DependentUpon>FormTermo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsUsuario\FormAtualizarUsuario.resx">
       <DependentUpon>FormAtualizarUsuario.cs</DependentUpon>

@@ -33,7 +33,7 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 if (ex.Number == 2627)
                 {
-                    throw new Exception("Assunto já existe!");
+                    throw new Exception("O assunto já existe!");
                 }
                 throw;
             }
