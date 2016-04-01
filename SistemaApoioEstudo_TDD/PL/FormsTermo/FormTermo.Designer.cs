@@ -338,7 +338,7 @@
             this.Controls.Add(this.buttonCadastrar);
             this.Name = "FormTermo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormTermo";
+            this.Text = "TERMO";
             this.Shown += new System.EventHandler(this.FormTermo_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermos)).EndInit();
             this.ResumeLayout(false);

@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace SistemaApoioEstudo.BLL.Entidades
 {
     public class Usuario
@@ -19,7 +18,6 @@ namespace SistemaApoioEstudo.BLL.Entidades
             {
                 return false;
             }
-
             return (this.Id == usuario.Id && this.Nome.Equals(usuario.Nome) && this.Senha.Equals(usuario.Senha)
                 && this.QtdAssuntos == usuario.QtdAssuntos && this.QtdCategorias == usuario.QtdCategorias 
                 && this.QtdTermos == usuario.QtdTermos && this.QtdDicas == usuario.QtdDicas);

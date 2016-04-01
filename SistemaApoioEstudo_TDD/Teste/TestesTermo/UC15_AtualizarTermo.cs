@@ -12,7 +12,7 @@ using SistemaApoioEstudo.BLL.Negocio;
 namespace SistemaApoioEstudo.Teste.TestesTermo
 {
     [TestFixture]
-    public class UC14_AtualizarTermo
+    public class UC15_AtualizarTermo
     {
         private NegocioTermo negocioTermo;
         private ITermoDAO termoDAO;
@@ -23,7 +23,7 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
         private Categoria categoriaProgramacao;
         private Termo termoInicial;
 
-        public UC14_AtualizarTermo()
+        public UC15_AtualizarTermo()
         {
             negocioTermo = new NegocioTermo();
             termoDAO = new TermoDAO();

@@ -1,64 +1,58 @@
 ﻿using NUnit.Framework;
 using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.Utilitarios;
-using System;
 
 namespace SistemaApoioEstudo.Teste.TestesUsuario
 {
     [TestFixture]
     public class UC04_ExcluirUsuario
     {
-        private NegocioUsuario negocioUsuario;
+        private Usuario usuarioInicial;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
 
         public UC04_ExcluirUsuario()
         {
-            negocioUsuario = new NegocioUsuario();
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
+            usuarioDAO = new UsuarioDAO();
         }
 
         [SetUp]
         public void SetUp()
         {
             //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.ConsultarNome(usuarioAlexandre.Nome));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            Login.RegistrarUsuario(usuarioDAO.ConsultarNome(usuarioInicial.Nome));
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
             //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
         [Test]
         public void CT01UC04FB_Excluir_usuarioEDadosRelacionados_comSucesso()
         {
-            bool resultado = usuarioDAO.Excluir(Login.Usuario.Id);
-            if (resultado)
+            if (usuarioDAO.Excluir(Login.Usuario.Id))
             {
                 Login.RemoverUsuario();
-                resultado = Login.Usuario == null ? true : false;
             }
-            Assert.IsTrue(resultado);
+            Assert.IsNull(Login.Usuario);
         }
     }
 }

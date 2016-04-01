@@ -8,59 +8,58 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
     [TestFixture]
     public class UC02_ConsultarUsuario
     {
+        private Usuario usuarioInicial;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
 
         public UC02_ConsultarUsuario()
         {
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
+            usuarioDAO = new UsuarioDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra, Consulta o id e Loga o usuário com nome "Alexandre" e senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.ConsultarNome(usuarioAlexandre.Nome));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            Login.RegistrarUsuario(usuarioInicial);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
             //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
         [Test]
-        public void CT01UC02FB_Consultar_dadosDoUsuario_comSucesso()
+        public void CT01UC02FB_Consultar_dadosDoUsuarioLogado_comSucesso()
         {
-            Usuario usuarioRetorno = usuarioDAO.ConsultarDados(Login.Usuario.Id);
             Usuario usuarioEsperado = new Usuario()
             {
                 Id = Login.Usuario.Id,
-                Nome = "Alexandre",
-                Senha = "athens",
+                Nome = Login.Usuario.Nome,
+                Senha = Login.Usuario.Senha,
                 QtdAssuntos = 0,
                 QtdCategorias = 0,
                 QtdTermos = 0,
                 QtdDicas = 0
             };
-            bool resultado = usuarioRetorno.Equals(usuarioEsperado);
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(usuarioInicial.Equals(usuarioEsperado));
         }
     }
 }

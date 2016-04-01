@@ -16,14 +16,13 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
         {
             try
             {
-                Usuario usuario = new Usuario()
+                Usuario usuarioCadastrar = new Usuario()
                 {
                     Nome = textBoxNome.Text,
                     Senha = textBoxSenha.Text
                 };
                 ControleUsuario controleUsuario = new ControleUsuario();
-                bool resultadoCadastrar = controleUsuario.Cadastrar(usuario);
-                if (resultadoCadastrar)
+                if (controleUsuario.Cadastrar(usuarioCadastrar))
                 {
                     MessageBox.Show("Usuário cadastrado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
@@ -40,7 +39,14 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            Close();
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

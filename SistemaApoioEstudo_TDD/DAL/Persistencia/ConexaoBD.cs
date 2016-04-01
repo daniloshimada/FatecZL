@@ -9,11 +9,13 @@ namespace SistemaApoioEstudo.DAL.Persistencia
     {
         private SqlConnection sqlConnection;
         private SqlParameterCollection sqlParameterCollection;
+        private SqlCommand sqlCommand;
 
         public ConexaoBD()
         {
             sqlConnection = new SqlConnection();
             sqlParameterCollection = new SqlCommand().Parameters;
+            sqlCommand = new SqlCommand();
         }
 
         public void AdicionarParametros(string nomeParametro, object valorParametro)
@@ -24,6 +26,7 @@ namespace SistemaApoioEstudo.DAL.Persistencia
         public void LimparParametros()
         {
             sqlParameterCollection.Clear();
+            sqlCommand.Parameters.Clear();
         }
 
         public bool ExecutarManipulacao(string userStoredProcedure)
@@ -32,12 +35,9 @@ namespace SistemaApoioEstudo.DAL.Persistencia
             {
                 sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ConexaoSqlServer"].ConnectionString;
                 sqlConnection.Open();
-
-                SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.CommandText = userStoredProcedure;
-
                 foreach (SqlParameter sqlParameter in sqlParameterCollection)
                 {
                     sqlCommand.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value);
@@ -61,17 +61,13 @@ namespace SistemaApoioEstudo.DAL.Persistencia
             {
                 sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ConexaoSqlServer"].ConnectionString;
                 sqlConnection.Open();
-
-                SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.CommandText = userStoredProcedure;
-
                 foreach (SqlParameter sqlParameter in sqlParameterCollection)
                 {
                     sqlCommand.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value);
                 }
-
                 DataTable dataTable = new DataTable();
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                 sqlDataAdapter.Fill(dataTable);

@@ -1,9 +1,9 @@
 ﻿using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.PL.FormsAssunto;
-using SistemaApoioEstudo.PL.FormsLogin;
-using SistemaApoioEstudo.PL.FormsUsuario;
 using SistemaApoioEstudo.PL.FormsCategoria;
+using SistemaApoioEstudo.PL.FormsLogin;
 using SistemaApoioEstudo.PL.FormsTermo;
+using SistemaApoioEstudo.PL.FormsUsuario;
 using System;
 using System.Windows.Forms;
 
@@ -21,19 +21,40 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
 
         private void FormMenu_Shown(object sender, EventArgs e)
         {
-            carregarTela();
+            try
+            {
+                carregarTela();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FormMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            try
+            {
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void carregarTela()
         {
-            if (Login.Usuario != null)
+            try
             {
-                textBoxNome.Text = Login.Usuario.Nome;
+                if (Login.Usuario != null)
+                {
+                    textBoxNome.Text = Login.Usuario.Nome;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -92,7 +113,14 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            try
+            {
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

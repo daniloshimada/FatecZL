@@ -15,6 +15,7 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             conexaoBD = new ConexaoBD();
         }
+
         public bool Cadastrar(Usuario usuario)
         {
             try
@@ -47,14 +48,12 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
-
                 DataTable dataTable = new DataTable();
                 dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultar");
                 if (dataTable.Rows.Count == 0)
                 {
                     throw new Exception("Dados incorretos!");
                 }
-
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
                     usuario.Id = Convert.ToInt32(dataRow[0]);
@@ -74,14 +73,12 @@ namespace SistemaApoioEstudo.BLL.DAO
             try
             {
                 conexaoBD.AdicionarParametros("@Nome_usuario", nomeUsuario);
-
                 DataTable dataTable = new DataTable();
                 dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultarNome");
                 if (dataTable.Rows.Count == 0)
                 {
                     return null;
                 }
-
                 Usuario usuario = new Usuario();
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
@@ -102,14 +99,12 @@ namespace SistemaApoioEstudo.BLL.DAO
             try
             {
                 conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
-
                 DataTable dataTable = new DataTable();
                 dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultarDados");
                 if (dataTable.Rows.Count == 0)
                 {
                     return null;
                 }
-
                 Usuario usuario = new Usuario();
                 foreach (DataRow dataRow in dataTable.Rows)
                 {

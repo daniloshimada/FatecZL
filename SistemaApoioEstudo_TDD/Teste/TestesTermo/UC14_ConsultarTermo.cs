@@ -1,67 +1,74 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using SistemaApoioEstudo.BLL.Utilitarios;
 using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Negocio;
-using SistemaApoioEstudo.BLL.Utilitarios;
-using System;
 
 namespace SistemaApoioEstudo.Teste.TestesTermo
 {
     [TestFixture]
-    public class UC15_ExcluirTermo
+    public class UC14_ConsultarTermo
     {
-        private Termo termoInicial;
-        private Usuario usuarioInicial;
         private NegocioTermo negocioTermo;
         private ITermoDAO termoDAO;
+        private ICategoriaDAO categoriaDAO;
+        private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
-        
-        public UC15_ExcluirTermo()
+        private Usuario usuarioAlexandre;
+        private Categoria categoriaProgramacao;
+        private Termo termoInicial;
+
+        public UC14_ConsultarTermo()
         {
+            negocioTermo = new NegocioTermo();
+            termoDAO = new TermoDAO();
+            categoriaDAO = new CategoriaDAO();
+            assuntoDAO = new AssuntoDAO();
+            usuarioDAO = new UsuarioDAO();
+            usuarioAlexandre = new Usuario()
+            {
+                Nome = "Alexandre",
+                Senha = "athens"
+            };
+            categoriaProgramacao = new Categoria()
+            {
+                Nome = "Programacao"
+            };
             termoInicial = new Termo()
             {
                 Nome = "Qual o significado de IDE?",
                 Correspondencia = "Ambiente de Desenvolvimento Integrado",
                 Dica = ""
             };
-            usuarioInicial = new Usuario()
-            {
-                Nome = "Alexandre",
-                Senha = "athens"
-            };
-            negocioTermo = new NegocioTermo();
-            termoDAO = new TermoDAO();
-            usuarioDAO = new UsuarioDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
             //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
             if (usuarioRetorno != null)
             {
                 usuarioDAO.Excluir(usuarioRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioInicial);
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
+            usuarioDAO.Cadastrar(usuarioAlexandre);
+            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
 
             //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre".
             Assunto assuntoFaculdade = new Assunto()
             {
                 Nome = "Faculdade"
             };
-            IAssuntoDAO assuntoDAO = new AssuntoDAO();
             assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
             //_Consulta o id do assunto "Faculdade".
             assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
 
             //_Cadastra a categoria "Programacao" para o assunto "Faculdade".
-            ICategoriaDAO categoriaDAO = new CategoriaDAO();
-            Categoria categoriaProgramacao = new Categoria()
-            {
-                Nome = "Programacao"
-            };
             categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaProgramacao);
             //_Consulta o id da categoria "Programação".
             categoriaProgramacao = categoriaDAO.ConsultarNomeIdAssunto(categoriaProgramacao.Nome, assuntoFaculdade.Id);
@@ -76,25 +83,32 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
         public void TestFixtureTearDown()
         {
             //_Exclui o usuário com nome "Alexandre".
-            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
-            if (usuarioInicial != null)
+            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
+            if (usuarioAlexandre != null)
             {
-                usuarioDAO.Excluir(usuarioInicial.Id);
+                usuarioDAO.Excluir(usuarioAlexandre.Id);
             }
         }
 
         [Test]
-        public void CT01UC15FB_Excluir_termo_comSucesso()
+        public void CT01UC13FB_Consultar_termosDeUmaCategoria_comSucesso()
         {
-            bool resultado = termoDAO.Excluir(termoInicial.Id);
-            Assert.IsTrue(resultado);
+            List<Termo> termosRetorno = termoDAO.ConsultarDadosIdCategoria(categoriaProgramacao.Id);
+            Assert.AreEqual(1, termosRetorno.Count);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC15FA_Excluir_termoSemConsulta_semSucesso()
+        public void CT02UC13FB_Consultar_dadosDeUmTermo_comSucesso()
         {
-            negocioTermo.VerificarTermoSelecionado(new int());
+            List<Termo> termosRetorno = termoDAO.ConsultarDadosIdCategoria(categoriaProgramacao.Id);
+            Termo termoEsperado = new Termo()
+            {
+                Id = termoInicial.Id,
+                Nome = termoInicial.Nome,
+                Correspondencia = termoInicial.Correspondencia,
+                Dica = termoInicial.Dica
+            };
+            Assert.IsTrue(termoEsperado.Equals(termosRetorno[0]));
         }
     }
 }

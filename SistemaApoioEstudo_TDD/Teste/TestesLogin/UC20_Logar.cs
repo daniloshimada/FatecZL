@@ -10,59 +10,55 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
     [TestFixture]
     public class UC20_Logar
     {
-        private NegocioLogin negocioLogin;
+        private Usuario usuarioInicial;
         private NegocioUsuario negocioUsuario;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
 
         public UC20_Logar()
         {
-            negocioLogin = new NegocioLogin();
-            negocioUsuario = new NegocioUsuario();
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
+            negocioUsuario = new NegocioUsuario();
+            usuarioDAO = new UsuarioDAO();
         }
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetup()
         {
             //_Exclui e Cadastra o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
+            usuarioDAO.Cadastrar(usuarioInicial);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
             //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
         [Test]
         public void CT01UC20FB_Logar_comDadosValidos_comSucesso()
         {
-            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioAlexandre);
-            negocioUsuario.ValidarNome(usuarioAlexandre.Nome);
-            negocioUsuario.ValidarSenha(usuarioAlexandre.Senha);
-            bool resultado = false;
-            if (usuarioRetorno != null)
+            negocioUsuario.ValidarNome(usuarioInicial.Nome);
+            negocioUsuario.ValidarSenha(usuarioInicial.Senha);
+            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioInicial);
+            if (usuarioInicial.Equals(usuarioRetorno))
             {
                 Login.RegistrarUsuario(usuarioRetorno);
-                resultado = true;
             }
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(usuarioInicial.Equals(usuarioRetorno));
         }
 
         [Test]
@@ -72,7 +68,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
             Usuario usuarioNomeBranco = new Usuario()
             {
                 Nome = " ",
-                Senha = "athens"
+                Senha = ""
             };
             negocioUsuario.ValidarNome(usuarioNomeBranco.Nome);
         }
@@ -83,7 +79,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         {
             Usuario usuarioSenhaBranco = new Usuario()
             {
-                Nome = "Alexandre",
+                Nome = "Danilo",
                 Senha = " "
             };
             negocioUsuario.ValidarSenha(usuarioSenhaBranco.Senha);
@@ -96,7 +92,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
             Usuario usuarioNomeCaracteres = new Usuario()
             {
                 Nome = "Alexandreshigueru",
-                Senha = "athens"
+                Senha = ""
             };
             negocioUsuario.ValidarNome(usuarioNomeCaracteres.Nome);
         }
@@ -107,32 +103,32 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         {
             Usuario usuarioSenhaCaracteres = new Usuario()
             {
-                Nome = "Alexandre",
-                Senha = "athensalexandre"
+                Nome = "Danilo",
+                Senha = "danilodelphi"
             };
             negocioUsuario.ValidarSenha(usuarioSenhaCaracteres.Senha);
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT06UC20FA_Logar_comNomeNULL_semSucesso()
+        public void CT06UC20FA_Logar_comNomeNulo_semSucesso()
         {
-            Usuario usuarioNomeNULL = new Usuario()
+            Usuario usuarioNomeNulo = new Usuario()
             {
                 Nome = "Alexandre",
-                Senha = "athens"
+                Senha = ""
             };
             negocioUsuario.ValidarNome(null);
         }
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT07UC20FA_Logar_comSenhaNULL_semSucesso()
+        public void CT07UC20FA_Logar_comSenhaNula_semSucesso()
         {
-            Usuario usuarioSenhaNULL = new Usuario()
+            Usuario usuarioSenhaNula = new Usuario()
             {
-                Nome = "Alexandre",
-                Senha = "athens"
+                Nome = "Danilo",
+                Senha = "delphi"
             };
             negocioUsuario.ValidarSenha(null);
         }
@@ -143,8 +139,8 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         {
             Usuario usuarioNomeIncorreto = new Usuario()
             {
-                Nome = "Clayton",
-                Senha = "athens"
+                Nome = "Danilo",
+                Senha = "delphi"
             };
             Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioNomeIncorreto);
             Assert.IsNull(usuarioRetorno);
@@ -163,7 +159,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         }
 
         [Test]
-        public void CT10UC20FA_Logar_sairDoSistema()
+        public void CT10UC20FB_Logar_deslogar()
         {
             Login.RemoverUsuario();
             Assert.AreEqual(null, Login.Usuario);

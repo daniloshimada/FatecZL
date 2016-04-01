@@ -17,12 +17,26 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
 
         private void FormAtualizarUsuario_Shown(object sender, EventArgs e)
         {
-            CarregarTela();
+            try
+            {
+                CarregarTela();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void CarregarTela()
         {
-            textBoxNome.Text = Login.Usuario.Nome;
+            try
+            {
+                textBoxNome.Text = Login.Usuario.Nome;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonAtualizar_Click(object sender, EventArgs e)
@@ -39,8 +53,7 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
                 DialogResult dialogResult = MessageBox.Show("Deseja mesmo atualizar seus dados?", "CONFIRMAÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                 if (dialogResult == DialogResult.OK)
                 {
-                    bool resultadoAtualizar = controleUsuario.Atualizar(usuario, textBoxSenhaConfirmacao.Text);
-                    if (resultadoAtualizar)
+                    if (controleUsuario.Atualizar(usuario, textBoxSenhaConfirmacao.Text))
                     {
                         MessageBox.Show("Usuário atualizado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         formConsultarUsuario.CarregarTela();
@@ -60,7 +73,14 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            Close();
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

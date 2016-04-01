@@ -23,7 +23,14 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
 
         private void FormConsultarUsuario_Shown(object sender, EventArgs e)
         {
-            CarregarTela();
+            try
+            {
+                CarregarTela();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void CarregarTela()
@@ -64,8 +71,7 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
                 ControleUsuario controleUsuario = new ControleUsuario();
                 if (dialogResult == DialogResult.OK)
                 {
-                    bool resultado = controleUsuario.Excluir();
-                    if (resultado)
+                    if (controleUsuario.Excluir())
                     {
                         MessageBox.Show("Usuário excluído com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();
@@ -82,7 +88,14 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            Close();
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

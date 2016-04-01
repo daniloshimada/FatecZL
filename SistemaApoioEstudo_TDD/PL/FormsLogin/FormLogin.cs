@@ -18,14 +18,13 @@ namespace SistemaApoioEstudo.PL.FormsLogin
         {
             try
             {
-                Usuario usuario = new Usuario()
+                Usuario usuarioLogar = new Usuario()
                 {
                     Nome = textBoxNome.Text,
                     Senha = textBoxSenha.Text
                 };
                 ControleLogin controleLogin = new ControleLogin();
-                bool resultado = controleLogin.Logar(usuario);
-                if (resultado)
+                if (controleLogin.Logar(usuarioLogar))
                 {
                     Hide();
                     FormMenu formMenu = new FormMenu(this);
@@ -65,7 +64,14 @@ namespace SistemaApoioEstudo.PL.FormsLogin
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            try
+            {
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
