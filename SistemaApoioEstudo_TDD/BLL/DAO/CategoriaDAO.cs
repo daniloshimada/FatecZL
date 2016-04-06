@@ -21,10 +21,6 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                if (idAssunto == 0)
-                {
-                    throw new Exception("Selecione um assunto!");
-                }
                 conexaoBD.AdicionarParametros("@Id_assunto", idAssunto);
                 conexaoBD.AdicionarParametros("@Nome_categoria", categoria.Nome);
                 if (conexaoBD.ExecutarManipulacao("uspCategoriaCadastrar"))

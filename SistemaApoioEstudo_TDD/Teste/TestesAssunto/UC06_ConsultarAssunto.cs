@@ -9,61 +9,60 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
     [TestFixture]
     public class UC06_ConsultarAssunto
     {
-        private IAssuntoDAO assuntoDAO;
+        private Usuario usuarioInicial;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
+        private IAssuntoDAO assuntoDAO;
 
         public UC06_ConsultarAssunto()
         {
-            assuntoDAO = new AssuntoDAO();
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
+            usuarioDAO = new UsuarioDAO();
+            assuntoDAO = new AssuntoDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
 
-            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre.
-            Assunto assuntoFaculdade = new Assunto()
+            //_Cadastra o assunto "Faculdade" para o usuário "Alexandre".
+            Assunto assuntoInicial = new Assunto()
             {
                 Nome = "Faculdade"
             };
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoInicial);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            //_Exclui o usuário "Alexandre".
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
         [Test]
-        public void CT01UC06FB_Consultar_assuntosDoUsuario_comSucesso()
+        public void CT01UC06FB_Consultar_assuntosDeUmUsuario_comSucesso()
         {
-            List<Assunto> assuntos = assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
-            Assert.AreEqual(1, assuntos.Count);
+            Assert.AreEqual(1, assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id).Count);
         }
 
         [Test]
-        public void CT02UC06FB_Consultar_dadosDoAssunto_comSucesso()
+        public void CT02UC06FB_Consultar_dadosDeUmAssunto_comSucesso()
         {
             List<Assunto> assuntosRetorno = assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id);
             Assunto assuntoEsperado = new Assunto()
@@ -71,7 +70,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
                 Id = assuntosRetorno[0].Id,
                 Nome = "Faculdade"
             };
-            Assert.IsTrue(assuntosRetorno[0].Equals(assuntoEsperado));
+            Assert.IsTrue(assuntoDAO.ConsultarDadosIdUsuario(Login.Usuario.Id)[0].Equals(assuntoEsperado));
         }
     }
 }

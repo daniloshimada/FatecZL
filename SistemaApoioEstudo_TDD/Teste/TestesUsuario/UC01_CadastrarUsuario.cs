@@ -34,14 +34,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui o usuário com nome "Alexandre" e senha "athens".
+            //_Exclui o usuário "Alexandre" com senha "athens".
             Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicialRetorno != null)
             {
                 usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
 
-            //_Cadastra o usuário com nome "Danilo" e senha "delphi".
+            //_Cadastra o usuário "Danilo" com senha "delphi".
             Usuario usuarioSecundarioRetorno = usuarioDAO.ConsultarNome(usuarioSecundario.Nome);
             if (usuarioSecundarioRetorno == null)
             {
@@ -52,14 +52,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
+            //_Exclui o usuário "Alexandre".
             usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicial != null)
             {
                 usuarioDAO.Excluir(usuarioInicial.Id);
             }
 
-            //_Exclui o usuário com nome "Danilo".
+            //_Exclui o usuário "Danilo".
             usuarioSecundario = usuarioDAO.ConsultarNome(usuarioSecundario.Nome);
             if (usuarioSecundario != null)
             {
@@ -72,8 +72,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         {
             negocioUsuario.ValidarNome(usuarioInicial.Nome);
             negocioUsuario.ValidarSenha(usuarioInicial.Senha);
-            bool resultado = usuarioDAO.Cadastrar(usuarioInicial);
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(usuarioDAO.Cadastrar(usuarioInicial));
         }
 
         [Test]

@@ -10,60 +10,60 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
     [TestFixture]
     public class UC07_AtualizarAssunto
     {
+        private Usuario usuarioInicial;
+        private Assunto assuntoInicial;
         private NegocioAssunto negocioAssunto;
-        private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
-        private Assunto assuntoFaculdade;
-        private Usuario usuarioAlexandre;
+        private IAssuntoDAO assuntoDAO;
 
         public UC07_AtualizarAssunto()
         {
-            negocioAssunto = new NegocioAssunto();
-            assuntoDAO = new AssuntoDAO();
-            usuarioDAO = new UsuarioDAO();
-            assuntoFaculdade = new Assunto();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
+            assuntoInicial = new Assunto();
+            negocioAssunto = new NegocioAssunto();
+            usuarioDAO = new UsuarioDAO();
+            assuntoDAO = new AssuntoDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
 
-            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre".
-            assuntoFaculdade.Nome = "Faculdade";
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
+            //_Cadastra o assunto "Faculdade" para o usuário "Alexandre".
+            assuntoInicial.Nome = "Faculdade";
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoInicial);
 
             //_Consulta o id do assunto "Faculdade".
-            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
+            assuntoInicial = assuntoDAO.ConsultarNomeIdUsuario(assuntoInicial.Nome, Login.Usuario.Id);
 
-            //_Cadastra o assunto "FatecZL" para o usuário com nome "Alexandre.
-            Assunto assuntoFatecZL = new Assunto()
+            //_Cadastra o assunto "FatecZL" para o usuário "Alexandre".
+            Assunto assuntoSecundario = new Assunto()
             {
                 Nome = "FatecZL"
             };
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFatecZL);
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoSecundario);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            //_Exclui o usuário "Alexandre".
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
@@ -72,12 +72,11 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoValido = new Assunto()
             {
-                Id = assuntoFaculdade.Id,
+                Id = assuntoInicial.Id,
                 Nome = "Curso"
             };
             negocioAssunto.ValidarNome(assuntoValido.Nome);
-            bool resultado = assuntoDAO.Atualizar(assuntoValido);
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(assuntoDAO.Atualizar(assuntoValido));
         }
 
         [Test]
@@ -86,7 +85,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoBranco = new Assunto()
             {
-                Id = assuntoFaculdade.Id,
+                Id = assuntoInicial.Id,
                 Nome = " "
             };
             negocioAssunto.ValidarNome(assuntoBranco.Nome);
@@ -98,7 +97,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoCaracteres = new Assunto()
             {
-                Id = assuntoFaculdade.Id,
+                Id = assuntoInicial.Id,
                 Nome = "Faculdade de Tecnologia da Zona Leste"
             };
             negocioAssunto.ValidarNome(assuntoCaracteres.Nome);
@@ -106,11 +105,11 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT04UC07FA_Atualizar_assuntoNULL_semSucesso()
+        public void CT04UC07FA_Atualizar_assuntoNulo_semSucesso()
         {
-            Assunto assuntoNULL = new Assunto()
+            Assunto assuntoNulo = new Assunto()
             {
-                Id = assuntoFaculdade.Id,
+                Id = assuntoInicial.Id,
                 Nome = "Curso"
             };
             negocioAssunto.ValidarNome(null);
@@ -122,12 +121,11 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
         {
             Assunto assuntoExistente = new Assunto()
             {
-                Id = assuntoFaculdade.Id,
+                Id = assuntoInicial.Id,
                 Nome = "FatecZL"
             };
             negocioAssunto.ValidarNome(assuntoExistente.Nome);
-            bool resultado = assuntoDAO.Atualizar(assuntoExistente);
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(assuntoDAO.Atualizar(assuntoExistente));
         }
 
         [Test]

@@ -28,7 +28,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         [SetUp]
         public void TestFixtureSetup()
         {
-            //_Exclui e Cadastra o usuário com nome "Alexandre" e senha "athens".
+            //_Exclui e Cadastra o usuário "Alexandre" com senha "athens".
             Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicialRetorno != null)
             {
@@ -40,7 +40,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
+            //_Exclui o usuário "Alexandre".
             usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicial != null)
             {
@@ -142,8 +142,7 @@ namespace SistemaApoioEstudo.Teste.TestesLogin
                 Nome = "Danilo",
                 Senha = "delphi"
             };
-            Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioNomeIncorreto);
-            Assert.IsNull(usuarioRetorno);
+            usuarioDAO.Consultar(usuarioNomeIncorreto);
         }
 
         [Test]

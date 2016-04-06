@@ -10,11 +10,11 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
     [TestFixture]
     public class UC16_ExcluirTermo
     {
-        private Termo termoInicial;
         private Usuario usuarioInicial;
+        private Termo termoInicial;
         private NegocioTermo negocioTermo;
-        private ITermoDAO termoDAO;
         private IUsuarioDAO usuarioDAO;
+        private ITermoDAO termoDAO;
         
         public UC16_ExcluirTermo()
         {
@@ -30,31 +30,31 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
                 Senha = "athens"
             };
             negocioTermo = new NegocioTermo();
-            termoDAO = new TermoDAO();
             usuarioDAO = new UsuarioDAO();
+            termoDAO = new TermoDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
             usuarioDAO.Cadastrar(usuarioInicial);
             Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
 
-            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre".
-            Assunto assuntoFaculdade = new Assunto()
+            //_Cadastra o assunto "Faculdade" para o usuário "Alexandre".
+            Assunto assuntoInicial = new Assunto()
             {
                 Nome = "Faculdade"
             };
             IAssuntoDAO assuntoDAO = new AssuntoDAO();
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoInicial);
             //_Consulta o id do assunto "Faculdade".
-            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
+            assuntoInicial = assuntoDAO.ConsultarNomeIdUsuario(assuntoInicial.Nome, Login.Usuario.Id);
 
             //_Cadastra a categoria "Programacao" para o assunto "Faculdade".
             ICategoriaDAO categoriaDAO = new CategoriaDAO();
@@ -62,9 +62,9 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
             {
                 Nome = "Programacao"
             };
-            categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaProgramacao);
+            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaProgramacao);
             //_Consulta o id da categoria "Programação".
-            categoriaProgramacao = categoriaDAO.ConsultarNomeIdAssunto(categoriaProgramacao.Nome, assuntoFaculdade.Id);
+            categoriaProgramacao = categoriaDAO.ConsultarNomeIdAssunto(categoriaProgramacao.Nome, assuntoInicial.Id);
 
             //_Cadastra o termo "Qual o significado de IDE?" para a categoria "Programação".
             termoDAO.Cadastrar(categoriaProgramacao.Id, termoInicial);
@@ -75,7 +75,7 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
+            //_Exclui o usuário "Alexandre".
             usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicial != null)
             {
@@ -84,15 +84,14 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
         }
 
         [Test]
-        public void CT01UC15FB_Excluir_termo_comSucesso()
+        public void CT01UC6FB_Excluir_termoEDadosRelacionados_comSucesso()
         {
-            bool resultado = termoDAO.Excluir(termoInicial.Id);
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(termoDAO.Excluir(termoInicial.Id));
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC15FA_Excluir_termoSemConsulta_semSucesso()
+        public void CT02UC6FA_Excluir_termoSemConsulta_semSucesso()
         {
             negocioTermo.VerificarTermoSelecionado(new int());
         }

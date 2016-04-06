@@ -18,9 +18,6 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
 
         public UC03_AtualizarUsuario()
         {
-            negocioUsuario = new NegocioUsuario();
-            negocioLogin = new NegocioLogin();
-            usuarioDAO = new UsuarioDAO();
             usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
@@ -31,12 +28,15 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
                 Nome = "Sônia",
                 Senha = "son"
             };
+            negocioUsuario = new NegocioUsuario();
+            negocioLogin = new NegocioLogin();
+            usuarioDAO = new UsuarioDAO();
         }
 
         [SetUp]
         public void SetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
             Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicialRetorno != null)
             {
@@ -45,7 +45,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             usuarioDAO.Cadastrar(usuarioInicial);
             Login.RegistrarUsuario(usuarioDAO.ConsultarNome(usuarioInicial.Nome));
 
-            //_Cadastra o usuário com nome "Sonia" e senha "son".
+            //_Cadastra o usuário "Sonia" com senha "son".
             Usuario usuarioSecundarioRetorno = usuarioDAO.ConsultarNome(usuarioSecundario.Nome);
             if (usuarioSecundarioRetorno != null)
             {
@@ -53,7 +53,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             }
             usuarioDAO.Cadastrar(usuarioSecundario);
 
-            //_Exclui o usuário com nome "Danilo".
+            //_Exclui o usuário "Danilo".
             Usuario usuarioDaniloRetorno = usuarioDAO.ConsultarNome("Danilo");
             if (usuarioDaniloRetorno != null)
             {
@@ -64,14 +64,14 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
+            //_Exclui o usuário "Alexandre".
             usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicial != null)
             {
                 usuarioDAO.Excluir(usuarioInicial.Id);
             }
 
-            //_Exclui o usuário com nome "Sônia".
+            //_Exclui o usuário "Sônia".
             usuarioSecundario = usuarioDAO.ConsultarNome(usuarioSecundario.Nome);
             if (usuarioSecundario != null)
             {
@@ -113,7 +113,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             {
                 Id = Login.Usuario.Id,
                 Nome = "Danilo",
-                Senha = " "
+                Senha = ""
             };
             negocioUsuario.ValidarNome(usuarioSenhaBranco.Nome);
             negocioUsuario.ValidarSenhaConfirmacao("athens");
@@ -138,7 +138,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
             {
                 Id = Login.Usuario.Id,
                 Nome = "Alexandre",
-                Senha = "cretanova"
+                Senha = "delphinova"
             };
             negocioUsuario.ValidarNome(usuarioSenha.Nome);
             negocioUsuario.ValidarSenhaConfirmacao("athens");

@@ -10,51 +10,51 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
     [TestFixture]
     public class UC05_CadastrarAssunto
     {
+        private Usuario usuarioInicial;
         private NegocioAssunto negocioAssunto;
-        private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
-
+        private IAssuntoDAO assuntoDAO;
+        
         public UC05_CadastrarAssunto()
         {
-            negocioAssunto = new NegocioAssunto();
-            assuntoDAO = new AssuntoDAO();
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
+            negocioAssunto = new NegocioAssunto();
+            usuarioDAO = new UsuarioDAO();
+            assuntoDAO = new AssuntoDAO(); 
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
 
-            //_Cadastra o assunto "FatecZL" para o usuário com nome "Alexandre.
-            Assunto assuntoFatec = new Assunto()
+            //_Cadastra o assunto "FatecZL" para o usuário "Alexandre".
+            Assunto assuntoInicial = new Assunto()
             {
                 Nome = "FatecZL"
             };
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFatec);
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoInicial);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            //_Exclui o usuário "Alexandre".
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
@@ -66,8 +66,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
                 Nome = "Faculdade"
             };
             negocioAssunto.ValidarNome(assuntoValido.Nome);
-            bool resultado = assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoValido);
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoValido));
         }
 
         [Test]
@@ -94,9 +93,9 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT04UC05FA_Cadastrar_assuntoNULL_semSucesso()
+        public void CT04UC05FA_Cadastrar_assuntoNulo_semSucesso()
         {
-            Assunto assuntoNULL = new Assunto()
+            Assunto assuntoNulo = new Assunto()
             {
                 Nome = "Curso"
             };
@@ -112,8 +111,7 @@ namespace SistemaApoioEstudo.Teste.TestesAssunto
                 Nome = "FatecZL"
             };
             negocioAssunto.ValidarNome(assuntoExistente.Nome);
-            bool resultado = assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoExistente);
-            Assert.IsTrue(resultado);
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoExistente);
         }
     }
 }

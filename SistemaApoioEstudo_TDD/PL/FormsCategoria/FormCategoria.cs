@@ -9,13 +9,11 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
     public partial class FormCategoria : Form
     {
         private ControleCategoria controleCategoria;
-        private ControleAssunto controleAssunto;
 
         public FormCategoria()
         {
             InitializeComponent();
             controleCategoria = new ControleCategoria();
-            controleAssunto = new ControleAssunto();
         }
 
         private void FormCategoria_Shown(object sender, EventArgs e)
@@ -53,7 +51,7 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
                 comboBoxAssuntos.Items.Clear();
                 comboBoxAssuntos.ValueMember = "Id";
                 comboBoxAssuntos.DisplayMember = "Nome";
-                List<Assunto> assuntosRetorno = controleAssunto.ConsultarDadosIdUsuario();
+                List<Assunto> assuntosRetorno = new ControleAssunto().ConsultarDadosIdUsuario();
                 foreach (Assunto assunto in assuntosRetorno)
                 {
                     comboBoxAssuntos.Items.Add(assunto);
@@ -142,7 +140,7 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
         {
             try
             {
-                controleAssunto.VeriricarAssuntoSelecionado(comboBoxCategorias.SelectedIndex);
+                controleCategoria.VerificarCategoriaSelecionada(comboBoxCategorias.SelectedIndex);
                 Categoria categoriaAtualizar = new Categoria()
                 {
                     Id = (comboBoxCategorias.SelectedItem as Categoria).Id,
@@ -170,7 +168,7 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
         {
             try
             {
-                controleAssunto.VeriricarAssuntoSelecionado(comboBoxCategorias.SelectedIndex);
+                controleCategoria.VerificarCategoriaSelecionada(comboBoxCategorias.SelectedIndex);
                 Categoria categoriaExcluir = new Categoria()
                 {
                     Id = (comboBoxCategorias.SelectedItem as Categoria).Id

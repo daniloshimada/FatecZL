@@ -24,10 +24,6 @@ namespace SistemaApoioEstudo.BLL.DAO
         {
             try
             {
-                if (idCategoria == 0)
-                {
-                    throw new Exception("Selecione uma categoria!");
-                }
                 conexaoBD.AdicionarParametros("@Id_categoria", idCategoria);
                 conexaoBD.AdicionarParametros("@Nome_termo", termo.Nome);
                 conexaoBD.AdicionarParametros("@Correspondencia_termo", termo.Correspondencia);

@@ -24,7 +24,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [SetUp]
         public void SetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
             Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicialRetorno != null)
             {
@@ -37,7 +37,7 @@ namespace SistemaApoioEstudo.Teste.TestesUsuario
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
+            //_Exclui o usuário "Alexandre".
             usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
             if (usuarioInicial != null)
             {

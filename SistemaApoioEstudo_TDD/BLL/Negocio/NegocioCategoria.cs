@@ -33,7 +33,7 @@ namespace SistemaApoioEstudo.BLL.Negocio
             {
                 if (categoriaSelecionada < 0)
                 {
-                    throw new ArgumentException("Nenhum categoria selecionada!");
+                    throw new ArgumentException("Nenhuma categoria selecionada!");
                 }
             }
             catch (Exception)

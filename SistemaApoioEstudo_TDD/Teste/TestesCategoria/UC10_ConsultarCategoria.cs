@@ -8,82 +8,80 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
 {
     public class UC10_ConsultarCategoria
     {
-        private ICategoriaDAO categoriaDAO;
-        private IAssuntoDAO assuntoDAO;
+        private Usuario usuarioInicial;
+        private Assunto assuntoInicial;
+        private Categoria categoriaInicial;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
-        private Assunto assuntoFaculdade;
-        private Categoria categoriaPOO;
+        private ICategoriaDAO categoriaDAO;
 
         public UC10_ConsultarCategoria()
         {
-            categoriaDAO = new CategoriaDAO();
-            assuntoDAO = new AssuntoDAO();
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            assuntoFaculdade = new Assunto()
+            assuntoInicial = new Assunto()
             {
                 Nome = "Faculdade"
             };
-            categoriaPOO = new Categoria()
+            categoriaInicial = new Categoria()
             {
                 Nome = "POO"
             };
+            usuarioDAO = new UsuarioDAO();
+            categoriaDAO = new CategoriaDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
 
-            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre".
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
+            //_Cadastra o assunto "Faculdade" para o usuário "Alexandre".
+            IAssuntoDAO assuntoDAO = new AssuntoDAO();
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoInicial);
             //_Consulta o id do assunto "Faculdade".
-            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
+            assuntoInicial = assuntoDAO.ConsultarNomeIdUsuario(assuntoInicial.Nome, Login.Usuario.Id);
 
             //_Cadastra a categoria "POO" para o assunto "Faculdade".
-            categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaPOO);
+            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaInicial);
             //_Consulta o id da categoria "POO".
-            categoriaPOO = categoriaDAO.ConsultarNomeIdAssunto(categoriaPOO.Nome, assuntoFaculdade.Id);
+            categoriaInicial = categoriaDAO.ConsultarNomeIdAssunto(categoriaInicial.Nome, assuntoInicial.Id);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            //_Exclui o usuário "Alexandre".
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
         [Test]
-        public void CT01UC10FA_Consultar_categoriasDoAssunto_comSucesso()
+        public void CT01UC10FB_Consultar_categoriasDeUmAssunto_comSucesso()
         {
-            List<Categoria> categoriasRetorno = categoriaDAO.ConsultarDadosIdAssunto(assuntoFaculdade.Id);
-            Assert.AreEqual(1, categoriasRetorno.Count);
+            Assert.AreEqual(1, categoriaDAO.ConsultarDadosIdAssunto(assuntoInicial.Id).Count);
         }
 
         [Test]
-        public void CT02UC10FA_Consultar_dadosDaCategoria_comSucesso()
+        public void CT02UC10FB_Consultar_dadosDeUmaCategoria_comSucesso()
         {
-            List<Categoria> categoriasRetorno = categoriaDAO.ConsultarDadosIdAssunto(assuntoFaculdade.Id);
+            List<Categoria> categoriasRetorno = categoriaDAO.ConsultarDadosIdAssunto(assuntoInicial.Id);
             Categoria categoriaEsperada = new Categoria()
             {
-                Id = categoriaPOO.Id,
-                Nome = categoriaPOO.Nome
+                Id = categoriaInicial.Id,
+                Nome = categoriaInicial.Nome
             };
             Assert.IsTrue(categoriaEsperada.Equals(categoriasRetorno[0]));
         }

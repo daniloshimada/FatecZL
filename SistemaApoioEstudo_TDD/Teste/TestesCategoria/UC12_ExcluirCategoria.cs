@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Utilitarios;
 using SistemaApoioEstudo.BLL.Negocio;
+using SistemaApoioEstudo.BLL.Utilitarios;
 using System;
 
 namespace SistemaApoioEstudo.Teste.TestesCategoria
@@ -10,76 +10,71 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
     [TestFixture]
     public class UC12_ExcluirCategoria
     {
+        private Usuario usuarioInicial;
+        private Categoria categoriaInicial;
         private NegocioCategoria negocioCategoria;
-        private ICategoriaDAO categoriaDAO;
-        private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
-        private Assunto assuntoFaculdade;
-        private Categoria categoriaPOO;
+        private ICategoriaDAO categoriaDAO;
 
         public UC12_ExcluirCategoria()
         {
-            negocioCategoria = new NegocioCategoria();
-            categoriaDAO = new CategoriaDAO();
-            assuntoDAO = new AssuntoDAO();
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            assuntoFaculdade = new Assunto()
-            {
-                Nome = "Faculdade"
-            };
-            categoriaPOO = new Categoria()
+            categoriaInicial = new Categoria()
             {
                 Nome = "POO"
             };
+            negocioCategoria = new NegocioCategoria();
+            usuarioDAO = new UsuarioDAO();
+            categoriaDAO = new CategoriaDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
 
-            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre.
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
-
+            //_Cadastra o assunto "Faculdade" para o usuário "Alexandre".
+            Assunto assuntoInicial = new Assunto()
+            {
+                Nome = "Faculdade"
+            };
+            IAssuntoDAO assuntoDAO = new AssuntoDAO();
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoInicial);
             //_Consulta o id do assunto "Faculdade".
-            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
+            assuntoInicial = assuntoDAO.ConsultarNomeIdUsuario(assuntoInicial.Nome, Login.Usuario.Id);
 
             //_Cadastra a categoria "POO" para o assunto "Faculdade".
-            categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaPOO);
-
+            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaInicial);
             //_Consulta o id da categoria "POO".
-            categoriaPOO = categoriaDAO.ConsultarNomeIdAssunto(categoriaPOO.Nome, assuntoFaculdade.Id);
+            categoriaInicial = categoriaDAO.ConsultarNomeIdAssunto(categoriaInicial.Nome, assuntoInicial.Id);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            //_Exclui o usuário "Alexandre".
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
         [Test]
         public void CT01UC12FB_Excluir_categoriaEDadosRelacionados()
         {
-            bool resultado = categoriaDAO.Excluir(categoriaPOO.Id);
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(categoriaDAO.Excluir(categoriaInicial.Id));
         }
 
         [Test]

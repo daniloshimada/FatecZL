@@ -9,64 +9,62 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
 {
     public class UC09_CadastrarCategoria
     {
+        private Usuario usuarioInicial;
+        private Assunto assuntoInicial;
         private NegocioCategoria negocioCategoria;
-        private ICategoriaDAO categoriaDAO;
-        private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
-        private Assunto assuntoFaculdade;
+        private ICategoriaDAO categoriaDAO;
 
         public UC09_CadastrarCategoria()
         {
-            negocioCategoria = new NegocioCategoria();
-            categoriaDAO = new CategoriaDAO();
-            assuntoDAO = new AssuntoDAO();
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            assuntoFaculdade = new Assunto()
+            assuntoInicial = new Assunto()
             {
                 Nome = "Faculdade"
             };
+            negocioCategoria = new NegocioCategoria();
+            usuarioDAO = new UsuarioDAO();
+            categoriaDAO = new CategoriaDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
 
-            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre.
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
-
+            //_Cadastra o assunto "Faculdade" para o usuário "Alexandre.
+            IAssuntoDAO assuntoDAO = new AssuntoDAO();
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoInicial);
             //_Consulta o id do assunto "Faculdade".
-            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
+            assuntoInicial = assuntoDAO.ConsultarNomeIdUsuario(assuntoInicial.Nome, Login.Usuario.Id);
 
             //_Cadastra a categoria "POO" para o assunto "Faculdade".
-            Categoria categoriaPOO = new Categoria()
+            Categoria categoriaInicial = new Categoria()
             {
                 Nome = "POO"
             };
-            categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaPOO);
+            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaInicial);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            //_Exclui o usuário "Alexandre".
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
@@ -78,8 +76,7 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
                 Nome = "Programação"
             };
             negocioCategoria.ValidarNome(categoriaValida.Nome);
-            bool resultdo = categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaValida);
-            Assert.IsTrue(resultdo);
+            Assert.IsTrue(categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaValida));
         }
 
         [Test]
@@ -106,7 +103,7 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT04UC09FA_Cadastrar_categoriaNULL_semSucesso()
+        public void CT04UC09FA_Cadastrar_categoriaNula_semSucesso()
         {
             Categoria categoriaNULL = new Categoria()
             {
@@ -124,18 +121,7 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
                 Nome = "POO"
             };
             negocioCategoria.ValidarNome(categoriaExistente.Nome);
-            categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaExistente);
-        }
-
-        [Test]
-        [ExpectedException(typeof(Exception))]
-        public void CT06UC09FA_Cadastrar_categoriaSemAssunto_semSucesso()
-        {
-            Categoria categoriaSemAssunto = new Categoria()
-            {
-                Nome = "Programação"
-            };
-            categoriaDAO.Cadastrar(new int(), categoriaSemAssunto);
+            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaExistente);
         }
     }
 }

@@ -10,75 +10,71 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
     [TestFixture]
     public class UC11_AtualizarCategoria
     {
+        private Usuario usuarioInicial;
+        private Categoria categoriaInicial;
         private NegocioCategoria negocioCategoria;
-        private ICategoriaDAO categoriaDAO;
-        private IAssuntoDAO assuntoDAO;
         private IUsuarioDAO usuarioDAO;
-        private Usuario usuarioAlexandre;
-        private Assunto assuntoFaculdade;
-        private Categoria categoriaPOO;
+        private ICategoriaDAO categoriaDAO;
 
         public UC11_AtualizarCategoria()
         {
-            negocioCategoria = new NegocioCategoria();
-            categoriaDAO = new CategoriaDAO();
-            assuntoDAO = new AssuntoDAO();
-            usuarioDAO = new UsuarioDAO();
-            usuarioAlexandre = new Usuario()
+            usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            assuntoFaculdade = new Assunto()
-            {
-                Nome = "Faculdade"
-            };
-            categoriaPOO = new Categoria()
+            categoriaInicial = new Categoria()
             {
                 Nome = "POO"
             };
+            negocioCategoria = new NegocioCategoria();
+            usuarioDAO = new UsuarioDAO();
+            categoriaDAO = new CategoriaDAO();
         }
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            //_Exclui, Cadastra e Loga o usuário com nome "Alexandre" e senha "athens".
-            Usuario usuarioRetorno = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioRetorno != null)
+            //_Exclui, Cadastra e Loga o usuário "Alexandre" com senha "athens".
+            Usuario usuarioInicialRetorno = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicialRetorno != null)
             {
-                usuarioDAO.Excluir(usuarioRetorno.Id);
+                usuarioDAO.Excluir(usuarioInicialRetorno.Id);
             }
-            usuarioDAO.Cadastrar(usuarioAlexandre);
-            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioAlexandre));
+            usuarioDAO.Cadastrar(usuarioInicial);
+            Login.RegistrarUsuario(usuarioDAO.Consultar(usuarioInicial));
 
-            //_Cadastra o assunto "Faculdade" para o usuário com nome "Alexandre.
-            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoFaculdade);
-
+            //_Cadastra o assunto "Faculdade" para o usuário "Alexandre.
+            Assunto assuntoInicial = new Assunto()
+            {
+                Nome = "Faculdade"
+            };
+            IAssuntoDAO assuntoDAO = new AssuntoDAO();
+            assuntoDAO.Cadastrar(Login.Usuario.Id, assuntoInicial);
             //_Consulta o id do assunto "Faculdade".
-            assuntoFaculdade = assuntoDAO.ConsultarNomeIdUsuario(assuntoFaculdade.Nome, Login.Usuario.Id);
+            assuntoInicial = assuntoDAO.ConsultarNomeIdUsuario(assuntoInicial.Nome, Login.Usuario.Id);
 
             //_Cadastra a categoria "POO" para o assunto "Faculdade".
-            categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaPOO);
-
+            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaInicial);
             //_Consulta o id da categoria "POO".
-            categoriaPOO = categoriaDAO.ConsultarNomeIdAssunto(categoriaPOO.Nome, assuntoFaculdade.Id);
+            categoriaInicial = categoriaDAO.ConsultarNomeIdAssunto(categoriaInicial.Nome, assuntoInicial.Id);
 
             //_Cadastra a categoria "Banco de Dados" para o assunto "Faculdade".
-            Categoria categoriaBancoDados = new Categoria()
+            Categoria categoriaSecundaria = new Categoria()
             {
                 Nome = "Banco de Dados"
             };
-            categoriaDAO.Cadastrar(assuntoFaculdade.Id, categoriaBancoDados);
+            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaSecundaria);
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //_Exclui o usuário com nome "Alexandre".
-            usuarioAlexandre = usuarioDAO.ConsultarNome(usuarioAlexandre.Nome);
-            if (usuarioAlexandre != null)
+            //_Exclui o usuário "Alexandre".
+            usuarioInicial = usuarioDAO.ConsultarNome(usuarioInicial.Nome);
+            if (usuarioInicial != null)
             {
-                usuarioDAO.Excluir(usuarioAlexandre.Id);
+                usuarioDAO.Excluir(usuarioInicial.Id);
             }
         }
 
@@ -87,12 +83,11 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
         {
             Categoria categoriaValida = new Categoria()
             {
-                Id = categoriaPOO.Id,
+                Id = categoriaInicial.Id,
                 Nome = "Programação"
             };
             negocioCategoria.ValidarNome(categoriaValida.Nome);
-            bool resultado = categoriaDAO.Atualizar(categoriaValida);
-            Assert.IsTrue(resultado);
+            Assert.IsTrue(categoriaDAO.Atualizar(categoriaValida));
         }
 
         [Test]
@@ -101,7 +96,7 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
         {
             Categoria categoriaBranco = new Categoria()
             {
-                Id = categoriaPOO.Id,
+                Id = categoriaInicial.Id,
                 Nome = ""
             };
             negocioCategoria.ValidarNome(categoriaBranco.Nome);
@@ -113,7 +108,7 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
         {
             Categoria categoriaCaracteres = new Categoria()
             {
-                Id = categoriaPOO.Id,
+                Id = categoriaInicial.Id,
                 Nome = "Programação Orientada a Objetos utilizando a linguagem de programação Java"
             };
             negocioCategoria.ValidarNome(categoriaCaracteres.Nome);
@@ -121,11 +116,11 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
 
         [Test]
         [ExpectedException(typeof(NullReferenceException))]
-        public void CT04UC11FA_Atualizar_categoriaNULL_semSucesso()
+        public void CT04UC11FA_Atualizar_categoriaNula_semSucesso()
         {
             Categoria categoriaNULL = new Categoria()
             {
-                Id = categoriaPOO.Id,
+                Id = categoriaInicial.Id,
                 Nome = "Programação"
             };
             negocioCategoria.ValidarNome(null);
@@ -137,11 +132,11 @@ namespace SistemaApoioEstudo.Teste.TestesCategoria
         {
             Categoria categoriaExistente = new Categoria()
             {
-                Id = categoriaPOO.Id,
+                Id = categoriaInicial.Id,
                 Nome = "Banco de Dados"
             };
             negocioCategoria.ValidarNome(categoriaExistente.Nome);
-            bool resultado = categoriaDAO.Atualizar(categoriaExistente);
+            categoriaDAO.Atualizar(categoriaExistente);
         }
 
         [Test]
