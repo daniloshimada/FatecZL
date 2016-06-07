@@ -15,9 +15,12 @@ namespace SistemaApoioEstudo.PL.FormsConfiguracao
 {
     public partial class FormConfiguracao : Form
     {
+        private ControleConfiguracao controleConfiguracao;
+
         public FormConfiguracao()
         {
             InitializeComponent();
+            controleConfiguracao = new ControleConfiguracao();
         }
 
         private void FormConfiguracao_Shown(object sender, EventArgs e)
@@ -85,9 +88,9 @@ namespace SistemaApoioEstudo.PL.FormsConfiguracao
                 }
                 comboBoxCategorias.SelectedIndex = 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                limparCampos();
             }
         }
 
@@ -104,18 +107,43 @@ namespace SistemaApoioEstudo.PL.FormsConfiguracao
             }
         }
 
+        private void verificarCampos()
+        {
+            try
+            {
+                controleConfiguracao.ValidarAssunto(comboBoxAssuntos.SelectedItem as Assunto);
+                controleConfiguracao.ValidarCategoria(comboBoxCategorias.SelectedItem as Categoria);
+                controleConfiguracao.ValidarTermo(new ControleTermo().ConsultarDadosIdCategoria((comboBoxCategorias.SelectedItem as Categoria).Id));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void limparCampos()
+        {
+            try
+            {
+                textBoxTermos.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } 
+
         private void buttonTreinar_Click(object sender, EventArgs e)
         {
             try
             {
-                Categoria categoria = comboBoxCategorias.SelectedItem as Categoria;
+                verificarCampos();
                 Configuracao configuracao = new Configuracao()
                 {
                     Assunto = comboBoxAssuntos.SelectedItem as Assunto,
-                    Categoria = categoria,
-                    Termos = new ControleTermo().ConsultarDadosIdCategoria(categoria.Id)
+                    Categoria = comboBoxCategorias.SelectedItem as Categoria,
+                    Termos = new ControleTermo().ConsultarDadosIdCategoria((comboBoxCategorias.SelectedItem as Categoria).Id)
                 };
-                new ControleConfiguracao().ValidarConfiguracao(configuracao);
 
                 Hide();
                 FormTreino formTreino = new FormTreino(this, configuracao);

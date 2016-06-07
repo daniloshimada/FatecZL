@@ -17,13 +17,35 @@ namespace SistemaApoioEstudo.BLL.Controles
             negocioConfiguracao = new NegocioConfiguracao();
         }
 
-        public void ValidarConfiguracao(Configuracao configuracao)
+        public void ValidarAssunto(Assunto assunto)
         {
             try
             {
-                negocioConfiguracao.ValidarAssunto(configuracao.Assunto);
-                negocioConfiguracao.ValidarCategoria(configuracao.Categoria);
-                negocioConfiguracao.ValidarTermos(configuracao.Termos);
+                negocioConfiguracao.ValidarAssunto(assunto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarCategoria(Categoria categoria)
+        {
+            try
+            {
+                negocioConfiguracao.ValidarCategoria(categoria);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarTermo(List<Termo> termos)
+        {
+            try
+            {
+                negocioConfiguracao.ValidarTermos(termos);
             }
             catch (Exception)
             {
