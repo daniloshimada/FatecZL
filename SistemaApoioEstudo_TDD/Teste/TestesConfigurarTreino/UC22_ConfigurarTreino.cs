@@ -4,34 +4,28 @@ using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.BLL.Negocio;
 using SistemaApoioEstudo.BLL.Utilitarios;
 using System;
+using System.Collections.Generic;
 
-namespace SistemaApoioEstudo.Teste.TestesTermo
+namespace SistemaApoioEstudo.Teste.TestesConfigurarTreino
 {
     [TestFixture]
-    public class UC16_ExcluirTermo
+    public class UC22_ConfigurarTreino
     {
         private Usuario usuarioInicial;
-        private Termo termoInicial;
-        private NegocioTermo negocioTermo;
+        private Configuracao configuracao;
+        private NegocioConfiguracao negocioConfiguracao;
         private IUsuarioDAO usuarioDAO;
-        private ITermoDAO termoDAO;
-        
-        public UC16_ExcluirTermo()
+
+        public UC22_ConfigurarTreino()
         {
             usuarioInicial = new Usuario()
             {
                 Nome = "Alexandre",
                 Senha = "athens"
             };
-            termoInicial = new Termo()
-            {
-                Nome = "Qual o significado de IDE?",
-                Correspondencia = "Ambiente de Desenvolvimento Integrado",
-                Dica = ""
-            };
-            negocioTermo = new NegocioTermo();
+            configuracao = new Configuracao();
+            negocioConfiguracao = new NegocioConfiguracao();
             usuarioDAO = new UsuarioDAO();
-            termoDAO = new TermoDAO();
         }
 
         [TestFixtureSetUp]
@@ -58,18 +52,29 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
 
             //_Cadastra a categoria "Programacao" para o assunto "Faculdade".
             ICategoriaDAO categoriaDAO = new CategoriaDAO();
-            Categoria categoriaProgramacao = new Categoria()
+            Categoria categoriaInicial = new Categoria()
             {
                 Nome = "Programacao"
             };
-            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaProgramacao);
+            categoriaDAO.Cadastrar(assuntoInicial.Id, categoriaInicial);
             //_Consulta o id da categoria "Programação".
-            categoriaProgramacao = categoriaDAO.ConsultarNomeIdAssunto(categoriaProgramacao.Nome, assuntoInicial.Id);
+            categoriaInicial = categoriaDAO.ConsultarNomeIdAssunto(categoriaInicial.Nome, assuntoInicial.Id);
 
             //_Cadastra o termo "Qual o significado de IDE?" para a categoria "Programação".
-            termoDAO.Cadastrar(categoriaProgramacao.Id, termoInicial);
+            Termo termoInicial = new Termo()
+            {
+                Nome = "Qual o significado de IDE?",
+                Correspondencia = "Ambiente de Desenvolvimento Integrado",
+                Dica = ""
+            };
+            ITermoDAO termoDAO = new TermoDAO();
+            termoDAO.Cadastrar(categoriaInicial.Id, termoInicial);
             //_Consulta o id do termo "Qual o significado de IDE?".
-            termoInicial = termoDAO.ConsultarNomeIdCategoria(termoInicial.Nome, categoriaProgramacao.Id);
+            termoInicial = termoDAO.ConsultarNomeIdCategoria(termoInicial.Nome, categoriaInicial.Id);
+
+            configuracao.Assunto = assuntoInicial;
+            configuracao.Categoria = categoriaInicial;
+            configuracao.Termos = termoDAO.ConsultarDadosIdCategoria(categoriaInicial.Id);
         }
 
         [TestFixtureTearDown]
@@ -84,16 +89,32 @@ namespace SistemaApoioEstudo.Teste.TestesTermo
         }
 
         [Test]
-        public void CT01UC6FB_Excluir_termoEDadosRelacionados_comSucesso()
+        public void CT01UC22FB_Configurar_treinoComDadosValidos_comSucesso()
         {
-            Assert.IsTrue(termoDAO.Excluir(termoInicial.Id));
+            negocioConfiguracao.ValidarAssunto(configuracao.Assunto);
+            negocioConfiguracao.ValidarCategoria(configuracao.Categoria);
+            negocioConfiguracao.ValidarTermos(configuracao.Termos);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CT02UC6FA_Excluir_termoSemConsulta_semSucesso()
+        [ExpectedException(typeof(Exception))]
+        public void CT02UC22FA_Configurar_treinoSemAssunto_semSucesso()
         {
-            negocioTermo.VerificarTermoSelecionado(new int());
+            negocioConfiguracao.ValidarAssunto(new Assunto());
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception))]
+        public void CT03UC22FA_Configurar_treinoSemCategoria_semSucesso()
+        {
+            negocioConfiguracao.ValidarCategoria(new Categoria());
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception))]
+        public void CT04UC22FA_Configurar_treinoSemTermo_semSucesso()
+        {
+            negocioConfiguracao.ValidarTermos(new List<Termo>());
         }
     }
 }

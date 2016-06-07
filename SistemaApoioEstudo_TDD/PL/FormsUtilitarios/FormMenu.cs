@@ -4,6 +4,7 @@ using SistemaApoioEstudo.PL.FormsCategoria;
 using SistemaApoioEstudo.PL.FormsLogin;
 using SistemaApoioEstudo.PL.FormsTermo;
 using SistemaApoioEstudo.PL.FormsUsuario;
+using SistemaApoioEstudo.PL.FormsConfiguracao;
 using System;
 using System.Windows.Forms;
 
@@ -104,6 +105,19 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             {
                 FormTermo formTermo = new FormTermo();
                 formTermo.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonConfiguracao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormConfiguracao formConfiguracao = new FormConfiguracao();
+                formConfiguracao.ShowDialog();
             }
             catch (Exception ex)
             {

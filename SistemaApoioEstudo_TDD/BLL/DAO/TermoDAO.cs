@@ -54,7 +54,7 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 conexaoBD.AdicionarParametros("@Id_categoria", idCategoria);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspTermoConsultarDadosIdCategoria");
+                dataTable = conexaoBD.ExecutarConsulta("uspTermoConsultarDadosIdCategoria");
                 if (dataTable.Rows.Count == 0)
                 {
                     throw new Exception("Nenhum termo cadastrado!");
@@ -87,7 +87,7 @@ namespace SistemaApoioEstudo.BLL.DAO
                 conexaoBD.AdicionarParametros("@Nome_termo", nomeTermo);
                 conexaoBD.AdicionarParametros("@Id_categoria", IdCategoria);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspTermoConsultarNomeIdCategoria");
+                dataTable = conexaoBD.ExecutarConsulta("uspTermoConsultarNomeIdCategoria");
                 if (dataTable.Rows.Count == 0)
                 {
                     return null;
@@ -102,6 +102,21 @@ namespace SistemaApoioEstudo.BLL.DAO
                     termo.Dica = Convert.ToString(dataRow[3]);
                 }
                 return termo;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int ConsultarQuantidade(int IdCategoria)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_categoria", IdCategoria);
+                DataTable dataTable = new DataTable();
+                dataTable = conexaoBD.ExecutarConsulta("uspTermoQuantidadeConsultar");
+                return Convert.ToInt32(dataTable.Rows[0][0]);
             }
             catch (Exception)
             {

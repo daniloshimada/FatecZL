@@ -50,7 +50,7 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 conexaoBD.AdicionarParametros("@Id_assunto", idAssunto);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspCategoriaConsultarDadosIdAssunto");
+                dataTable = conexaoBD.ExecutarConsulta("uspCategoriaConsultarDadosIdAssunto");
                 if (dataTable.Rows.Count == 0)
                 {
                     throw new Exception("Nenhuma categoria cadastrada!");
@@ -81,7 +81,7 @@ namespace SistemaApoioEstudo.BLL.DAO
                 conexaoBD.AdicionarParametros("@Nome_categoria", nomeCategoria);
                 conexaoBD.AdicionarParametros("@Id_assunto", idAssunto);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspCategoriaConsultarNomeIdAssunto");
+                dataTable = conexaoBD.ExecutarConsulta("uspCategoriaConsultarNomeIdAssunto");
                 if (dataTable.Rows.Count == 0)
                 {
                     return null;

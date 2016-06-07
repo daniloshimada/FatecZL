@@ -36,6 +36,7 @@
             this.buttonUsuario = new System.Windows.Forms.Button();
             this.buttonCategoria = new System.Windows.Forms.Button();
             this.buttonTermo = new System.Windows.Forms.Button();
+            this.buttonConfiguracao = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelMenuMain
@@ -53,7 +54,7 @@
             this.buttonCancelar.AutoSize = true;
             this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancelar.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelar.Location = new System.Drawing.Point(73, 191);
+            this.buttonCancelar.Location = new System.Drawing.Point(134, 191);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(108, 28);
             this.buttonCancelar.TabIndex = 7;
@@ -128,6 +129,19 @@
             this.buttonTermo.UseVisualStyleBackColor = true;
             this.buttonTermo.Click += new System.EventHandler(this.buttonTermo_Click);
             // 
+            // buttonConfiguracao
+            // 
+            this.buttonConfiguracao.AutoSize = true;
+            this.buttonConfiguracao.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonConfiguracao.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConfiguracao.Location = new System.Drawing.Point(12, 191);
+            this.buttonConfiguracao.Name = "buttonConfiguracao";
+            this.buttonConfiguracao.Size = new System.Drawing.Size(114, 28);
+            this.buttonConfiguracao.TabIndex = 8;
+            this.buttonConfiguracao.Text = "CONFIGURAÇÃO";
+            this.buttonConfiguracao.UseVisualStyleBackColor = true;
+            this.buttonConfiguracao.Click += new System.EventHandler(this.buttonConfiguracao_Click);
+            // 
             // FormMenu
             // 
             this.AcceptButton = this.buttonUsuario;
@@ -135,6 +149,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancelar;
             this.ClientSize = new System.Drawing.Size(254, 231);
+            this.Controls.Add(this.buttonConfiguracao);
             this.Controls.Add(this.buttonTermo);
             this.Controls.Add(this.buttonCategoria);
             this.Controls.Add(this.buttonUsuario);
@@ -163,5 +178,6 @@
         private System.Windows.Forms.Button buttonUsuario;
         private System.Windows.Forms.Button buttonCategoria;
         private System.Windows.Forms.Button buttonTermo;
+        private System.Windows.Forms.Button buttonConfiguracao;
     }
 }

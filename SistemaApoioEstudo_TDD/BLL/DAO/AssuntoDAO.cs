@@ -49,7 +49,7 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspAssuntoConsultarDadosIdUsuario");
+                dataTable = conexaoBD.ExecutarConsulta("uspAssuntoConsultarDadosIdUsuario");
                 if (dataTable.Rows.Count == 0)
                 {
                     throw new Exception("Nenhum assunto cadastrado!");
@@ -80,7 +80,7 @@ namespace SistemaApoioEstudo.BLL.DAO
                 conexaoBD.AdicionarParametros("@Nome_assunto", nomeAssunto);
                 conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspAssuntoConsultarNomeIdUsuario");
+                dataTable = conexaoBD.ExecutarConsulta("uspAssuntoConsultarNomeIdUsuario");
                 if (dataTable.Rows.Count == 0)
                 {
                     return null;

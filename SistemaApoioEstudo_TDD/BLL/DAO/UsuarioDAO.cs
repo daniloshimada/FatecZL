@@ -49,7 +49,7 @@ namespace SistemaApoioEstudo.BLL.DAO
                 conexaoBD.AdicionarParametros("@Nome_usuario", usuario.Nome);
                 conexaoBD.AdicionarParametros("@Senha_usuario", usuario.Senha);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultar");
+                dataTable = conexaoBD.ExecutarConsulta("uspUsuarioConsultar");
                 if (dataTable.Rows.Count == 0)
                 {
                     throw new Exception("Dados incorretos!");
@@ -74,7 +74,7 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 conexaoBD.AdicionarParametros("@Nome_usuario", nomeUsuario);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultarNome");
+                dataTable = conexaoBD.ExecutarConsulta("uspUsuarioConsultarNome");
                 if (dataTable.Rows.Count == 0)
                 {
                     return null;
@@ -100,7 +100,7 @@ namespace SistemaApoioEstudo.BLL.DAO
             {
                 conexaoBD.AdicionarParametros("@Id_usuario", idUsuario);
                 DataTable dataTable = new DataTable();
-                dataTable = conexaoBD.ExecutarConsultar("uspUsuarioConsultarDados");
+                dataTable = conexaoBD.ExecutarConsulta("uspUsuarioConsultarDados");
                 if (dataTable.Rows.Count == 0)
                 {
                     return null;

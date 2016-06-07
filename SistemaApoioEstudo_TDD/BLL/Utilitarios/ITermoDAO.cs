@@ -12,6 +12,7 @@ namespace SistemaApoioEstudo.BLL.Utilitarios
         bool Cadastrar(int idCategoria, Termo termo);
         List<Termo> ConsultarDadosIdCategoria(int idCategoria);
         Termo ConsultarNomeIdCategoria(string nomeTermo, int IdCategoria);
+        int ConsultarQuantidade(int idCategoria);
         bool Atualizar(Termo termo);
         bool Excluir(int idTermo);
     }

@@ -55,7 +55,7 @@ namespace SistemaApoioEstudo.DAL.Persistencia
             }
         }
 
-        public DataTable ExecutarConsultar(string userStoredProcedure)
+        public DataTable ExecutarConsulta(string userStoredProcedure)
         {
             try
             {

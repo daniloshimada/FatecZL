@@ -51,6 +51,7 @@
     <Compile Include="TestesCategoria\UC10_ConsultarCategoria.cs" />
     <Compile Include="TestesCategoria\UC11_AtualizarCategoria.cs" />
     <Compile Include="TestesCategoria\UC12_ExcluirCategoria.cs" />
+    <Compile Include="TestesConfigurarTreino\UC22_ConfigurarTreino.cs" />
     <Compile Include="TestesLogin\UC20_Logar.cs" />
     <Compile Include="TestesTermo\UC13_CadastrarTermo.cs" />
     <Compile Include="TestesTermo\UC14_ConsultarTermo.cs" />

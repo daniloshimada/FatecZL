@@ -46,6 +46,18 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
+        public int ConsultarQuantidadeTermos(int idCategoria)
+        {
+            try
+            {
+                return termoDAO.ConsultarQuantidade(idCategoria);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool Atualizar(Termo termo)
         {
             try

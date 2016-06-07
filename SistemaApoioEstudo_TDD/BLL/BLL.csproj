@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Controles\ControleAssunto.cs" />
     <Compile Include="Controles\ControleCategoria.cs" />
+    <Compile Include="Controles\ControleConfiguracao.cs" />
     <Compile Include="Controles\ControleLogin.cs" />
     <Compile Include="Controles\ControleTermo.cs" />
     <Compile Include="Controles\ControleUsuario.cs" />
@@ -50,11 +51,13 @@
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Entidades\Assunto.cs" />
     <Compile Include="Entidades\Categoria.cs" />
+    <Compile Include="Entidades\Configuracao.cs" />
     <Compile Include="Entidades\Login.cs" />
     <Compile Include="Entidades\Termo.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Negocio\NegocioAssunto.cs" />
     <Compile Include="Negocio\NegocioCategoria.cs" />
+    <Compile Include="Negocio\NegocioConfiguracao.cs" />
     <Compile Include="Negocio\NegocioLogin.cs" />
     <Compile Include="Negocio\NegocioTermo.cs" />
     <Compile Include="Utilitarios\IAssuntoDAO.cs" />
