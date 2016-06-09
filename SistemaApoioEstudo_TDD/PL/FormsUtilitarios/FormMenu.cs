@@ -24,7 +24,7 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
         {
             try
             {
-                carregarTela();
+                CarregarTela();
             }
             catch (Exception ex)
             {
@@ -44,13 +44,13 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             }
         }
 
-        private void carregarTela()
+        public void CarregarTela()
         {
             try
             {
                 if (Login.Usuario != null)
                 {
-                    textBoxNome.Text = Login.Usuario.Nome;
+                    Text = string.Format("MENU - Usuário: {0}", Login.Usuario.Nome);
                 }
             }
             catch (Exception ex)
@@ -59,13 +59,28 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             }
         }
 
-        private void buttonUsuario_Click(object sender, EventArgs e)
+        private void deslogarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Login.RemoverUsuario();
+                Hide();
+                formLogin.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 FormConsultarUsuario formConsultarUsuario = new FormConsultarUsuario(formLogin, this);
-                formConsultarUsuario.ShowDialog();
-                carregarTela();
+                formConsultarUsuario.MdiParent = this;
+                formConsultarUsuario.Show();
+                CarregarTela();
             }
             catch (Exception ex)
             {
@@ -73,12 +88,13 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             }
         }
 
-        private void buttonAssunto_Click(object sender, EventArgs e)
+        private void assuntoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 FormAssunto formAssunto = new FormAssunto();
-                formAssunto.ShowDialog();
+                formAssunto.MdiParent = this;
+                formAssunto.Show();
             }
             catch (Exception ex)
             {
@@ -86,12 +102,13 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             }
         }
 
-        private void buttonCategoria_Click(object sender, EventArgs e)
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 FormCategoria formCategoria = new FormCategoria();
-                formCategoria.ShowDialog();
+                formCategoria.MdiParent = this;
+                formCategoria.Show();
             }
             catch (Exception ex)
             {
@@ -99,12 +116,13 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             }
         }
 
-        private void buttonTermo_Click(object sender, EventArgs e)
+        private void termoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 FormTermo formTermo = new FormTermo();
-                formTermo.ShowDialog();
+                formTermo.MdiParent = this;
+                formTermo.Show();
             }
             catch (Exception ex)
             {
@@ -112,24 +130,13 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             }
         }
 
-        private void buttonConfiguracao_Click(object sender, EventArgs e)
+        private void treinarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                FormConfiguracao formConfiguracao = new FormConfiguracao();
-                formConfiguracao.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void buttonCancelar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Application.Exit();
+                FormConfiguracao formConfiguracao = new FormConfiguracao(this);
+                formConfiguracao.MdiParent = this;
+                formConfiguracao.Show();
             }
             catch (Exception ex)
             {

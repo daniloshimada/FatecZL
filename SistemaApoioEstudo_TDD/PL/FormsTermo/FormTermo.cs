@@ -21,6 +21,10 @@ namespace SistemaApoioEstudo.PL.FormsTermo
         {
             carregarComboBoxAssuntos();
             carregarCampos();
+            textBoxTermo.Clear();
+            textBoxCorrespondencia.Clear();
+            textBoxDica.Clear();
+            textBoxTermo.Focus();
         }
 
         private void comboBoxAssuntos_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,6 +102,7 @@ namespace SistemaApoioEstudo.PL.FormsTermo
             }
             catch (Exception ex)
             {
+                dataGridViewTermos.DataSource = new List<Termo>();
                 MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -141,6 +146,7 @@ namespace SistemaApoioEstudo.PL.FormsTermo
                 textBoxCorrespondencia.Clear();
                 textBoxDica.Clear();
                 dataGridViewTermos.DataSource = new List<Termo>();
+                textBoxTermo.Focus();
             }
             catch (Exception ex)
             {

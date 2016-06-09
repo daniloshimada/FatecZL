@@ -57,6 +57,7 @@
     <Compile Include="TestesTermo\UC14_ConsultarTermo.cs" />
     <Compile Include="TestesTermo\UC16_ExcluirTermo.cs" />
     <Compile Include="TestesTermo\UC15_AtualizarTermo.cs" />
+    <Compile Include="TestesTreinar\UC21_Treinar.cs" />
     <Compile Include="TestesUsuario\UC01_CadastrarUsuario.cs" />
     <Compile Include="TestesUsuario\UC02_ConsultarUsuario.cs" />
     <Compile Include="TestesUsuario\UC03_AtualizarUsuario.cs" />

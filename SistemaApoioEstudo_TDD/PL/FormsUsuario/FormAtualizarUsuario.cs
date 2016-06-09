@@ -2,17 +2,20 @@
 using SistemaApoioEstudo.BLL.Entidades;
 using System;
 using System.Windows.Forms;
+using SistemaApoioEstudo.PL.FormsUtilitarios;
 
 namespace SistemaApoioEstudo.PL.FormsUsuario
 {
     public partial class FormAtualizarUsuario : Form
     {
         private FormConsultarUsuario formConsultarUsuario;
+        private FormMenu formMenu;
 
-        public FormAtualizarUsuario(FormConsultarUsuario formConsultarUsuario)
+        public FormAtualizarUsuario(FormConsultarUsuario formConsultarUsuario, FormMenu formMenu)
         {
             InitializeComponent();
             this.formConsultarUsuario = formConsultarUsuario;
+            this.formMenu = formMenu;
         }
 
         private void FormAtualizarUsuario_Shown(object sender, EventArgs e)
@@ -57,6 +60,7 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
                     {
                         MessageBox.Show("Usuário atualizado com sucesso!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         formConsultarUsuario.CarregarTela();
+                        formMenu.CarregarTela();
                         Close();
                     }
                 }

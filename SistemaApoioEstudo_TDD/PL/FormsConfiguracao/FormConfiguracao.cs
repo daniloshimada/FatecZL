@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SistemaApoioEstudo.BLL.Controles;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Controles;
 using SistemaApoioEstudo.PL.FormsTreino;
+using SistemaApoioEstudo.PL.FormsUtilitarios;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SistemaApoioEstudo.PL.FormsConfiguracao
 {
     public partial class FormConfiguracao : Form
     {
         private ControleConfiguracao controleConfiguracao;
+        private FormMenu formMenu;
 
-        public FormConfiguracao()
+        public FormConfiguracao(FormMenu formMenu)
         {
             InitializeComponent();
             controleConfiguracao = new ControleConfiguracao();
+            this.formMenu = formMenu;
         }
 
         private void FormConfiguracao_Shown(object sender, EventArgs e)
@@ -142,17 +139,23 @@ namespace SistemaApoioEstudo.PL.FormsConfiguracao
                 {
                     Assunto = comboBoxAssuntos.SelectedItem as Assunto,
                     Categoria = comboBoxCategorias.SelectedItem as Categoria,
-                    Termos = new ControleTermo().ConsultarDadosIdCategoria((comboBoxCategorias.SelectedItem as Categoria).Id)
+                    Termos = new ControleTermo().ConsultarRandomico((comboBoxCategorias.SelectedItem as Categoria).Id)
                 };
 
-                Hide();
-                FormTreino formTreino = new FormTreino(this, configuracao);
-                formTreino.ShowDialog();
+                FormTreino formTreino = new FormTreino(formMenu, configuracao);
+                formTreino.MdiParent = formMenu;
+                formTreino.Show();
+                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

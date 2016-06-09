@@ -28,141 +28,123 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelMenuMain = new System.Windows.Forms.Label();
-            this.buttonCancelar = new System.Windows.Forms.Button();
-            this.textBoxNome = new System.Windows.Forms.TextBox();
-            this.labelNome = new System.Windows.Forms.Label();
-            this.buttonAssunto = new System.Windows.Forms.Button();
-            this.buttonUsuario = new System.Windows.Forms.Button();
-            this.buttonCategoria = new System.Windows.Forms.Button();
-            this.buttonTermo = new System.Windows.Forms.Button();
-            this.buttonConfiguracao = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sAIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assuntoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.termoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.históricoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treinarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // labelMenuMain
+            // menuStrip1
             // 
-            this.labelMenuMain.AutoSize = true;
-            this.labelMenuMain.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMenuMain.Location = new System.Drawing.Point(103, 9);
-            this.labelMenuMain.Name = "labelMenuMain";
-            this.labelMenuMain.Size = new System.Drawing.Size(48, 18);
-            this.labelMenuMain.TabIndex = 0;
-            this.labelMenuMain.Text = "MENU";
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.arquivoToolStripMenuItem,
+            this.editarToolStripMenuItem,
+            this.treinarToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(653, 26);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // buttonCancelar
+            // arquivoToolStripMenuItem
             // 
-            this.buttonCancelar.AutoSize = true;
-            this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancelar.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelar.Location = new System.Drawing.Point(134, 191);
-            this.buttonCancelar.Name = "buttonCancelar";
-            this.buttonCancelar.Size = new System.Drawing.Size(108, 28);
-            this.buttonCancelar.TabIndex = 7;
-            this.buttonCancelar.Text = "CANCELAR";
-            this.buttonCancelar.UseVisualStyleBackColor = true;
-            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sAIRToolStripMenuItem});
+            this.arquivoToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold);
+            this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
+            this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
+            this.arquivoToolStripMenuItem.Text = "Arquivo";
             // 
-            // textBoxNome
+            // sAIRToolStripMenuItem
             // 
-            this.textBoxNome.Enabled = false;
-            this.textBoxNome.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNome.Location = new System.Drawing.Point(96, 54);
-            this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(126, 23);
-            this.textBoxNome.TabIndex = 2;
+            this.sAIRToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F);
+            this.sAIRToolStripMenuItem.Name = "sAIRToolStripMenuItem";
+            this.sAIRToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.sAIRToolStripMenuItem.Text = "Deslogar";
+            this.sAIRToolStripMenuItem.Click += new System.EventHandler(this.deslogarToolStripMenuItem_Click);
             // 
-            // labelNome
+            // editarToolStripMenuItem
             // 
-            this.labelNome.AutoSize = true;
-            this.labelNome.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNome.Location = new System.Drawing.Point(32, 55);
-            this.labelNome.Name = "labelNome";
-            this.labelNome.Size = new System.Drawing.Size(58, 18);
-            this.labelNome.TabIndex = 1;
-            this.labelNome.Text = "Nome:";
+            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usuarioToolStripMenuItem,
+            this.assuntoToolStripMenuItem,
+            this.categoriaToolStripMenuItem,
+            this.termoToolStripMenuItem,
+            this.históricoToolStripMenuItem});
+            this.editarToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold);
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(80, 22);
+            this.editarToolStripMenuItem.Text = "Editar";
             // 
-            // buttonAssunto
+            // usuarioToolStripMenuItem
             // 
-            this.buttonAssunto.AutoSize = true;
-            this.buttonAssunto.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAssunto.Location = new System.Drawing.Point(134, 107);
-            this.buttonAssunto.Name = "buttonAssunto";
-            this.buttonAssunto.Size = new System.Drawing.Size(108, 28);
-            this.buttonAssunto.TabIndex = 4;
-            this.buttonAssunto.Text = "ASSUNTO";
-            this.buttonAssunto.UseVisualStyleBackColor = true;
-            this.buttonAssunto.Click += new System.EventHandler(this.buttonAssunto_Click);
+            this.usuarioToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F);
+            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.usuarioToolStripMenuItem.Text = "Usuário";
+            this.usuarioToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
             // 
-            // buttonUsuario
+            // assuntoToolStripMenuItem
             // 
-            this.buttonUsuario.AutoSize = true;
-            this.buttonUsuario.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUsuario.Location = new System.Drawing.Point(12, 107);
-            this.buttonUsuario.Name = "buttonUsuario";
-            this.buttonUsuario.Size = new System.Drawing.Size(108, 28);
-            this.buttonUsuario.TabIndex = 3;
-            this.buttonUsuario.Text = "USUÁRIO";
-            this.buttonUsuario.UseVisualStyleBackColor = true;
-            this.buttonUsuario.Click += new System.EventHandler(this.buttonUsuario_Click);
+            this.assuntoToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F);
+            this.assuntoToolStripMenuItem.Name = "assuntoToolStripMenuItem";
+            this.assuntoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.assuntoToolStripMenuItem.Text = "Assunto";
+            this.assuntoToolStripMenuItem.Click += new System.EventHandler(this.assuntoToolStripMenuItem_Click);
             // 
-            // buttonCategoria
+            // categoriaToolStripMenuItem
             // 
-            this.buttonCategoria.AutoSize = true;
-            this.buttonCategoria.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCategoria.Location = new System.Drawing.Point(12, 141);
-            this.buttonCategoria.Name = "buttonCategoria";
-            this.buttonCategoria.Size = new System.Drawing.Size(108, 28);
-            this.buttonCategoria.TabIndex = 5;
-            this.buttonCategoria.Text = "CATEGORIA";
-            this.buttonCategoria.UseVisualStyleBackColor = true;
-            this.buttonCategoria.Click += new System.EventHandler(this.buttonCategoria_Click);
+            this.categoriaToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F);
+            this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.categoriaToolStripMenuItem.Text = "Categoria";
+            this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
-            // buttonTermo
+            // termoToolStripMenuItem
             // 
-            this.buttonTermo.AutoSize = true;
-            this.buttonTermo.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTermo.Location = new System.Drawing.Point(134, 141);
-            this.buttonTermo.Name = "buttonTermo";
-            this.buttonTermo.Size = new System.Drawing.Size(108, 28);
-            this.buttonTermo.TabIndex = 6;
-            this.buttonTermo.Text = "TERMO";
-            this.buttonTermo.UseVisualStyleBackColor = true;
-            this.buttonTermo.Click += new System.EventHandler(this.buttonTermo_Click);
+            this.termoToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F);
+            this.termoToolStripMenuItem.Name = "termoToolStripMenuItem";
+            this.termoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.termoToolStripMenuItem.Text = "Termo";
+            this.termoToolStripMenuItem.Click += new System.EventHandler(this.termoToolStripMenuItem_Click);
             // 
-            // buttonConfiguracao
+            // históricoToolStripMenuItem
             // 
-            this.buttonConfiguracao.AutoSize = true;
-            this.buttonConfiguracao.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonConfiguracao.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConfiguracao.Location = new System.Drawing.Point(12, 191);
-            this.buttonConfiguracao.Name = "buttonConfiguracao";
-            this.buttonConfiguracao.Size = new System.Drawing.Size(114, 28);
-            this.buttonConfiguracao.TabIndex = 8;
-            this.buttonConfiguracao.Text = "CONFIGURAÇÃO";
-            this.buttonConfiguracao.UseVisualStyleBackColor = true;
-            this.buttonConfiguracao.Click += new System.EventHandler(this.buttonConfiguracao_Click);
+            this.históricoToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F);
+            this.históricoToolStripMenuItem.Name = "históricoToolStripMenuItem";
+            this.históricoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.históricoToolStripMenuItem.Text = "Histórico";
+            // 
+            // treinarToolStripMenuItem
+            // 
+            this.treinarToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold);
+            this.treinarToolStripMenuItem.Name = "treinarToolStripMenuItem";
+            this.treinarToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
+            this.treinarToolStripMenuItem.Text = "Treinar";
+            this.treinarToolStripMenuItem.Click += new System.EventHandler(this.treinarToolStripMenuItem_Click);
             // 
             // FormMenu
             // 
-            this.AcceptButton = this.buttonUsuario;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.buttonCancelar;
-            this.ClientSize = new System.Drawing.Size(254, 231);
-            this.Controls.Add(this.buttonConfiguracao);
-            this.Controls.Add(this.buttonTermo);
-            this.Controls.Add(this.buttonCategoria);
-            this.Controls.Add(this.buttonUsuario);
-            this.Controls.Add(this.buttonAssunto);
-            this.Controls.Add(this.labelMenuMain);
-            this.Controls.Add(this.buttonCancelar);
-            this.Controls.Add(this.textBoxNome);
-            this.Controls.Add(this.labelNome);
+            this.ClientSize = new System.Drawing.Size(653, 654);
+            this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MENU";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMenu_FormClosing);
             this.Shown += new System.EventHandler(this.FormMenu_Shown);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,14 +152,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelMenuMain;
-        private System.Windows.Forms.Button buttonCancelar;
-        private System.Windows.Forms.TextBox textBoxNome;
-        private System.Windows.Forms.Label labelNome;
-        private System.Windows.Forms.Button buttonAssunto;
-        private System.Windows.Forms.Button buttonUsuario;
-        private System.Windows.Forms.Button buttonCategoria;
-        private System.Windows.Forms.Button buttonTermo;
-        private System.Windows.Forms.Button buttonConfiguracao;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem treinarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sAIRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assuntoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem termoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem históricoToolStripMenuItem;
+
     }
 }

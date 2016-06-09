@@ -124,6 +124,38 @@ namespace SistemaApoioEstudo.BLL.DAO
             }
         }
 
+        public List<Termo> ConsultarRandomico(int idCategoria)
+        {
+            try
+            {
+                conexaoBD.AdicionarParametros("@Id_categoria", idCategoria);
+                DataTable dataTable = new DataTable();
+                dataTable = conexaoBD.ExecutarConsulta("uspTermoRandomicoConsultar");
+                if (dataTable.Rows.Count == 0)
+                {
+                    throw new Exception("Nenhum termo cadastrado!");
+                }
+
+                List<Termo> termos = new List<Termo>();
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    Termo termoForeach = new Termo()
+                    {
+                        Id = Convert.ToInt32(dataRow[0]),
+                        Nome = Convert.ToString(dataRow[1]),
+                        Correspondencia = Convert.ToString(dataRow[2]),
+                        Dica = Convert.ToString(dataRow[3])
+                    };
+                    termos.Add(termoForeach);
+                }
+                return termos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool Atualizar(Termo termo)
         {
             try

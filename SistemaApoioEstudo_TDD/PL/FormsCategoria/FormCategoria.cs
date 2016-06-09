@@ -19,6 +19,7 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
         private void FormCategoria_Shown(object sender, EventArgs e)
         {
             carregarComboBoxAssuntos();
+            limparCampos();
         }
 
         private void comboBoxAssuntos_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,6 +108,7 @@ namespace SistemaApoioEstudo.PL.FormsCategoria
             try
             {
                 textBoxCategoria.Clear();
+                textBoxCategoria.Focus();
             }
             catch (Exception ex)
             {

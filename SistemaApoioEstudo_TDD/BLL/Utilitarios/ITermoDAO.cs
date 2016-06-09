@@ -13,6 +13,7 @@ namespace SistemaApoioEstudo.BLL.Utilitarios
         List<Termo> ConsultarDadosIdCategoria(int idCategoria);
         Termo ConsultarNomeIdCategoria(string nomeTermo, int IdCategoria);
         int ConsultarQuantidade(int idCategoria);
+        List<Termo> ConsultarRandomico(int idCategoria);
         bool Atualizar(Termo termo);
         bool Excluir(int idTermo);
     }

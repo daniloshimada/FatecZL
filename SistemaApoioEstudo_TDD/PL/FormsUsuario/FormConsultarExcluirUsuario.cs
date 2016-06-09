@@ -54,7 +54,7 @@ namespace SistemaApoioEstudo.PL.FormsUsuario
         {
             try
             {
-                FormAtualizarUsuario formAtualizarUsuario = new FormAtualizarUsuario(this);
+                FormAtualizarUsuario formAtualizarUsuario = new FormAtualizarUsuario(this, formMenu);
                 formAtualizarUsuario.ShowDialog();
             }
             catch (Exception ex)

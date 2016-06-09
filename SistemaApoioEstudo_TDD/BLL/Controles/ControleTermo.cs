@@ -58,6 +58,18 @@ namespace SistemaApoioEstudo.BLL.Controles
             }
         }
 
+        public List<Termo> ConsultarRandomico(int idCategoria)
+        {
+            try
+            {
+                return termoDAO.ConsultarRandomico(idCategoria);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool Atualizar(Termo termo)
         {
             try

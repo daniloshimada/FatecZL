@@ -19,6 +19,7 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
         private void FormAssunto_Shown(object sender, EventArgs e)
         {
             carregarTela();
+            limparCampos();
         }
 
         private void comboBoxAssuntos_SelectedIndexChanged(object sender, EventArgs e)
@@ -37,7 +38,6 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
         {
             try
             {
-                limparCampos();
                 comboBoxAssuntos.Items.Clear();
                 comboBoxAssuntos.ValueMember = "Id";
                 comboBoxAssuntos.DisplayMember = "Nome";
@@ -67,6 +67,7 @@ namespace SistemaApoioEstudo.PL.FormsAssunto
             try
             {
                 textBoxAssunto.Clear();
+                textBoxAssunto.Focus();
             }
             catch (Exception)
             {

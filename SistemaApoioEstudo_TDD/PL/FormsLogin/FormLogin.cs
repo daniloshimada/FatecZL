@@ -26,6 +26,7 @@ namespace SistemaApoioEstudo.PL.FormsLogin
                 ControleLogin controleLogin = new ControleLogin();
                 if (controleLogin.Logar(usuarioLogar))
                 {
+                    textBoxNome.Focus();
                     Hide();
                     FormMenu formMenu = new FormMenu(this);
                     formMenu.Show();
