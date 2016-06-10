@@ -49,6 +49,7 @@
     <Compile Include="Controles\ControleUsuario.cs" />
     <Compile Include="DAO\AssuntoDAO.cs" />
     <Compile Include="DAO\CategoriaDAO.cs" />
+    <Compile Include="DAO\HistoricoDAO.cs" />
     <Compile Include="DAO\TermoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Entidades\Assunto.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Negocio\NegocioTreino.cs" />
     <Compile Include="Utilitarios\IAssuntoDAO.cs" />
     <Compile Include="Utilitarios\ICategoriaDAO.cs" />
+    <Compile Include="Utilitarios\IHistoricoDAO.cs" />
     <Compile Include="Utilitarios\ITermoDAO.cs" />
     <Compile Include="Utilitarios\IUsuarioDAO.cs" />
     <Compile Include="Negocio\NegocioUsuario.cs" />

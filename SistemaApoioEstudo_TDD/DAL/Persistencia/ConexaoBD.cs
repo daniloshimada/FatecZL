@@ -55,6 +55,32 @@ namespace SistemaApoioEstudo.DAL.Persistencia
             }
         }
 
+        public int ExecutarManipulacaoRetornoID(string userStoredProcedure)
+        {
+            try
+            {
+                sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ConexaoSqlServer"].ConnectionString;
+                sqlConnection.Open();
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = userStoredProcedure;
+                foreach (SqlParameter sqlParameter in sqlParameterCollection)
+                {
+                    sqlCommand.Parameters.AddWithValue(sqlParameter.ParameterName, sqlParameter.Value);
+                }
+                return Convert.ToInt32(sqlCommand.ExecuteScalar());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                LimparParametros();
+                sqlConnection.Close();
+            }
+        }
+
         public DataTable ExecutarConsulta(string userStoredProcedure)
         {
             try

@@ -23,5 +23,23 @@ namespace SistemaApoioEstudo.BLL.Negocio
                 throw;
             }
         }
+
+        public void ValidarDados(Historico historico)
+        {
+            try
+            {
+                if (historico.Treino.Assercoes == null || (historico.Treino.Respostas == null))
+                {
+                    throw new NullReferenceException("Não foi possível cadastrar o histórico, contate o suporte técnico! (treino)");
+                }else if(historico == null || historico.Treino == null)
+                {
+                    throw new NullReferenceException("Não foi possível cadastrar o histórico, contate o suporte técnico! (histórico)");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
