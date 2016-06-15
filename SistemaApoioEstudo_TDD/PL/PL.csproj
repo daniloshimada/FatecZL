@@ -63,6 +63,18 @@
     <Compile Include="FormsConfiguracao\FormConfiguracao.Designer.cs">
       <DependentUpon>FormConfiguracao.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsHistorico\FormHistorico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsHistorico\FormHistorico.Designer.cs">
+      <DependentUpon>FormHistorico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsHistorico\FormHistoricoConsultar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsHistorico\FormHistoricoConsultar.Designer.cs">
+      <DependentUpon>FormHistoricoConsultar.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsLogin\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsConfiguracao\FormConfiguracao.resx">
       <DependentUpon>FormConfiguracao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsHistorico\FormHistorico.resx">
+      <DependentUpon>FormHistorico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsHistorico\FormHistoricoConsultar.resx">
+      <DependentUpon>FormHistoricoConsultar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLogin\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

@@ -13,7 +13,6 @@ namespace SistemaApoioEstudo.BLL.Entidades
         public Treino Treino { get; set; }
         public byte Acertos { get; set; }
         public byte Erros { get; set; }
-        public int Testes { get; set; }
         public DateTime Data { get; set; }
 
         public Historico(Treino treino)

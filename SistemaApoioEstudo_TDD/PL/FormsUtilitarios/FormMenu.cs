@@ -3,6 +3,7 @@ using SistemaApoioEstudo.PL.FormsAssunto;
 using SistemaApoioEstudo.PL.FormsCategoria;
 using SistemaApoioEstudo.PL.FormsLogin;
 using SistemaApoioEstudo.PL.FormsTermo;
+using SistemaApoioEstudo.PL.FormsHistorico;
 using SistemaApoioEstudo.PL.FormsUsuario;
 using SistemaApoioEstudo.PL.FormsConfiguracao;
 using System;
@@ -50,7 +51,7 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
             {
                 if (Login.Usuario != null)
                 {
-                    Text = string.Format("MENU - Usuário: {0}", Login.Usuario.Nome);
+                    toolStripStatusLabel1.Text = string.Format("USUÁRIO: {0}", Login.Usuario.Nome);
                 }
             }
             catch (Exception ex)
@@ -123,6 +124,20 @@ namespace SistemaApoioEstudo.PL.FormsUtilitarios
                 FormTermo formTermo = new FormTermo();
                 formTermo.MdiParent = this;
                 formTermo.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void históricoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormHistorico formHistorico = new FormHistorico(this);
+                formHistorico.MdiParent = this;
+                formHistorico.Show();
             }
             catch (Exception ex)
             {
