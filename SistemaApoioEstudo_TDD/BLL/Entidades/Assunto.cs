@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace SistemaApoioEstudo.BLL.Entidades
 {
     public class Assunto

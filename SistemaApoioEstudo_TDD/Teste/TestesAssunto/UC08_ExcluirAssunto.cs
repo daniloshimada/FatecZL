@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using SistemaApoioEstudo.BLL.DAO;
 using SistemaApoioEstudo.BLL.Entidades;
-using SistemaApoioEstudo.BLL.Utilitarios;
 using SistemaApoioEstudo.BLL.Negocio;
+using SistemaApoioEstudo.BLL.Utilitarios;
 using System;
 
 namespace SistemaApoioEstudo.Teste.TestesAssunto

@@ -63,7 +63,7 @@
             this.arquivoToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold);
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
-            this.arquivoToolStripMenuItem.Text = "Arquivo";
+            this.arquivoToolStripMenuItem.Text = "&Arquivo";
             // 
             // sAIRToolStripMenuItem
             // 
@@ -84,7 +84,7 @@
             this.editarToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold);
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(80, 22);
-            this.editarToolStripMenuItem.Text = "Editar";
+            this.editarToolStripMenuItem.Text = "&Editar";
             // 
             // usuarioToolStripMenuItem
             // 
@@ -131,7 +131,7 @@
             this.treinarToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold);
             this.treinarToolStripMenuItem.Name = "treinarToolStripMenuItem";
             this.treinarToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
-            this.treinarToolStripMenuItem.Text = "Treinar";
+            this.treinarToolStripMenuItem.Text = "&Treinar";
             this.treinarToolStripMenuItem.Click += new System.EventHandler(this.treinarToolStripMenuItem_Click);
             // 
             // statusStrip1
@@ -141,7 +141,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 631);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(653, 23);
-            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1

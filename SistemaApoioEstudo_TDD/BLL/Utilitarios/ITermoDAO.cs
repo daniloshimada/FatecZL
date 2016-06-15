@@ -1,9 +1,5 @@
-﻿using System;
+﻿using SistemaApoioEstudo.BLL.Entidades;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SistemaApoioEstudo.BLL.Entidades;
 
 namespace SistemaApoioEstudo.BLL.Utilitarios
 {

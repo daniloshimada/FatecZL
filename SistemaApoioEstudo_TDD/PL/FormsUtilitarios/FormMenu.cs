@@ -1,11 +1,11 @@
 ﻿using SistemaApoioEstudo.BLL.Entidades;
 using SistemaApoioEstudo.PL.FormsAssunto;
 using SistemaApoioEstudo.PL.FormsCategoria;
+using SistemaApoioEstudo.PL.FormsConfiguracao;
+using SistemaApoioEstudo.PL.FormsHistorico;
 using SistemaApoioEstudo.PL.FormsLogin;
 using SistemaApoioEstudo.PL.FormsTermo;
-using SistemaApoioEstudo.PL.FormsHistorico;
 using SistemaApoioEstudo.PL.FormsUsuario;
-using SistemaApoioEstudo.PL.FormsConfiguracao;
 using System;
 using System.Windows.Forms;
 
