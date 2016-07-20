@@ -73,5 +73,17 @@ namespace SistemaApoioEstudo.BLL.Controles
                 throw;
             }
         }
+
+        public void ValidarResposta(string respostaTreino)
+        {
+            try
+            {
+                negocioTreino.ValidarResposta(respostaTreino); 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

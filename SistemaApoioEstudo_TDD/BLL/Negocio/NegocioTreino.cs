@@ -95,5 +95,24 @@ namespace SistemaApoioEstudo.BLL.Negocio
                 throw;
             }
         }
+
+        public void ValidarResposta(string respostaTreino)
+        {
+            try
+            {
+                if (respostaTreino.Length > 300)
+                {
+                    throw new ArgumentException("O campo resposta não deve conter acima de 300 caracteres!");
+                }
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException("Ocorreu um erro no campo resposta, contate o suporte técnico!");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

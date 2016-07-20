@@ -102,6 +102,7 @@ namespace SistemaApoioEstudo.PL.FormsTreino
         {
             try
             {
+                controleTreino.ValidarResposta(textBoxResposta.Text);
                 treino.Respostas.Add(textBoxResposta.Text);
                 if ((contador + 1) < quantidadeTestes)
                 {
