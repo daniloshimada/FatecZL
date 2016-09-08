@@ -12,11 +12,11 @@ namespace SistemaApoioEstudo.BLL.Controles
         {
             try
             {
-                IUsuarioDAO usuarioDAO = new UsuarioDAO();   
-                Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
+                IUsuarioDAO usuarioDAO = new UsuarioDAO();
                 NegocioUsuario negocioUsuario = new NegocioUsuario();
                 negocioUsuario.ValidarNome(usuarioLogin.Nome);
                 negocioUsuario.ValidarSenha(usuarioLogin.Senha);
+                Usuario usuarioRetorno = usuarioDAO.Consultar(usuarioLogin);
                 if (usuarioRetorno != null)
                 {
                     Login.RegistrarUsuario(usuarioRetorno);
